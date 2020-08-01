@@ -2,8 +2,7 @@ package com.example.githubusers.di.component
 
 import android.app.Application
 import com.example.githubusers.BaseApplication
-import com.example.githubusers.di.module.ActivityBuilderModule
-import com.example.githubusers.di.module.RoomModule
+import com.example.githubusers.di.module.*
 import dagger.BindsInstance
 import dagger.Component
 import dagger.android.AndroidInjectionModule
@@ -16,7 +15,10 @@ import javax.inject.Singleton
     modules = [
         ActivityBuilderModule::class,
         AndroidSupportInjectionModule::class,
-        RoomModule::class
+        RoomModule::class,
+        DataModule::class,
+        RepositoryModule::class,
+        UseCaseModule::class
     ]
 )
 
