@@ -43,10 +43,10 @@ class MainViewModel @Inject constructor(
     val resultUserApi: LiveData<List<UserSearchResponseItem>>
         get() = _resultUserApi
 
-    fun getUserFromApi(username: String) {
+    fun getUserFromApi(query: String) {
         _state.value = LoaderState.ShowLoading
         Coroutine.main {
-            val result = userUseCase.getUserFromApi(username)
+            val result = userUseCase.getUserFromApi(query)
             _state.value = LoaderState.HideLoading
             when(result) {
                 is ResultState.Success -> {

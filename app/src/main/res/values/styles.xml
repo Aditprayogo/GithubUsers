@@ -7,4 +7,10 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
+    <style name="SearchText" parent="Theme.AppCompat.Light.DarkActionBar">
+        <!-- Customize your theme here. -->
+        <item name="android:textSize">15sp</item>
+        <item name="android:textColor">@color/colorBlack</item>
+    </style>
+
 </resources>
