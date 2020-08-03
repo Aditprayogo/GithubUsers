@@ -1,8 +1,12 @@
 package com.example.githubusers.feature.main
 
+import android.content.Context
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
+import android.view.Window
+import android.view.WindowManager
+import android.widget.SearchView
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -33,12 +37,32 @@ class MainActivity : BaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+        searchUsers()
         initViewModels()
+        initRecyclerView()
         initObserver()
     }
 
     private fun initViewModels() {
         viewModel = ViewModelProvider(this, viewModelFactory)[MainViewModel::class.java]
+    }
+
+    private fun searchUsers() {
+        sv_search.setOnQueryTextListener(object: SearchView.OnQueryTextListener, androidx.appcompat.widget.SearchView.OnQueryTextListener {
+            override fun onQueryTextSubmit(query: String?): Boolean {
+                if (query != null) {
+                    if(query.isNotEmpty()) {
+                        items.clear()
+                        viewModel.getUserFromApi(query)
+                        setIllustration(false)
+                    }
+                }
+                return true
+            }
+
+            override fun onQueryTextChange(p0: String?): Boolean = false
+
+        })
     }
 
     private fun initObserver() {
@@ -47,11 +71,22 @@ class MainActivity : BaseActivity() {
                 handleStateLoading(it)
             }
         })
+        viewModel.resultUserApi.observe(this, Observer {
+            it?.let {
+                handleUserFromApi(it)
+            }
+        })
     }
 
     private fun initRecyclerView() {
         rv_user.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
         rv_user.adapter = mainAdapter
+    }
+
+    private fun handleUserFromApi(result: List<UserSearchResponseItem>) {
+        items.clear()
+        items.addAll(result)
+        mainAdapter.setItems(items)
     }
 
     private fun handleStateLoading(loading: LoaderState) {

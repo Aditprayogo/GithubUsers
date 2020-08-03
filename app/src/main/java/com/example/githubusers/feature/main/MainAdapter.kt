@@ -19,7 +19,9 @@ class MainAdapter(val context: Context) : RecyclerView.Adapter<MainAdapter.ViewH
         fun bind(data: UserSearchResponseItem) {
             with(itemView) {
                 Glide.with(context)
-                    .load(data.avatarUrl).into(iv_user)
+                    .load(data.avatarUrl!!)
+                    .circleCrop()
+                    .into(iv_user)
 
                 txt_username.text = data.login
             }
