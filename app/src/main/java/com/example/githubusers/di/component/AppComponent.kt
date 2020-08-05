@@ -22,7 +22,8 @@ import javax.inject.Singleton
         ViewModelModule::class,
         AndroidSupportInjectionModule::class,
         ActivityBuilderModule::class,
-        RoomModule::class
+        RoomModule::class,
+        FragmentBuilderModule::class
     ]
 )
 

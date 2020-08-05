@@ -1,4 +1,4 @@
-package com.example.githubusers.feature.main
+package com.example.githubusers.feature.follower
 
 import android.content.Context
 import android.content.Intent
@@ -7,23 +7,22 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.bumptech.glide.request.RequestOptions
 import com.example.githubusers.R
-import com.example.githubusers.data.entity.UserSearchResponseItem
+import com.example.githubusers.data.entity.UserFollowersResponseItem
 import com.example.githubusers.feature.detail.UserDetailActivity
+import com.example.githubusers.feature.main.MainAdapter
 import kotlinx.android.synthetic.main.item_row_user.view.*
 
-class MainAdapter(val context: Context) : RecyclerView.Adapter<MainAdapter.ViewHolder>() {
+class FollowerAdapter(val mContext: Context) : RecyclerView.Adapter<FollowerAdapter.ViewHolder>(){
 
-    private var items = mutableListOf<UserSearchResponseItem>()
+    private var items = mutableListOf<UserFollowersResponseItem>()
 
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView){
-        fun bind(data: UserSearchResponseItem) {
+        fun bind(data: UserFollowersResponseItem) {
             with(itemView) {
                 Glide.with(context)
-                    .load(data.avatarUrl!!)
-                    .apply(RequestOptions().circleCrop())
-                    .placeholder(R.drawable.user_placeholder)
+                    .load(data.avatarUrl)
+                    .circleCrop()
                     .into(iv_user)
 
                 txt_username.text = data.login
@@ -38,23 +37,18 @@ class MainAdapter(val context: Context) : RecyclerView.Adapter<MainAdapter.ViewH
         }
     }
 
-    override fun onCreateViewHolder(viewGroup: ViewGroup, viewType: Int): MainAdapter.ViewHolder {
-        return ViewHolder(LayoutInflater.from(context).inflate(R.layout.item_row_user, viewGroup, false))
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): FollowerAdapter.ViewHolder {
+        return ViewHolder(LayoutInflater.from(mContext).inflate(R.layout.item_row_user, parent , false))
     }
 
-    fun setItems(data: MutableList<UserSearchResponseItem>) {
+    fun setItems(data : MutableList<UserFollowersResponseItem>) {
         this.items = data
-        notifyDataSetChanged()
-    }
-
-    fun clearItems() {
-        items.clear()
         notifyDataSetChanged()
     }
 
     override fun getItemCount(): Int = items.size
 
-    override fun onBindViewHolder(holder: MainAdapter.ViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.bind(items[position])
     }
 }

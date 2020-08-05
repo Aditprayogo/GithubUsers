@@ -1,5 +1,6 @@
 package com.example.githubusers.di.module
 
+import com.example.githubusers.feature.detail.UserDetailActivity
 import com.example.githubusers.feature.main.MainActivity
 import dagger.Module
 import dagger.android.ContributesAndroidInjector
@@ -9,5 +10,8 @@ abstract class ActivityBuilderModule {
 
     @ContributesAndroidInjector
     abstract fun contributeMainActivity() : MainActivity
+
+    @ContributesAndroidInjector
+    abstract fun contributeUserDetailActivity() : UserDetailActivity
 
 }

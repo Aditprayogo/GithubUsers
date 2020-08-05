@@ -1,9 +1,6 @@
 package com.example.githubusers.data.network
 
-import com.example.githubusers.data.entity.SearchUserResponse
-import com.example.githubusers.data.entity.UserDetailResponse
-import com.example.githubusers.data.entity.UserFollowersResponse
-import com.example.githubusers.data.entity.UserFollowingResponse
+import com.example.githubusers.data.entity.*
 import retrofit2.Response
 import retrofit2.http.GET
 import retrofit2.http.Path

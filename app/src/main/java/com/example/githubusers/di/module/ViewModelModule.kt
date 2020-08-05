@@ -2,6 +2,8 @@ package com.example.githubusers.di.module
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
+import com.example.githubusers.feature.detail.UserDetailViewModel
+import com.example.githubusers.feature.follower.FollowerViewModel
 import com.example.githubusers.feature.main.MainViewModel
 import com.example.githubusers.viewmodel.ViewModelFactory
 import com.example.githubusers.viewmodel.ViewModelKey
@@ -19,6 +21,16 @@ abstract class ViewModelModule {
     @IntoMap
     @ViewModelKey(MainViewModel::class)
     internal abstract fun bindMainViewModel(viewModel: MainViewModel) : ViewModel
+
+    @Binds
+    @IntoMap
+    @ViewModelKey(UserDetailViewModel::class)
+    internal abstract fun bindUserDetailViewModel(viewModel: UserDetailViewModel) : ViewModel
+
+    @Binds
+    @IntoMap
+    @ViewModelKey(FollowerViewModel::class)
+    internal abstract fun bindFollowerViewModel(viewModel: FollowerViewModel) : ViewModel
 
 
 }

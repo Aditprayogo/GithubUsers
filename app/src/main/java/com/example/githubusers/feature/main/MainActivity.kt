@@ -3,6 +3,7 @@ package com.example.githubusers.feature.main
 import android.content.Context
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.Menu
 import android.view.View
 import android.view.Window
 import android.view.WindowManager
@@ -43,17 +44,20 @@ class MainActivity : BaseActivity() {
         initObserver()
     }
 
+
     private fun initViewModels() {
         viewModel = ViewModelProvider(this, viewModelFactory)[MainViewModel::class.java]
     }
 
     private fun searchUsers() {
-        sv_search.setOnQueryTextListener(object: SearchView.OnQueryTextListener, androidx.appcompat.widget.SearchView.OnQueryTextListener {
+        sv_search.setOnQueryTextListener(object: SearchView.OnQueryTextListener,
+            androidx.appcompat.widget.SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String?): Boolean {
                 if (query != null) {
                     if(query.isNotEmpty()) {
                         items.clear()
                         viewModel.getUserFromApi(query)
+                        sv_search.clearFocus()
                         setIllustration(false)
                     }
                 }
@@ -61,8 +65,18 @@ class MainActivity : BaseActivity() {
             }
 
             override fun onQueryTextChange(p0: String?): Boolean = false
-
         })
+
+        sv_search.setOnCloseListener(object: SearchView.OnCloseListener,
+            androidx.appcompat.widget.SearchView.OnCloseListener {
+            override fun onClose(): Boolean {
+                items.clear()
+                mainAdapter.clearItems()
+                setIllustration(true)
+                return true
+            }
+        })
+
     }
 
     private fun initObserver() {
@@ -76,6 +90,11 @@ class MainActivity : BaseActivity() {
                 handleUserFromApi(it)
             }
         })
+        viewModel.networkError.observe(this, Observer {
+            it?.let {
+                handleStateInternet(it)
+            }
+        })
     }
 
     private fun initRecyclerView() {
@@ -87,6 +106,16 @@ class MainActivity : BaseActivity() {
         items.clear()
         items.addAll(result)
         mainAdapter.setItems(items)
+    }
+
+    private fun handleStateInternet(error: Boolean) {
+        if(error) {
+            baseLoading.setGone()
+            rv_user.setGone()
+        } else {
+            baseLoading.setVisible()
+            rv_user.setVisible()
+        }
     }
 
     private fun handleStateLoading(loading: LoaderState) {

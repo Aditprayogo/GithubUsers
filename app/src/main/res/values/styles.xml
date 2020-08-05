@@ -7,10 +7,17 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
-    <style name="SearchText" parent="Theme.AppCompat.Light.DarkActionBar">
+    <style name="SearchText" parent="Theme.MaterialComponents.Light.NoActionBar">
         <!-- Customize your theme here. -->
         <item name="android:textSize">15sp</item>
         <item name="android:textColor">@color/colorBlack</item>
+    </style>
+
+    <style name="AppBarTitle">
+        <!-- Customize your theme here. -->
+        <item name="android:textSize">16sp</item>
+        <item name="android:textColor">@color/colorWhite</item>
+        <item name="android:layout_marginStart">16dp</item>
     </style>
 
 </resources>

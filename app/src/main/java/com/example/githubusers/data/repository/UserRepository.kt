@@ -1,10 +1,7 @@
 package com.example.githubusers.data.repository
 
 import com.example.githubusers.data.db.entity.UserFavorite
-import com.example.githubusers.data.entity.SearchUserResponse
-import com.example.githubusers.data.entity.UserDetailResponse
-import com.example.githubusers.data.entity.UserFollowersResponse
-import com.example.githubusers.data.entity.UserFollowingResponse
+import com.example.githubusers.data.entity.*
 import retrofit2.Response
 import javax.inject.Inject
 
