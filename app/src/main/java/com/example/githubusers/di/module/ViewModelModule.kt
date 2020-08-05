@@ -4,6 +4,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.example.githubusers.feature.detail.UserDetailViewModel
 import com.example.githubusers.feature.follower.FollowerViewModel
+import com.example.githubusers.feature.following.FollowingViewModel
 import com.example.githubusers.feature.main.MainViewModel
 import com.example.githubusers.viewmodel.ViewModelFactory
 import com.example.githubusers.viewmodel.ViewModelKey
@@ -31,6 +32,11 @@ abstract class ViewModelModule {
     @IntoMap
     @ViewModelKey(FollowerViewModel::class)
     internal abstract fun bindFollowerViewModel(viewModel: FollowerViewModel) : ViewModel
+
+    @Binds
+    @IntoMap
+    @ViewModelKey(FollowingViewModel::class)
+    internal abstract fun bindFollowingViewModel(viewModel: FollowingViewModel) : ViewModel
 
 
 }
