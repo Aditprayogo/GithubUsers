@@ -3,12 +3,16 @@ package com.example.githubusers.feature.detail
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
+import android.view.MenuItem
+import android.widget.Toast
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.bumptech.glide.Glide
 import com.example.githubusers.R
 import com.example.githubusers.core.base.BaseActivity
 import com.example.githubusers.core.state.LoaderState
+import com.example.githubusers.core.util.toast
+import com.example.githubusers.data.db.entity.UserFavorite
 import com.example.githubusers.data.entity.UserDetailResponse
 import com.example.githubusers.feature.main.MainViewModel
 import com.example.githubusers.feature.pager.ViewPagerAdapter
@@ -24,7 +28,11 @@ class UserDetailActivity : BaseActivity() {
 
     private var userDetail: UserDetailResponse? = null
 
+    private var userFavoriteEntity : UserFavorite? = null
+
     private var menu: Menu? = null
+
+    private var favoriteActive = false
 
     private var username : String? = null
 
@@ -40,6 +48,18 @@ class UserDetailActivity : BaseActivity() {
 
     }
 
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.menu_detail, menu)
+        return super.onCreateOptionsMenu(menu)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        if (item.itemId == R.id.menu_favorite) {
+
+        }
+        return super.onOptionsItemSelected(item)
+    }
+
     fun getUsername() : String? {
         return username
     }
@@ -50,6 +70,9 @@ class UserDetailActivity : BaseActivity() {
         supportActionBar?.elevation = 0f
         supportActionBar?.title = username + "\'s Profile"
 
+        fav_button.setOnClickListener {
+            setFavoriteUser()
+        }
     }
 
     private fun initPageAdapter() {
@@ -66,6 +89,7 @@ class UserDetailActivity : BaseActivity() {
     private fun fetchData() {
         username?.let {
             viewModel.getUserDetailFromApi(it)
+            viewModel.getFavUserByUsername(it)
         }
     }
 
@@ -84,6 +108,51 @@ class UserDetailActivity : BaseActivity() {
         viewModel.resultUserDetail.observe(this, Observer {
             handleResultUserDetail(it)
         })
+        viewModel.resultUserDetailFromDb.observe(this, Observer {
+            handleUserDetailFromDb(it)
+        })
+        viewModel.resultInsertUserDb.observe(this, Observer {
+            if (it) {
+                username?.let {
+                    viewModel.getFavUserByUsername(it)
+                }
+                toast("User Successfuly added")
+            }
+        })
+    }
+
+    private fun setFavoriteUser() {
+        if (favoriteActive) {
+
+        }else {
+            val userFavorite = UserFavorite(
+                username = userDetail?.login!!,
+                name = userDetail?.name,
+                avatarUrl = userDetail?.avatarUrl,
+                followingUrl = userDetail?.followingUrl,
+                bio = userDetail?.bio,
+                company = userDetail?.company,
+                publicRepos = userDetail?.publicRepos,
+                followersUrl = userDetail?.followersUrl,
+                followers = userDetail?.followers,
+                following = userDetail?.following,
+                location = userDetail?.location
+            )
+            viewModel.addUserToFavDB(userFavorite)
+        }
+    }
+
+    private fun handleUserDetailFromDb(userFavorite: List<UserFavorite>) {
+        if (userFavorite.isEmpty()) {
+            favoriteActive = false
+            val icon = R.drawable.ic_baseline_favorite_border_24
+            fav_button.setImageResource(icon)
+        }else {
+            userFavoriteEntity = userFavorite.first()
+            favoriteActive = true
+            val icon = R.drawable.ic_baseline_favorite_24
+            fav_button.setImageResource(icon)
+        }
     }
 
     private fun handleStateLoading(loading: LoaderState) {

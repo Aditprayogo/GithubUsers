@@ -1,12 +1,10 @@
 package com.example.githubusers.feature.main
 
 import android.content.Context
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.Menu
-import android.view.View
-import android.view.Window
-import android.view.WindowManager
+import android.view.*
 import android.widget.SearchView
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
@@ -18,6 +16,7 @@ import com.example.githubusers.core.util.setGone
 import com.example.githubusers.core.util.setVisible
 import com.example.githubusers.data.entity.SearchUserResponse
 import com.example.githubusers.data.entity.UserSearchResponseItem
+import com.example.githubusers.feature.favorite.FavoriteUserActivity
 import com.example.githubusers.viewmodel.ViewModelFactory
 import kotlinx.android.synthetic.main.activity_main.*
 import javax.inject.Inject
@@ -31,6 +30,7 @@ class MainActivity : BaseActivity() {
 
     private val items = mutableListOf<UserSearchResponseItem>()
 
+
     private val mainAdapter: MainAdapter by lazy {
         MainAdapter(applicationContext)
     }
@@ -42,6 +42,20 @@ class MainActivity : BaseActivity() {
         initViewModels()
         initRecyclerView()
         initObserver()
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.menu_favorite, menu)
+        return super.onCreateOptionsMenu(menu)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        if (item.itemId == R.id.menu_favorite) {
+            val intent = Intent(this, FavoriteUserActivity::class.java).also {
+                startActivity(it)
+            }
+        }
+        return super.onOptionsItemSelected(item)
     }
 
 
