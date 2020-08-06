@@ -44,9 +44,6 @@
                android:maxLines="1"
                android:textSize="18sp"
                android:textStyle="bold" />
-
-
-
        </RelativeLayout>
     </androidx.cardview.widget.CardView>
 </androidx.constraintlayout.widget.ConstraintLayout>

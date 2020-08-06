@@ -60,6 +60,23 @@ class UserUseCase @Inject constructor(
     /**
      * Local
      */
+    suspend fun fetchAllUserFavorite() : ResultState<List<UserFavorite>> {
+        return try {
+            val result = userRepository.fetchAllUserFavorite()
+            ResultState.Success(result)
+        }catch (e: Exception) {
+            ResultState.Error(e.localizedMessage, 500)
+        }
+    }
+
+    suspend fun deleteUserFromDb(userFavorite: UserFavorite) {
+        try {
+            userRepository.deleteUserFromFavDB(userFavorite)
+        }catch (e: Exception) {
+            throw Exception(e)
+        }
+    }
+
     suspend fun addUserToFavDB(userFavorite: UserFavorite) {
         try {
             userRepository.addUserToFavDB(userFavorite)

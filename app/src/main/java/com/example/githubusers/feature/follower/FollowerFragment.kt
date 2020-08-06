@@ -76,6 +76,16 @@ class FollowerFragment : BaseFragment() {
         })
     }
 
+    private fun handleEmptyFollower(data : List<UserFollowersResponseItem>) {
+        if (data.isEmpty()) {
+            base_empty.setVisible()
+            rc_view.setGone()
+        } else {
+            base_empty.setGone()
+            rc_view.setVisible()
+        }
+    }
+
     private fun handleStateLoading(loading: LoaderState) {
         if(loading is LoaderState.ShowLoading) {
             baseLoader.setVisible()
@@ -87,6 +97,7 @@ class FollowerFragment : BaseFragment() {
     }
 
     private fun handleUserFollower(data: List<UserFollowersResponseItem>) {
+        handleEmptyFollower(data)
         lists.clear()
         lists.addAll(data)
         followerAdapter.setItems(data = lists)

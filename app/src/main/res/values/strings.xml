@@ -4,4 +4,5 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="follower_title">Followers</string>
     <string name="following_title">Following</string>
+    <string name="user_success">User Successfuly added</string>
 </resources>

@@ -23,13 +23,14 @@ class MainAdapter(val context: Context) : RecyclerView.Adapter<MainAdapter.ViewH
                 Glide.with(context)
                     .load(data.avatarUrl!!)
                     .apply(RequestOptions().circleCrop())
-                    .placeholder(R.drawable.user_placeholder)
+                    .placeholder(R.drawable.ic_user)
                     .into(iv_user)
 
                 txt_username.text = data.login
                 itemView.setOnClickListener {
                     val intent = Intent(itemView.context, UserDetailActivity::class.java).apply {
                         putExtra(UserDetailActivity.USERNAME_KEY, data.login)
+                        setFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
                     }.also {
                         itemView.context.startActivity(it)
                     }

@@ -11,6 +11,8 @@ import com.bumptech.glide.Glide
 import com.example.githubusers.R
 import com.example.githubusers.core.base.BaseActivity
 import com.example.githubusers.core.state.LoaderState
+import com.example.githubusers.core.util.setGone
+import com.example.githubusers.core.util.setVisible
 import com.example.githubusers.core.util.toast
 import com.example.githubusers.data.db.entity.UserFavorite
 import com.example.githubusers.data.entity.UserDetailResponse
@@ -51,13 +53,6 @@ class UserDetailActivity : BaseActivity() {
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         menuInflater.inflate(R.menu.menu_detail, menu)
         return super.onCreateOptionsMenu(menu)
-    }
-
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        if (item.itemId == R.id.menu_favorite) {
-
-        }
-        return super.onOptionsItemSelected(item)
     }
 
     fun getUsername() : String? {
@@ -116,7 +111,7 @@ class UserDetailActivity : BaseActivity() {
                 username?.let {
                     viewModel.getFavUserByUsername(it)
                 }
-                toast("User Successfuly added")
+                toast(getString(R.string.user_success))
             }
         })
     }
@@ -157,16 +152,16 @@ class UserDetailActivity : BaseActivity() {
 
     private fun handleStateLoading(loading: LoaderState) {
         if(loading is LoaderState.ShowLoading) {
-            //todo
+            fav_button.setGone()
         } else {
-            //todo
+            fav_button.setVisible()
         }
     }
 
     private fun handleResultUserDetail(data: UserDetailResponse) {
         userDetail = data
-        txt_username.text = data.name
-        txt_bio.text = data.bio ?: ""
+        txt_username.text = data.login
+        txt_bio.text = data.bio ?: "No Bio"
         txt_follower.text = data.followers.toString()
         txt_following.text = data.following.toString()
         txt_repo.text = data.publicRepos.toString()

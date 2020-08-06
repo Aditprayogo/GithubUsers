@@ -1,10 +1,9 @@
 package com.example.githubusers.feature.main
 
-import android.content.Context
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.*
+import android.view.Menu
+import android.view.MenuItem
 import android.widget.SearchView
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
@@ -14,10 +13,8 @@ import com.example.githubusers.core.base.BaseActivity
 import com.example.githubusers.core.state.LoaderState
 import com.example.githubusers.core.util.setGone
 import com.example.githubusers.core.util.setVisible
-import com.example.githubusers.data.entity.SearchUserResponse
 import com.example.githubusers.data.entity.UserSearchResponseItem
 import com.example.githubusers.feature.favorite.FavoriteUserActivity
-import com.example.githubusers.viewmodel.ViewModelFactory
 import kotlinx.android.synthetic.main.activity_main.*
 import javax.inject.Inject
 
