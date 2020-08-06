@@ -8,6 +8,7 @@ import com.example.githubusers.R
 import com.example.githubusers.core.base.BaseActivity
 import com.example.githubusers.core.util.setGone
 import com.example.githubusers.core.util.setVisible
+import com.example.githubusers.core.util.toast
 import com.example.githubusers.data.db.entity.UserFavorite
 import kotlinx.android.synthetic.main.activity_favorite_user.*
 import javax.inject.Inject
@@ -20,6 +21,8 @@ class FavoriteUserActivity : BaseActivity() {
     lateinit var viewModel: FavoriteUserViewModel
 
     private val listUser = mutableListOf<UserFavorite>()
+
+    private var userFavoriteEntity: UserFavorite? = null
 
     private val favoriteUserAdapter : FavoriteUserAdapter by lazy {
         FavoriteUserAdapter(applicationContext)
@@ -46,6 +49,17 @@ class FavoriteUserActivity : BaseActivity() {
         viewModel.resultUserFromDb.observe(this, Observer {
             handleUserFromDb(it)
         })
+        viewModel.resultDeleteUserFromDb.observe(this, Observer {
+            if (it) {
+                toast("User Successfuly Deleted")
+            }
+        })
+    }
+
+    private fun deleteUserFromDb() {
+        userFavoriteEntity?.let {
+            viewModel.deleteUserFromDb(it)
+        }
     }
 
     private fun handleUserFromDb(user: List<UserFavorite>) {

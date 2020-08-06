@@ -22,6 +22,13 @@ class FavoriteUserViewModel @Inject constructor(
         get() = _error
 
     /**
+     * Result delete user from db
+     */
+    private val _resultDeleteUserFromDb = MutableLiveData<Boolean>()
+    val resultDeleteUserFromDb : LiveData<Boolean>
+        get() = _resultDeleteUserFromDb
+
+    /**
      * Result from db
      */
     private val _resultUserFromDb = MutableLiveData<List<UserFavorite>>()
@@ -38,6 +45,17 @@ class FavoriteUserViewModel @Inject constructor(
             when(result) {
                 is ResultState.Success -> _resultUserFromDb.postValue(result.data)
                 is ResultState.Error -> _error.postValue(result.error)
+            }
+        }
+    }
+
+    fun deleteUserFromDb(userFavorite: UserFavorite) {
+        Coroutine.main {
+            try {
+                userUseCase.deleteUserFromDb(userFavorite)
+                _resultDeleteUserFromDb.postValue(true)
+            }catch (e: Exception) {
+                _error.postValue(e.localizedMessage)
             }
         }
     }

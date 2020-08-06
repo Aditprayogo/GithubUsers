@@ -10,8 +10,8 @@ import com.example.githubusers.core.util.Coroutine
 import com.example.githubusers.data.db.entity.UserFavorite
 import com.example.githubusers.data.entity.UserDetailResponse
 import com.example.githubusers.domain.UserUseCase
-import java.lang.Exception
 import javax.inject.Inject
+import kotlin.Exception
 
 class UserDetailViewModel @Inject constructor(
     private val userUseCase: UserUseCase
@@ -60,6 +60,13 @@ class UserDetailViewModel @Inject constructor(
         get() = _resultInsertUserToDb
 
     /**
+     * Delete from db
+     */
+    private val _resultDeleteFromDb = MutableLiveData<Boolean>()
+    val resultDeleteFromDb : LiveData<Boolean>
+        get() = _resultDeleteFromDb
+
+    /**
      * Remote
      */
     fun getUserDetailFromApi(username: String) {
@@ -89,6 +96,17 @@ class UserDetailViewModel @Inject constructor(
             try {
                 userUseCase.addUserToFavDB(userFavorite)
                 _resultInsertUserToDb.postValue(true)
+            }catch (e: Exception) {
+                _error.postValue(e.localizedMessage)
+            }
+        }
+    }
+
+    fun deleteUserFromDb(userFavorite: UserFavorite) {
+        Coroutine.main {
+            try {
+                userUseCase.deleteUserFromDb(userFavorite)
+                _resultDeleteFromDb.postValue(true)
             }catch (e: Exception) {
                 _error.postValue(e.localizedMessage)
             }

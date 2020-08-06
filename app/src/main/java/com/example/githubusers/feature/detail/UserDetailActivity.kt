@@ -1,5 +1,6 @@
 package com.example.githubusers.feature.detail
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
@@ -16,6 +17,7 @@ import com.example.githubusers.core.util.setVisible
 import com.example.githubusers.core.util.toast
 import com.example.githubusers.data.db.entity.UserFavorite
 import com.example.githubusers.data.entity.UserDetailResponse
+import com.example.githubusers.feature.favorite.FavoriteUserActivity
 import com.example.githubusers.feature.main.MainViewModel
 import com.example.githubusers.feature.pager.ViewPagerAdapter
 import com.google.android.material.appbar.AppBarLayout
@@ -51,7 +53,7 @@ class UserDetailActivity : BaseActivity() {
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
-        menuInflater.inflate(R.menu.menu_detail, menu)
+        menuInflater.inflate(R.menu.menu_favorite, menu)
         return super.onCreateOptionsMenu(menu)
     }
 
@@ -74,6 +76,15 @@ class UserDetailActivity : BaseActivity() {
         val sectionPagerAdapter = ViewPagerAdapter(this, supportFragmentManager)
         viewPager.adapter = sectionPagerAdapter
         tabs.setupWithViewPager(viewPager)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        if (item.itemId == R.id.menu_favorite) {
+            val intent = Intent(this, FavoriteUserActivity::class.java).also {
+                startActivity(it)
+            }
+        }
+        return super.onOptionsItemSelected(item)
     }
 
     override fun onSupportNavigateUp(): Boolean {
@@ -114,11 +125,21 @@ class UserDetailActivity : BaseActivity() {
                 toast(getString(R.string.user_success))
             }
         })
+        viewModel.resultDeleteFromDb.observe(this, Observer {
+            if (it) {
+                username?.let {
+                    viewModel.getFavUserByUsername(it)
+                }
+                toast(getString(R.string.user_deleted))
+            }
+        })
     }
 
     private fun setFavoriteUser() {
         if (favoriteActive) {
-
+            userFavoriteEntity?.let {
+                viewModel.deleteUserFromDb(it)
+            }
         }else {
             val userFavorite = UserFavorite(
                 username = userDetail?.login!!,
