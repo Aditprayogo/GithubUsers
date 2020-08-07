@@ -22,8 +22,6 @@ class FavoriteUserActivity : BaseActivity() {
 
     private val listUser = mutableListOf<UserFavorite>()
 
-    private var userFavoriteEntity: UserFavorite? = null
-
     private val favoriteUserAdapter : FavoriteUserAdapter by lazy {
         FavoriteUserAdapter(applicationContext)
     }
@@ -49,17 +47,11 @@ class FavoriteUserActivity : BaseActivity() {
         viewModel.resultUserFromDb.observe(this, Observer {
             handleUserFromDb(it)
         })
-        viewModel.resultDeleteUserFromDb.observe(this, Observer {
-            if (it) {
-                toast("User Successfuly Deleted")
-            }
-        })
     }
 
-    private fun deleteUserFromDb() {
-        userFavoriteEntity?.let {
-            viewModel.deleteUserFromDb(it)
-        }
+    override fun onRestart() {
+        super.onRestart()
+        viewModel.fetchAllUserFavorite()
     }
 
     private fun handleUserFromDb(user: List<UserFavorite>) {

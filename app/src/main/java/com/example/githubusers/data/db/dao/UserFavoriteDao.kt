@@ -5,8 +5,6 @@ import androidx.room.Delete
 import androidx.room.Insert
 import androidx.room.Query
 import com.example.githubusers.data.db.entity.UserFavorite
-import dagger.multibindings.IntoSet
-import retrofit2.http.DELETE
 
 @Dao
 interface UserFavoriteDao {

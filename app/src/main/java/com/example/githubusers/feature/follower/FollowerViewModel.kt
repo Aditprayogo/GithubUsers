@@ -6,7 +6,6 @@ import androidx.lifecycle.ViewModel
 import com.example.githubusers.core.state.LoaderState
 import com.example.githubusers.core.state.ResultState
 import com.example.githubusers.core.util.Coroutine
-import com.example.githubusers.data.entity.UserFollowersResponse
 import com.example.githubusers.data.entity.UserFollowersResponseItem
 import com.example.githubusers.domain.UserUseCase
 import javax.inject.Inject

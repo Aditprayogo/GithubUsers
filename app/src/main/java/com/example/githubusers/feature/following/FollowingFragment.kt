@@ -1,7 +1,6 @@
 package com.example.githubusers.feature.following
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -15,11 +14,7 @@ import com.example.githubusers.core.util.setGone
 import com.example.githubusers.core.util.setVisible
 import com.example.githubusers.data.entity.UserFollowingResponseItem
 import com.example.githubusers.feature.detail.UserDetailActivity
-import com.example.githubusers.viewmodel.ViewModelFactory
-import kotlinx.android.synthetic.main.fragment_follower.*
 import kotlinx.android.synthetic.main.fragment_following.*
-import kotlinx.android.synthetic.main.fragment_following.baseLoader
-import kotlinx.android.synthetic.main.fragment_following.rc_view
 import javax.inject.Inject
 
 
@@ -76,7 +71,18 @@ class FollowingFragment : BaseFragment() {
         })
     }
 
+    private fun handlingEmptyFollowing(data: List<UserFollowingResponseItem>){
+        if (data.isEmpty()) {
+            base_empty_following.setVisible()
+            rc_view.setGone()
+        } else {
+            base_empty_following.setGone()
+            rc_view.setVisible()
+        }
+    }
+
     private fun handleResultUserFollowing(data: List<UserFollowingResponseItem>) {
+        handlingEmptyFollowing(data)
         lists.clear()
         lists.addAll(data)
         followingAdapter.setItems(lists)

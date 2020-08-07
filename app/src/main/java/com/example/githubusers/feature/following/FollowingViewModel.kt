@@ -8,7 +8,6 @@ import com.example.githubusers.core.state.ResultState
 import com.example.githubusers.core.util.Coroutine
 import com.example.githubusers.data.entity.UserFollowingResponseItem
 import com.example.githubusers.domain.UserUseCase
-import kotlinx.coroutines.CoroutineScope
 import javax.inject.Inject
 
 class FollowingViewModel @Inject constructor(

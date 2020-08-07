@@ -3,7 +3,6 @@ package com.example.githubusers.feature.detail
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import androidx.loader.app.LoaderManager
 import com.example.githubusers.core.state.LoaderState
 import com.example.githubusers.core.state.ResultState
 import com.example.githubusers.core.util.Coroutine
@@ -11,7 +10,6 @@ import com.example.githubusers.data.db.entity.UserFavorite
 import com.example.githubusers.data.entity.UserDetailResponse
 import com.example.githubusers.domain.UserUseCase
 import javax.inject.Inject
-import kotlin.Exception
 
 class UserDetailViewModel @Inject constructor(
     private val userUseCase: UserUseCase

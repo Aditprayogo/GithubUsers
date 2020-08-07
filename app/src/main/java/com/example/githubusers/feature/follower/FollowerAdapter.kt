@@ -10,7 +10,6 @@ import com.bumptech.glide.Glide
 import com.example.githubusers.R
 import com.example.githubusers.data.entity.UserFollowersResponseItem
 import com.example.githubusers.feature.detail.UserDetailActivity
-import com.example.githubusers.feature.main.MainAdapter
 import kotlinx.android.synthetic.main.item_row_user.view.*
 
 class FollowerAdapter(val mContext: Context) : RecyclerView.Adapter<FollowerAdapter.ViewHolder>(){
@@ -22,6 +21,7 @@ class FollowerAdapter(val mContext: Context) : RecyclerView.Adapter<FollowerAdap
             with(itemView) {
                 Glide.with(context)
                     .load(data.avatarUrl)
+                    .placeholder(R.drawable.ic_user)
                     .circleCrop()
                     .into(iv_user)
 

@@ -3,7 +3,6 @@ package com.example.githubusers.feature.favorite
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.example.githubusers.core.state.LoaderState
 import com.example.githubusers.core.state.ResultState
 import com.example.githubusers.core.util.Coroutine
 import com.example.githubusers.data.db.entity.UserFavorite
@@ -20,13 +19,6 @@ class FavoriteUserViewModel @Inject constructor(
     private val _error = MutableLiveData<String>()
     val error : LiveData<String>
         get() = _error
-
-    /**
-     * Result delete user from db
-     */
-    private val _resultDeleteUserFromDb = MutableLiveData<Boolean>()
-    val resultDeleteUserFromDb : LiveData<Boolean>
-        get() = _resultDeleteUserFromDb
 
     /**
      * Result from db
@@ -48,17 +40,5 @@ class FavoriteUserViewModel @Inject constructor(
             }
         }
     }
-
-    fun deleteUserFromDb(userFavorite: UserFavorite) {
-        Coroutine.main {
-            try {
-                userUseCase.deleteUserFromDb(userFavorite)
-                _resultDeleteUserFromDb.postValue(true)
-            }catch (e: Exception) {
-                _error.postValue(e.localizedMessage)
-            }
-        }
-    }
-
 
 }

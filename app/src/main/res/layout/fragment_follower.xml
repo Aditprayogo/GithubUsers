@@ -30,7 +30,9 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <include
-        android:id="@+id/base_empty"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/base_empty_follower"
         layout="@layout/base_empty_user"
         android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"

@@ -5,11 +5,9 @@ import androidx.annotation.StringRes
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentStatePagerAdapter
-import androidx.viewpager2.adapter.FragmentStateAdapter
 import com.example.githubusers.R
 import com.example.githubusers.feature.follower.FollowerFragment
 import com.example.githubusers.feature.following.FollowingFragment
-import java.math.MathContext
 
 class ViewPagerAdapter(
     private val mContext: Context,

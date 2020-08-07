@@ -6,4 +6,10 @@
     <string name="following_title">Following</string>
     <string name="user_success">User Successfuly added</string>
     <string name="user_deleted">User Successfuly Deleted</string>
+    <string name="reminder_title">Reminder</string>
+    <string name="github_appp">Github App</string>
+    <string name="alarm_enabled">Alarm has been enabled</string>
+    <string name="alarm_canceled">Alarm has been canceled</string>
+    <string name="reminder">Reminder</string>
+    <string name="reminder_time">Reminder at 9:00 AM</string>
 </resources>

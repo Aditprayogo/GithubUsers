@@ -2,6 +2,7 @@ package com.example.githubusers.feature.main
 
 import android.content.Intent
 import android.os.Bundle
+import android.provider.Settings
 import android.view.Menu
 import android.view.MenuItem
 import android.widget.SearchView
@@ -15,6 +16,8 @@ import com.example.githubusers.core.util.setGone
 import com.example.githubusers.core.util.setVisible
 import com.example.githubusers.data.entity.UserSearchResponseItem
 import com.example.githubusers.feature.favorite.FavoriteUserActivity
+import com.example.githubusers.feature.settings.MySettingsFragment
+import com.example.githubusers.feature.settings.SettingsActivity
 import kotlinx.android.synthetic.main.activity_main.*
 import javax.inject.Inject
 
@@ -26,7 +29,6 @@ class MainActivity : BaseActivity() {
     lateinit var viewModel: MainViewModel
 
     private val items = mutableListOf<UserSearchResponseItem>()
-
 
     private val mainAdapter: MainAdapter by lazy {
         MainAdapter(applicationContext)
@@ -51,6 +53,11 @@ class MainActivity : BaseActivity() {
             val intent = Intent(this, FavoriteUserActivity::class.java).also {
                 startActivity(it)
             }
+        }
+        if (item.itemId == R.id.menu_settings) {
+           val intent = Intent(this, SettingsActivity::class.java).also {
+               startActivity(it)
+           }
         }
         return super.onOptionsItemSelected(item)
     }
@@ -143,9 +150,9 @@ class MainActivity : BaseActivity() {
 
     private fun setIllustration(status: Boolean) {
         if(status) {
-            iv_illustration.setVisible()
+            base_empty.setVisible()
         } else {
-            iv_illustration.setGone()
+            base_empty.setGone()
         }
     }
 }
