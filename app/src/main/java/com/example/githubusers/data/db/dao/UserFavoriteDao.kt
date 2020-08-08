@@ -20,7 +20,7 @@ interface UserFavoriteDao {
     suspend fun deleteUserFromFavoriteDB(user: UserFavorite)
 
     /**
-     * Cursor for content resolver
+     * Cursor for content provider
      */
     @Query("SELECT * FROM user_favorite_table")
     fun cursorGetAllUserFavorite() : Cursor

@@ -8,10 +8,10 @@
     <uses-permission android:name="android.permission.VIBRATE" />
 
     <permission
-        android:name="com.example.githubusers.READ_DATABASE"
+        android:name="com.example.githubusers.provider.READ_DATABASE"
         android:protectionLevel="normal" />
     <permission
-        android:name="com.example.githubusers.WRITE_DATABASE"
+        android:name="com.example.githubusers.provider.WRITE_DATABASE"
         android:protectionLevel="normal" />
 
     <application
@@ -25,10 +25,11 @@
         <provider
             android:name=".feature.contentprovider.MyContentProvider"
             android:authorities="com.example.githubusers.provider"
-            android:readPermission="com.example.githubusers.READ_DATABASE"
-            android:writePermission="com.example.githubusers.WRITE_DATABASE"
             android:enabled="true"
-            android:exported="true" />
+            android:exported="true"
+            android:readPermission="com.example.githubusers.provider.READ_DATABASE"
+            android:writePermission="com.example.githubusers.provider.WRITE_DATABASE"
+             />
 
         <activity android:name=".feature.settings.SettingsActivity" />
         <activity android:name=".feature.favorite.FavoriteUserActivity" />

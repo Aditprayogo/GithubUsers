@@ -7,10 +7,11 @@ import android.database.Cursor
 import android.net.Uri
 import com.example.githubusers.data.db.AppDatabase
 import com.example.githubusers.data.db.dao.UserFavoriteDao
-import java.lang.UnsupportedOperationException
+import dagger.android.AndroidInjection
 import javax.inject.Inject
 
 class MyContentProvider : ContentProvider() {
+
     @Inject
     lateinit var userFavoriteDao: UserFavoriteDao
 
@@ -18,7 +19,7 @@ class MyContentProvider : ContentProvider() {
         private const val USER = 1
         private const val AUTHORITY = "com.example.githubusers.provider"
         private val sUriMatcher = UriMatcher(UriMatcher.NO_MATCH).apply {
-            addURI(AUTHORITY, "user_favorite_database", USER)
+            addURI(AUTHORITY, "user_favorite_table", USER)
         }
     }
 
@@ -36,6 +37,7 @@ class MyContentProvider : ContentProvider() {
     }
 
     override fun onCreate(): Boolean {
+        AndroidInjection.inject(this)
         return true
     }
 

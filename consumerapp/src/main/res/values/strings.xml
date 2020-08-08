@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">ConsumerApp</string>
+    <string name="user_detail_information">Please use main aplication to see user detail information</string>
+</resources>
