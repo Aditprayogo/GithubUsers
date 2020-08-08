@@ -7,6 +7,13 @@
     <uses-permission android:name="android.permission.WAKE_LOCK" />
     <uses-permission android:name="android.permission.VIBRATE" />
 
+    <permission
+        android:name="com.example.githubusers.READ_DATABASE"
+        android:protectionLevel="normal" />
+    <permission
+        android:name="com.example.githubusers.WRITE_DATABASE"
+        android:protectionLevel="normal" />
+
     <application
         android:name=".BaseApplication"
         android:allowBackup="true"
@@ -15,6 +22,14 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <provider
+            android:name=".feature.contentprovider.MyContentProvider"
+            android:authorities="com.example.githubusers.provider"
+            android:readPermission="com.example.githubusers.READ_DATABASE"
+            android:writePermission="com.example.githubusers.WRITE_DATABASE"
+            android:enabled="true"
+            android:exported="true" />
+
         <activity android:name=".feature.settings.SettingsActivity" />
         <activity android:name=".feature.favorite.FavoriteUserActivity" />
         <activity android:name=".feature.detail.UserDetailActivity" />
@@ -27,7 +42,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <receiver android:name=".feature.alarm.AlarmReceiver"
+
+        <receiver
+            android:name=".feature.alarm.AlarmReceiver"
             android:enabled="true"
             android:exported="true"
             tools:ignore="ExportedReceiver" />

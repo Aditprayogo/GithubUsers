@@ -29,7 +29,7 @@
         android:layout_toRightOf="@id/iv_user"
         android:maxLines="1"
         android:text="username"
-        android:textColor="@color/colorBlack"
+        android:textColor="@color/colorWhite"
         android:textSize="18sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
@@ -60,6 +60,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Follower"
+                android:textColor="@color/colorWhite"
                 android:textSize="12sp"
                 android:textStyle="bold" />
 
@@ -67,6 +68,7 @@
                 android:id="@+id/txt_follower"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:textColor="@color/colorWhite"
                 android:text="9999"
                 android:textSize="12sp"
                 android:textStyle="bold" />
@@ -84,6 +86,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Following"
+                android:textColor="@color/colorWhite"
                 android:textSize="12sp"
                 android:textStyle="bold" />
 
@@ -92,6 +95,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="9999"
+                android:textColor="@color/colorWhite"
                 android:textSize="12sp"
                 android:textStyle="bold" />
 
@@ -108,12 +112,16 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Repositories"
+                android:textColor="@color/colorWhite"
+
                 android:textSize="12sp"
                 android:textStyle="bold" />
 
             <TextView
                 android:id="@+id/txt_repository"
                 android:layout_width="wrap_content"
+                android:textColor="@color/colorWhite"
+
                 android:layout_height="wrap_content"
                 android:text="9999"
                 android:textSize="12sp"

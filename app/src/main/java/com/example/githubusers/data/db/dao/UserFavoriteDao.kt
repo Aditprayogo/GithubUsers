@@ -1,9 +1,7 @@
 package com.example.githubusers.data.db.dao
 
-import androidx.room.Dao
-import androidx.room.Delete
-import androidx.room.Insert
-import androidx.room.Query
+import android.database.Cursor
+import androidx.room.*
 import com.example.githubusers.data.db.entity.UserFavorite
 
 @Dao
@@ -15,10 +13,16 @@ interface UserFavoriteDao {
     @Query("SELECT * FROM user_favorite_table WHERE username = :userName")
     suspend fun getFavByUsername(userName: String) : List<UserFavorite>
 
-    @Insert
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun addUserToFavoriteDB(user: UserFavorite)
 
     @Delete
     suspend fun deleteUserFromFavoriteDB(user: UserFavorite)
+
+    /**
+     * Cursor for content resolver
+     */
+    @Query("SELECT * FROM user_favorite_table")
+    fun cursorGetAllUserFavorite() : Cursor
 
 }

@@ -33,7 +33,7 @@
                     android:layout_width="115dp"
                     android:layout_height="115dp"
                     android:layout_marginTop="10dp"
-                    android:background="@color/colorShimmer" />
+                    android:background="@drawable/bg_user" />
 
                 <TextView
                     android:id="@+id/txt_username"
@@ -41,8 +41,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
                     android:layout_marginBottom="8dp"
-                    android:background="@color/colorShimmer"
-                    android:textColor="@color/colorWhite"
+                    android:background="@drawable/bg_text_shimmer"
                     android:textSize="18sp" />
 
                 <TextView
@@ -52,7 +51,7 @@
                     android:layout_marginLeft="16dp"
                     android:layout_marginRight="16dp"
                     android:layout_marginBottom="8dp"
-                    android:background="@color/colorShimmer"
+                    android:background="@drawable/bg_text_shimmer"
                     android:textAlignment="center"
                     android:textColor="@color/colorWhite"
                     android:textSize="14sp" />
@@ -82,9 +81,9 @@
                             android:orientation="vertical">
 
                             <TextView
-                                android:layout_width="wrap_content"
+                                android:layout_width="60dp"
                                 android:layout_height="wrap_content"
-                                android:text="Follower"
+                                android:background="@drawable/bg_text_shimmer"
                                 android:textColor="@color/colorBlack"
                                 android:textSize="15sp" />
 
@@ -92,8 +91,7 @@
                                 android:id="@+id/txt_follower"
                                 android:layout_width="30dp"
                                 android:layout_height="wrap_content"
-                                android:background="@color/colorShimmer"
-                                android:textColor="@color/colorBlack"
+                                android:background="@drawable/bg_text_shimmer"
                                 android:textSize="15sp"
                                 android:textStyle="bold" />
                         </LinearLayout>

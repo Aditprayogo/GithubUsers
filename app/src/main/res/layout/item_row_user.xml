@@ -34,7 +34,7 @@
             android:layout_marginRight="58dp"
             android:layout_marginStart="20dp"
             android:layout_toRightOf="@id/iv_user"
-            android:textColor="@color/colorBlack"
+            android:textColor="@color/colorWhite"
             android:maxLines="1"
             android:text="Aditiya Prayogo"
             android:textSize="18sp"

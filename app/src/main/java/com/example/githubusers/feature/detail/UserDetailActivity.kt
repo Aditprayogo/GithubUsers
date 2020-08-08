@@ -1,5 +1,6 @@
 package com.example.githubusers.feature.detail
 
+import android.content.Intent
 import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.view.Menu
@@ -15,7 +16,9 @@ import com.example.githubusers.core.util.setVisible
 import com.example.githubusers.core.util.toast
 import com.example.githubusers.data.db.entity.UserFavorite
 import com.example.githubusers.data.entity.UserDetailResponse
+import com.example.githubusers.feature.favorite.FavoriteUserActivity
 import com.example.githubusers.feature.pager.ViewPagerAdapter
+import com.example.githubusers.feature.settings.SettingsActivity
 import kotlinx.android.synthetic.main.activity_user_detail.*
 import javax.inject.Inject
 
@@ -48,7 +51,7 @@ class UserDetailActivity : BaseActivity() {
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
-        menuInflater.inflate(R.menu.menu_detail, menu)
+        menuInflater.inflate(R.menu.menu_favorite, menu)
         return super.onCreateOptionsMenu(menu)
     }
 
@@ -74,6 +77,16 @@ class UserDetailActivity : BaseActivity() {
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        if (item.itemId == R.id.menu_settings) {
+            val intent = Intent(this, SettingsActivity::class.java).also {
+                startActivity(it)
+            }
+        }
+        if (item.itemId == R.id.menu_favorite) {
+            val intent = Intent(this, FavoriteUserActivity::class.java).also {
+                startActivity(it)
+            }
+        }
         return super.onOptionsItemSelected(item)
     }
 

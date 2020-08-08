@@ -1,6 +1,7 @@
 package com.example.githubusers.feature.favorite
 
 import android.os.Bundle
+import android.view.Menu
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -32,7 +33,26 @@ class FavoriteUserActivity : BaseActivity() {
         initViewModels()
         initObserver()
         initRecyclerView()
+        initToolbar()
     }
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.menu_detail, menu)
+        return super.onCreateOptionsMenu(menu)
+    }
+
+    private fun initToolbar() {
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        supportActionBar?.setDisplayShowHomeEnabled(true)
+        supportActionBar?.elevation = 0f
+        supportActionBar?.title = "Favorite User"
+    }
+
+    override fun onSupportNavigateUp(): Boolean {
+        onBackPressed()
+        return super.onSupportNavigateUp()
+    }
+
 
     private fun initViewModels() {
         viewModel = ViewModelProvider(this, viewModelFactory)[FavoriteUserViewModel::class.java]

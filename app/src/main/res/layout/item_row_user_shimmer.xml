@@ -10,7 +10,7 @@
     <androidx.cardview.widget.CardView
         android:id="@+id/cardView"
         android:layout_width="0dp"
-        android:layout_height="150dp"
+        android:layout_height="wrap_content"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -23,13 +23,14 @@
            
            <ImageView
                android:id="@+id/iv_user"
-               android:src="@color/colorShimmer"
-               android:layout_width="140dp"
-               android:layout_height="140dp"
+               android:layout_width="80dp"
+               android:layout_height="80dp"
+               android:background="@drawable/bg_user"
+               android:scaleType="fitCenter"
                />
 
            <TextView
-               android:background="@color/colorShimmer"
+               android:background="@drawable/bg_text_shimmer"
                android:id="@+id/txt_username"
                android:layout_width="wrap_content"
                android:layout_height="wrap_content"
