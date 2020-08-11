@@ -7,7 +7,7 @@ import java.io.IOException
 import java.net.ConnectException
 
 
-suspend fun <T: Any> SafeApiCall(apiCall: suspend () -> ResultState<T>) : ResultState<T> {
+suspend fun <T: Any> safeApiCall(apiCall: suspend () -> ResultState<T>) : ResultState<T> {
     return try {
         apiCall.invoke()
      }catch (throwable: Throwable) {

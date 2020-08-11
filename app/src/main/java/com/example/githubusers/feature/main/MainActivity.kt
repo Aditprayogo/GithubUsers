@@ -2,7 +2,6 @@ package com.example.githubusers.feature.main
 
 import android.content.Intent
 import android.os.Bundle
-import android.provider.Settings
 import android.view.Menu
 import android.view.MenuItem
 import android.widget.SearchView
@@ -16,7 +15,6 @@ import com.example.githubusers.core.util.setGone
 import com.example.githubusers.core.util.setVisible
 import com.example.githubusers.data.entity.UserSearchResponseItem
 import com.example.githubusers.feature.favorite.FavoriteUserActivity
-import com.example.githubusers.feature.settings.MySettingsFragment
 import com.example.githubusers.feature.settings.SettingsActivity
 import kotlinx.android.synthetic.main.activity_main.*
 import javax.inject.Inject
@@ -37,10 +35,15 @@ class MainActivity : BaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+        initToolbar()
         searchUsers()
         initViewModels()
         initRecyclerView()
         initObserver()
+    }
+
+    private fun initToolbar() {
+        supportActionBar?.elevation = 0f
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
@@ -118,6 +121,7 @@ class MainActivity : BaseActivity() {
     private fun initRecyclerView() {
         rv_user.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
         rv_user.adapter = mainAdapter
+        mainAdapter.setActivity(this)
     }
 
     private fun handleUserFromApi(result: List<UserSearchResponseItem>) {
@@ -128,10 +132,10 @@ class MainActivity : BaseActivity() {
 
     private fun handleStateInternet(error: Boolean) {
         if(error) {
-            baseLoading.setGone()
+            baseLoading.setVisible()
             rv_user.setGone()
         } else {
-            baseLoading.setVisible()
+            baseLoading.setGone()
             rv_user.setVisible()
         }
     }

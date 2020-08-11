@@ -25,9 +25,11 @@ class FavoriteUserAdapter(val mContext: Context) : RecyclerView.Adapter<Favorite
                     .into(iv_user)
 
                 txt_username.text = user.username
+                txt_location.text = user.location ?: context.getString(R.string.no_location)
                 txt_follower.text = user.followers.toString()
                 txt_following.text = user.following.toString()
                 txt_repository.text = user.publicRepos.toString()
+                txt_company.text = user.company ?: context.getString(R.string.no_company)
 
                 itemView.setOnClickListener {
                     val intent = Intent(itemView.context, UserDetailActivity::class.java).apply {

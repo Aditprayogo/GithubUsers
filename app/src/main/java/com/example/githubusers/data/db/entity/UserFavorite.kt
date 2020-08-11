@@ -1,6 +1,7 @@
 package com.example.githubusers.data.db.entity
 
 import android.os.Parcelable
+import androidx.annotation.NonNull
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
@@ -10,6 +11,7 @@ import kotlinx.android.parcel.Parcelize
 @Entity(tableName = "user_favorite_table")
 data class UserFavorite(
 	@PrimaryKey
+	@NonNull
 	@ColumnInfo(name = "username") val username: String,
 	@ColumnInfo(name = "name") val name: String?,
 	@ColumnInfo(name = "avatar_url") val avatarUrl: String?,

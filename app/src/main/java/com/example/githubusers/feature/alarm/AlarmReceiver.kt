@@ -16,13 +16,11 @@ import java.util.*
 class AlarmReceiver : BroadcastReceiver() {
 
     companion object {
-        private const val ID_REPEATING = 100
+        private const val ID_REPEATING = 101
     }
 
-    override fun onReceive(context: Context?, intent: Intent?) {
-        if (context != null) {
-            showNotification(context)
-        }
+    override fun onReceive(context: Context, intent: Intent?) {
+        showNotification(context)
     }
 
     private fun showNotification(context: Context) {
@@ -30,9 +28,10 @@ class AlarmReceiver : BroadcastReceiver() {
         val CHANNEL_NAME = "Repeating_channel"
 
         val title = context.getString(R.string.github_appp)
-        val message = "Let\'s find user popular on Github"
+        val message = context.getString(R.string.lets_find_user_popular)
 
         val intent = Intent(context, MainActivity::class.java)
+
         val pendingIntent = TaskStackBuilder.create(context)
             .addParentStack(MainActivity::class.java)
             .addNextIntent(intent)
@@ -40,6 +39,7 @@ class AlarmReceiver : BroadcastReceiver() {
 
         val notificationManagerCompat = context.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
         val alarmSound = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION)
+
         val builder = NotificationCompat.Builder(context, CHANNEL_ID)
             .setSmallIcon(R.drawable.ic_baseline_notifications_24)
             .setContentIntent(pendingIntent)
@@ -69,22 +69,28 @@ class AlarmReceiver : BroadcastReceiver() {
         }
 
         val notification = builder.build()
+
         notificationManagerCompat.notify(ID_REPEATING, notification)
     }
 
      fun setRepeatingAlarm(context: Context) {
         val alarmManager = context.getSystemService(Context.ALARM_SERVICE) as AlarmManager
-        val intent = Intent(context, AlarmReceiver::class.java)
 
-        val calendar = Calendar.getInstance().apply {
-            timeInMillis = System.currentTimeMillis()
-            set(Calendar.HOUR_OF_DAY, 9)
-            set(Calendar.MINUTE, 0)
-            set(Calendar.SECOND, 0)
+        val intent: PendingIntent = Intent(context, AlarmReceiver::class.java).let {
+            PendingIntent.getBroadcast(context, ID_REPEATING, it, 0)
         }
 
-        val pendingIntent = PendingIntent.getBroadcast(context, ID_REPEATING, intent, 0)
-        alarmManager.setInexactRepeating(AlarmManager.RTC_WAKEUP, calendar.timeInMillis, AlarmManager.INTERVAL_DAY, pendingIntent)
+        val calendar = Calendar.getInstance().apply {
+            set(Calendar.HOUR_OF_DAY, 9)
+        }
+
+        alarmManager.setInexactRepeating(
+            AlarmManager.RTC_WAKEUP,
+            calendar.timeInMillis,
+            AlarmManager.INTERVAL_DAY,
+            intent
+        )
+
         Toast.makeText(context, context.getString(R.string.alarm_enabled), Toast.LENGTH_SHORT).show()
     }
 

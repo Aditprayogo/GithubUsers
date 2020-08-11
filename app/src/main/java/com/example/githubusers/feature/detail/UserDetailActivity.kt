@@ -1,7 +1,6 @@
 package com.example.githubusers.feature.detail
 
 import android.content.Intent
-import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
@@ -31,8 +30,6 @@ class UserDetailActivity : BaseActivity() {
     private var userDetail: UserDetailResponse? = null
 
     private var userFavoriteEntity : UserFavorite? = null
-
-    private var menu: Menu? = null
 
     private var favoriteActive = false
 
@@ -144,20 +141,22 @@ class UserDetailActivity : BaseActivity() {
                 viewModel.deleteUserFromDb(it)
             }
         }else {
-            val userFavorite = UserFavorite(
-                username = userDetail?.login!!,
-                name = userDetail?.name,
-                avatarUrl = userDetail?.avatarUrl,
-                followingUrl = userDetail?.followingUrl,
-                bio = userDetail?.bio,
-                company = userDetail?.company,
-                publicRepos = userDetail?.publicRepos,
-                followersUrl = userDetail?.followersUrl,
-                followers = userDetail?.followers,
-                following = userDetail?.following,
-                location = userDetail?.location
-            )
-            viewModel.addUserToFavDB(userFavorite)
+            val userFavorite = userDetail?.login?.let {
+                UserFavorite(
+                    username = it,
+                    name = userDetail?.name,
+                    avatarUrl = userDetail?.avatarUrl,
+                    followingUrl = userDetail?.followingUrl,
+                    bio = userDetail?.bio,
+                    company = userDetail?.company,
+                    publicRepos = userDetail?.publicRepos,
+                    followersUrl = userDetail?.followersUrl,
+                    followers = userDetail?.followers,
+                    following = userDetail?.following,
+                    location = userDetail?.location
+                )
+            }
+            userFavorite?.let { viewModel.addUserToFavDB(it) }
         }
     }
 
@@ -190,6 +189,11 @@ class UserDetailActivity : BaseActivity() {
         txt_following.text = data.following.toString()
         txt_repo.text = data.publicRepos.toString()
         Glide.with(this).load(data.avatarUrl).circleCrop().into(iv_user)
+    }
+
+    override fun onBackPressed() {
+        super.onBackPressed()
+        supportFinishAfterTransition()
     }
 
     companion object {

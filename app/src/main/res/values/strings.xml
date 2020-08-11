@@ -12,4 +12,24 @@
     <string name="alarm_canceled">Alarm has been canceled</string>
     <string name="reminder">Reminder</string>
     <string name="reminder_time">Reminder at 9:00 AM</string>
+    <string name="appwidget_text">EXAMPLE</string>
+    <string name="add_widget">Add widget</string>
+    <string name="lets_find_user_popular">Lets find user popular on github</string>
+    <string name="no_data">No Data</string>
+    <string name="your_favorite_guser">Your Favorite User</string>
+    <string name="user">User</string>
+    <string name="no_bio">No Bio</string>
+    <string name="follower_placeholder">100</string>
+    <string name="following_placeholder">100</string>
+    <string name="no_data_available">No Data Available</string>
+    <string name="username">username</string>
+    <string name="follower">Follower</string>
+    <string name="following">Following</string>
+    <string name="_9999">9999</string>
+    <string name="repositories">Repositories</string>
+    <string name="image_detail_transition">iamgeDetail</string>
+    <string name="no_location">No Location</string>
+    <string name="indonesia">Indonesia</string>
+    <string name="dicoding">Dicoding</string>
+    <string name="no_company">No Company</string>
 </resources>

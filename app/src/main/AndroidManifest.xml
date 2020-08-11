@@ -22,14 +22,23 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <receiver android:name=".feature.widget.UserWidget">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+            </intent-filter>
+
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/user_widget_info" />
+        </receiver>
+
         <provider
             android:name=".feature.contentprovider.MyContentProvider"
             android:authorities="com.example.githubusers.provider"
             android:enabled="true"
             android:exported="true"
             android:readPermission="com.example.githubusers.provider.READ_DATABASE"
-            android:writePermission="com.example.githubusers.provider.WRITE_DATABASE"
-             />
+            android:writePermission="com.example.githubusers.provider.WRITE_DATABASE" />
 
         <activity android:name=".feature.settings.SettingsActivity" />
         <activity android:name=".feature.favorite.FavoriteUserActivity" />
@@ -49,6 +58,20 @@
             android:enabled="true"
             android:exported="true"
             tools:ignore="ExportedReceiver" />
+
+        <receiver android:name=".feature.widget.UserWidget">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+            </intent-filter>
+
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/user_widget_info" />
+        </receiver>
+
+        <service
+            android:name=".feature.widget.StackWidgetService"
+            android:permission="android.permission.BIND_REMOTEVIEWS" />
     </application>
 
 </manifest>

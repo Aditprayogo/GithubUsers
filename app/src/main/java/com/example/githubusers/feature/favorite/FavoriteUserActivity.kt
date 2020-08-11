@@ -1,7 +1,9 @@
 package com.example.githubusers.feature.favorite
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.Menu
+import android.view.MenuItem
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -9,8 +11,8 @@ import com.example.githubusers.R
 import com.example.githubusers.core.base.BaseActivity
 import com.example.githubusers.core.util.setGone
 import com.example.githubusers.core.util.setVisible
-import com.example.githubusers.core.util.toast
 import com.example.githubusers.data.db.entity.UserFavorite
+import com.example.githubusers.feature.settings.SettingsActivity
 import kotlinx.android.synthetic.main.activity_favorite_user.*
 import javax.inject.Inject
 
@@ -39,6 +41,15 @@ class FavoriteUserActivity : BaseActivity() {
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         menuInflater.inflate(R.menu.menu_detail, menu)
         return super.onCreateOptionsMenu(menu)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        if(item.itemId == R.id.menu_settings) {
+            val intent = Intent(this, SettingsActivity::class.java).also {
+                startActivity(it)
+            }
+        }
+        return super.onOptionsItemSelected(item)
     }
 
     private fun initToolbar() {

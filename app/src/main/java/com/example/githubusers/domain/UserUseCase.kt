@@ -1,7 +1,7 @@
 package com.example.githubusers.domain
 
 import com.example.githubusers.core.state.ResultState
-import com.example.githubusers.core.util.SafeApiCall
+import com.example.githubusers.core.util.safeApiCall
 import com.example.githubusers.data.db.entity.UserFavorite
 import com.example.githubusers.data.entity.*
 import com.example.githubusers.data.repository.UserRepository
@@ -14,7 +14,7 @@ class UserUseCase @Inject constructor(
      * Remote
      */
     suspend fun getUserFromApi(username: String) : ResultState<SearchUserResponse> {
-        return SafeApiCall {
+        return safeApiCall {
             val response = userRepository.getUserFromApi(username)
             try {
                 ResultState.Success(response.body()!!)
@@ -25,7 +25,7 @@ class UserUseCase @Inject constructor(
     }
 
     suspend fun getUserDetailFromApi(username: String) : ResultState<UserDetailResponse> {
-        return SafeApiCall {
+        return safeApiCall {
             val response = userRepository.getDetailUserFromApi(username)
             try {
                 ResultState.Success(response.body()!!)
@@ -36,7 +36,7 @@ class UserUseCase @Inject constructor(
     }
 
     suspend fun getUserFollowers(username: String) : ResultState<UserFollowersResponse> {
-        return SafeApiCall {
+        return safeApiCall {
             val response = userRepository.getUserFollowers(username)
             try {
                 ResultState.Success(response.body()!!)
@@ -47,7 +47,7 @@ class UserUseCase @Inject constructor(
     }
 
     suspend fun getUserFollowing(username: String) : ResultState<UserFollowingResponse> {
-        return SafeApiCall {
+        return safeApiCall {
             val response = userRepository.getUserFollowing(username)
             try {
                 ResultState.Success(response.body()!!)

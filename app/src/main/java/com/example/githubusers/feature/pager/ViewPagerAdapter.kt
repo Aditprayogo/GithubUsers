@@ -11,7 +11,7 @@ import com.example.githubusers.feature.following.FollowingFragment
 
 class ViewPagerAdapter(
     private val mContext: Context,
-    private val fragmentManager: FragmentManager
+    fragmentManager: FragmentManager
 ) : FragmentStatePagerAdapter(fragmentManager, BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT) {
 
     @StringRes

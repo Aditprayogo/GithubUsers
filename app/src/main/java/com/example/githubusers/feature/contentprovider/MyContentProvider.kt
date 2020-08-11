@@ -5,7 +5,6 @@ import android.content.ContentValues
 import android.content.UriMatcher
 import android.database.Cursor
 import android.net.Uri
-import com.example.githubusers.data.db.AppDatabase
 import com.example.githubusers.data.db.dao.UserFavoriteDao
 import dagger.android.AndroidInjection
 import javax.inject.Inject

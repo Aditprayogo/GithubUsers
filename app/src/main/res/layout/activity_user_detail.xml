@@ -31,8 +31,11 @@
 
                 <ImageView
                     android:id="@+id/iv_user"
+                    android:transitionName="image"
+                    android:contentDescription="@string/app_name"
                     android:layout_width="115dp"
                     android:layout_height="115dp"
+                    tools:targetApi="lollipop"
                     android:layout_marginTop="10dp"
                     android:background="@drawable/ic_user" />
 
@@ -42,9 +45,10 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
                     android:layout_marginBottom="8dp"
-                    android:text="User"
+                    android:text="@string/user"
                     android:textColor="@color/colorWhite"
-                    android:textSize="18sp" />
+                    android:textSize="18sp"
+                    tools:ignore="HardcodedText" />
 
                 <TextView
                     android:id="@+id/txt_bio"
@@ -53,10 +57,11 @@
                     android:layout_marginLeft="16dp"
                     android:layout_marginRight="16dp"
                     android:layout_marginBottom="8dp"
-                    android:text="No Bio"
+                    android:text="@string/no_bio"
                     android:textAlignment="center"
                     android:textColor="@color/colorWhite"
-                    android:textSize="14sp" />
+                    android:textSize="14sp"
+                    tools:ignore="HardcodedText" />
 
                 <androidx.cardview.widget.CardView
                     android:layout_width="match_parent"
@@ -85,18 +90,20 @@
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="Follower"
+                                android:text="@string/follower"
                                 android:textColor="@color/colorBlack"
-                                android:textSize="15sp" />
+                                android:textSize="15sp"
+                                tools:ignore="HardcodedText" />
 
                             <TextView
                                 android:id="@+id/txt_follower"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="100"
+                                android:text="@string/follower_placeholder"
                                 android:textColor="@color/colorBlack"
                                 android:textSize="15sp"
-                                android:textStyle="bold" />
+                                android:textStyle="bold"
+                                tools:ignore="HardcodedText" />
                         </LinearLayout>
 
                         <!--                         following-->
@@ -110,18 +117,20 @@
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="Following"
+                                android:text="@string/following"
                                 android:textColor="@color/colorBlack"
-                                android:textSize="15sp" />
+                                android:textSize="15sp"
+                                tools:ignore="HardcodedText" />
 
                             <TextView
                                 android:id="@+id/txt_following"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="100"
+                                android:text="@string/following_placeholder"
                                 android:textColor="@color/colorBlack"
                                 android:textSize="15sp"
-                                android:textStyle="bold" />
+                                android:textStyle="bold"
+                                tools:ignore="HardcodedText" />
                         </LinearLayout>
 
                         <!--                         Follower-->
@@ -137,7 +146,8 @@
                                 android:layout_height="wrap_content"
                                 android:text="Repository"
                                 android:textColor="@color/colorBlack"
-                                android:textSize="15sp" />
+                                android:textSize="15sp"
+                                tools:ignore="HardcodedText" />
 
                             <TextView
                                 android:id="@+id/txt_repo"
@@ -146,7 +156,8 @@
                                 android:text="100"
                                 android:textColor="@color/colorBlack"
                                 android:textSize="15sp"
-                                android:textStyle="bold" />
+                                android:textStyle="bold"
+                                tools:ignore="HardcodedText" />
                         </LinearLayout>
 
                     </LinearLayout>

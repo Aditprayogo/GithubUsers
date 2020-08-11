@@ -2,11 +2,11 @@ package com.example.consumerapp.main
 
 import android.database.Cursor
 import android.net.Uri
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.consumerapp.R
-import com.example.consumerapp.data.UserFavorite
+import com.example.consumerapp.util.toListUserFavorite
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
@@ -52,24 +52,9 @@ class MainActivity : AppCompatActivity() {
             layoutManager = LinearLayoutManager(this@MainActivity)
             adapter = mainAdapter
         }
-        mainAdapter.setItems(convertCursor(cursor))
-    }
-
-    private fun convertCursor(cursor: Cursor?) : ArrayList<UserFavorite> {
-
-        val userFavorite =  ArrayList<UserFavorite>()
-
-        cursor?.apply {
-            while (moveToNext()) {
-                val username = getString(getColumnIndexOrThrow("username"))
-                val avatarUrl = getString(getColumnIndexOrThrow("avatar_url"))
-                val repositories = getString(getColumnIndexOrThrow("public_repos"))
-                val followers = getString(getColumnIndexOrThrow("followers"))
-                val following = getString(getColumnIndexOrThrow("following"))
-                userFavorite.add(UserFavorite(username, avatarUrl, repositories, followers, following))
-            }
+        cursor?.let {
+            mainAdapter.setItems(it.toListUserFavorite())
         }
 
-        return userFavorite
     }
 }

@@ -1,6 +1,5 @@
 package com.example.githubusers.feature.settings
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.example.githubusers.R
 import com.example.githubusers.core.base.BaseActivity
@@ -19,5 +18,11 @@ class SettingsActivity : BaseActivity() {
             .commit()
 
         supportActionBar?.setDisplayShowHomeEnabled(true)
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+    }
+
+    override fun onSupportNavigateUp(): Boolean {
+        onBackPressed()
+        return super.onSupportNavigateUp()
     }
 }
