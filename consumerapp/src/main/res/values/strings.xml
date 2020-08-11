@@ -2,4 +2,11 @@
     <string name="app_name">ConsumerApp</string>
     <string name="user_detail_information">Please use main aplication to see user detail information</string>
     <string name="no_data_available">No Data Available</string>
+    <string name="username">Username</string>
+    <string name="indonesia">Indonesia</string>
+    <string name="dicoding">Dicoding</string>
+    <string name="follower">Follower</string>
+    <string name="_9999">9999</string>
+    <string name="following">Following</string>
+    <string name="repositories">Repositories</string>
 </resources>

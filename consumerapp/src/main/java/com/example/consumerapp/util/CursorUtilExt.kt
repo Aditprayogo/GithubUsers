@@ -21,7 +21,9 @@ fun Cursor.toUserFavoriteEntity() : UserFavorite =
     UserFavorite(
         getString(getColumnIndexOrThrow("username")),
         getString(getColumnIndexOrThrow("avatar_url")),
+        getString(getColumnIndexOrThrow("company")),
         getString(getColumnIndexOrThrow("public_repos")),
         getString(getColumnIndexOrThrow("followers")),
-        getString(getColumnIndexOrThrow("following"))
+        getString(getColumnIndexOrThrow("following")),
+        getString(getColumnIndexOrThrow("location"))
     )

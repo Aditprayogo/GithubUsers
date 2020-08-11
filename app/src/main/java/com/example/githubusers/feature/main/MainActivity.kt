@@ -81,6 +81,10 @@ class MainActivity : BaseActivity() {
                         sv_search.clearFocus()
                         setIllustration(false)
                     }
+                    if (query.isEmpty()) {
+                        sv_search.clearFocus()
+                        setIllustration(true)
+                    }
                 }
                 return true
             }
