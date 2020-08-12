@@ -2,6 +2,7 @@ package com.example.githubusers.feature.detail
 
 import android.content.Intent
 import android.os.Bundle
+import android.provider.Settings
 import android.view.Menu
 import android.view.MenuItem
 import androidx.lifecycle.Observer
@@ -60,7 +61,7 @@ class UserDetailActivity : BaseActivity() {
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         supportActionBar?.setDisplayShowHomeEnabled(true)
         supportActionBar?.elevation = 0f
-        supportActionBar?.title = username + "\'s Profile"
+        supportActionBar?.title = "$username\'s Profile"
 
         fav_button.setOnClickListener {
             setFavoriteUser()
@@ -81,6 +82,11 @@ class UserDetailActivity : BaseActivity() {
         }
         if (item.itemId == R.id.menu_favorite) {
             val intent = Intent(this, FavoriteUserActivity::class.java).also {
+                startActivity(it)
+            }
+        }
+        if (item.itemId == R.id.menu_language) {
+            val intent = Intent(Settings.ACTION_LOCALE_SETTINGS).also {
                 startActivity(it)
             }
         }
@@ -184,7 +190,7 @@ class UserDetailActivity : BaseActivity() {
     private fun handleResultUserDetail(data: UserDetailResponse) {
         userDetail = data
         txt_username.text = data.login
-        txt_bio.text = data.bio ?: "No Bio"
+        txt_bio.text = data.bio ?: getString(R.string.no_bio)
         txt_follower.text = data.followers.toString()
         txt_following.text = data.following.toString()
         txt_repo.text = data.publicRepos.toString()

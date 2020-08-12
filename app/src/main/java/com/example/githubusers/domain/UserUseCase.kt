@@ -17,7 +17,7 @@ class UserUseCase @Inject constructor(
         return safeApiCall {
             val response = userRepository.getUserFromApi(username)
             try {
-                ResultState.Success(response.body()!!)
+                ResultState.Success(response.body())
             }catch (e: Exception) {
                 ResultState.Error(e.localizedMessage, response.code())
             }
@@ -28,7 +28,7 @@ class UserUseCase @Inject constructor(
         return safeApiCall {
             val response = userRepository.getDetailUserFromApi(username)
             try {
-                ResultState.Success(response.body()!!)
+                ResultState.Success(response.body())
             }catch (e: Exception) {
                 ResultState.Error(e.localizedMessage, response.code())
             }
@@ -39,7 +39,7 @@ class UserUseCase @Inject constructor(
         return safeApiCall {
             val response = userRepository.getUserFollowers(username)
             try {
-                ResultState.Success(response.body()!!)
+                ResultState.Success(response.body())
             }catch (e: Exception) {
                 ResultState.Error(e.localizedMessage, response.code())
             }
@@ -50,7 +50,7 @@ class UserUseCase @Inject constructor(
         return safeApiCall {
             val response = userRepository.getUserFollowing(username)
             try {
-                ResultState.Success(response.body()!!)
+                ResultState.Success(response.body())
             }catch (e: Exception) {
                 ResultState.Error(e.localizedMessage, response.code())
             }

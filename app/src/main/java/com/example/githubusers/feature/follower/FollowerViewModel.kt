@@ -25,15 +25,11 @@ class FollowerViewModel @Inject constructor(
      * Error state
      */
     private val _error = MutableLiveData<String>()
-    val error : LiveData<String>
-        get() = _error
 
     /**
      * Network error
      */
     private val _networkError = MutableLiveData<Boolean>()
-    val networkError : LiveData<Boolean>
-        get() = _networkError
 
     /**
      * State Followers

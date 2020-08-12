@@ -25,8 +25,6 @@ class MainViewModel @Inject constructor(
      * Error
      */
     private val _error  = MutableLiveData<String>()
-    val error : LiveData<String>
-        get() = _error
 
     /**
      * Network Error
@@ -49,7 +47,7 @@ class MainViewModel @Inject constructor(
             _state.value = LoaderState.HideLoading
             when(result) {
                 is ResultState.Success -> {
-                    _resultUserApi.postValue(result.data.userItems)
+                    _resultUserApi.postValue(result.data?.userItems)
                 }
                 is ResultState.Error -> {
                     _error.postValue(result.error)

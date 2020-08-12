@@ -15,4 +15,11 @@
         android:orderInCategory="200"
         android:title="Settings"
         app:showAsAction="ifRoom" />
+
+    <item
+        android:id="@+id/menu_language"
+        android:icon="@drawable/ic_baseline_language_24"
+        android:orderInCategory="200"
+        android:title="@string/change_language_settings"
+        app:showAsAction="ifRoom" />
 </menu>

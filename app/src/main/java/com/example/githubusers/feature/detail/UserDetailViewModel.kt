@@ -26,15 +26,11 @@ class UserDetailViewModel @Inject constructor(
      * error
      */
     private val _error = MutableLiveData<String>()
-    val error : LiveData<String>
-        get() = _error
 
     /**
      * Network error
      */
     private val _networkError = MutableLiveData<Boolean>()
-    val networkError : LiveData<Boolean>
-        get() = _networkError
 
     /**
      * User detail remote

@@ -4,6 +4,7 @@ import com.example.githubusers.feature.detail.UserDetailActivity
 import com.example.githubusers.feature.favorite.FavoriteUserActivity
 import com.example.githubusers.feature.main.MainActivity
 import com.example.githubusers.feature.settings.SettingsActivity
+import com.example.githubusers.feature.splash.SplashActivity
 import dagger.Module
 import dagger.android.ContributesAndroidInjector
 
@@ -21,5 +22,8 @@ abstract class ActivityBuilderModule {
 
     @ContributesAndroidInjector
     abstract fun contributeSettingsActivity() : SettingsActivity
+
+    @ContributesAndroidInjector
+    abstract fun contributeSplashActivity() : SplashActivity
 
 }

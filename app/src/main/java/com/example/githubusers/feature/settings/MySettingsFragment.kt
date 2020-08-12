@@ -46,7 +46,9 @@ class MySettingsFragment :  PreferenceFragmentCompat(),
 
     override fun onSharedPreferenceChanged(sharedPreferences: SharedPreferences?, key: String?) {
         if (key == reminder) {
-            reminderPreferences.isChecked = sharedPreferences!!.getBoolean(reminder, false)
+            if (sharedPreferences != null) {
+                reminderPreferences.isChecked = sharedPreferences.getBoolean(reminder, false)
+            }
         }
 
         val state : Boolean = PreferenceManager.getDefaultSharedPreferences(context).getBoolean(reminder, false)

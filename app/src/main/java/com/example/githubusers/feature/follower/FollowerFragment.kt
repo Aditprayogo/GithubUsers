@@ -50,7 +50,7 @@ class FollowerFragment : BaseFragment() {
 
     private fun handleUserName() {
         val activity = activity as UserDetailActivity
-        var username : String? = activity.getUsername()
+        val username : String? = activity.getUsername()
         viewModel.getUserFollowers(username!!)
     }
 

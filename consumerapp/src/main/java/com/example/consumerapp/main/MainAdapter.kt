@@ -32,8 +32,8 @@ class MainAdapter(val mContext: Context) : RecyclerView.Adapter<MainAdapter.View
                 txt_repository.text = data.public_repos
                 txt_following.text = data.following
                 txt_follower.text = data.followers
-                txt_company.text = data.company ?: "No Company"
-                txt_location.text = data.location ?: "No Location"
+                txt_company.text = data.company ?: context.getString(R.string.no_company)
+                txt_location.text = data.location ?: context.getString(R.string.no_location)
 
                 itemView.setOnClickListener {
                     Toast.makeText(context, context.getString(R.string.user_detail_information), Toast.LENGTH_SHORT).show()

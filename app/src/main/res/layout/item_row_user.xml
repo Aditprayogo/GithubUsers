@@ -36,7 +36,7 @@
             android:layout_toRightOf="@id/iv_user"
             android:textColor="@color/colorWhite"
             android:maxLines="1"
-            android:text="Aditiya Prayogo"
+            android:text="@string/aditiya_prayogo"
             android:textSize="18sp"
             android:textStyle="bold" />
     </RelativeLayout>

@@ -22,30 +22,14 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <receiver android:name=".feature.widget.UserWidget">
-            <intent-filter>
-                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
-            </intent-filter>
-
-            <meta-data
-                android:name="android.appwidget.provider"
-                android:resource="@xml/user_widget_info" />
-        </receiver>
-
-        <provider
-            android:name=".feature.contentprovider.MyContentProvider"
-            android:authorities="com.example.githubusers.provider"
-            android:enabled="true"
-            android:exported="true"
-            android:readPermission="com.example.githubusers.provider.READ_DATABASE"
-            android:writePermission="com.example.githubusers.provider.WRITE_DATABASE" />
-
         <activity android:name=".feature.settings.SettingsActivity" />
         <activity android:name=".feature.favorite.FavoriteUserActivity" />
         <activity android:name=".feature.detail.UserDetailActivity" />
+        <activity android:name=".feature.main.MainActivity" />
         <activity
-            android:name=".feature.main.MainActivity"
-            android:windowSoftInputMode="adjustResize">
+            android:name=".feature.splash.SplashActivity"
+            android:windowSoftInputMode="adjustResize"
+            android:theme="@style/AppThemeNoAppBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -59,19 +43,14 @@
             android:exported="true"
             tools:ignore="ExportedReceiver" />
 
-        <receiver android:name=".feature.widget.UserWidget">
-            <intent-filter>
-                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
-            </intent-filter>
+        <provider
+            android:name=".feature.contentprovider.MyContentProvider"
+            android:authorities="com.example.githubusers.provider"
+            android:enabled="true"
+            android:exported="true"
+            android:readPermission="com.example.githubusers.provider.READ_DATABASE"
+            android:writePermission="com.example.githubusers.provider.WRITE_DATABASE" />
 
-            <meta-data
-                android:name="android.appwidget.provider"
-                android:resource="@xml/user_widget_info" />
-        </receiver>
-
-        <service
-            android:name=".feature.widget.StackWidgetService"
-            android:permission="android.permission.BIND_REMOTEVIEWS" />
     </application>
 
 </manifest>

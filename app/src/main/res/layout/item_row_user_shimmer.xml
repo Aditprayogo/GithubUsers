@@ -7,7 +7,6 @@
     android:layout_height="wrap_content">
 
     <androidx.cardview.widget.CardView
-        android:id="@+id/cardView"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -25,6 +24,7 @@
                android:layout_width="80dp"
                android:layout_height="80dp"
                android:background="@drawable/bg_user"
+               android:contentDescription="@string/app_name"
                android:scaleType="fitCenter"
                />
 

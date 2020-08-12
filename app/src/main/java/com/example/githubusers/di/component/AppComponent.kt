@@ -3,7 +3,6 @@ package com.example.githubusers.di.component
 import android.app.Application
 import com.example.githubusers.BaseApplication
 import com.example.githubusers.di.module.*
-import com.example.githubusers.feature.widget.StackRemoteViewsFactory
 import dagger.BindsInstance
 import dagger.Component
 import dagger.android.AndroidInjector
@@ -21,8 +20,7 @@ import javax.inject.Singleton
         ActivityBuilderModule::class,
         RoomModule::class,
         FragmentBuilderModule::class,
-        ContentProviderBuilderModule::class,
-        StackRemoteViewsFactoryModule::class
+        ContentProviderBuilderModule::class
     ]
 )
 
@@ -36,5 +34,4 @@ interface AppComponent : AndroidInjector<BaseApplication>{
         fun build(): AppComponent
     }
 
-    fun inject(stackRemoteViewsFactory: StackRemoteViewsFactory)
 }

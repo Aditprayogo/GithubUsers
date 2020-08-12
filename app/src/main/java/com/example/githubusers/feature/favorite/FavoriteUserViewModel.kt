@@ -17,8 +17,6 @@ class FavoriteUserViewModel @Inject constructor(
      * error
      */
     private val _error = MutableLiveData<String>()
-    val error : LiveData<String>
-        get() = _error
 
     /**
      * Result from db

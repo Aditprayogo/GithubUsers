@@ -2,6 +2,7 @@ package com.example.githubusers.feature.main
 
 import android.content.Intent
 import android.os.Bundle
+import android.provider.Settings
 import android.view.Menu
 import android.view.MenuItem
 import android.widget.SearchView
@@ -61,6 +62,11 @@ class MainActivity : BaseActivity() {
            val intent = Intent(this, SettingsActivity::class.java).also {
                startActivity(it)
            }
+        }
+        if (item.itemId == R.id.menu_language) {
+            val intent = Intent(Settings.ACTION_LOCALE_SETTINGS).also {
+                startActivity(it)
+            }
         }
         return super.onOptionsItemSelected(item)
     }

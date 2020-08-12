@@ -18,14 +18,6 @@ class FollowingViewModel @Inject constructor(
     val state : LiveData<LoaderState>
         get() = _state
 
-    private val _error = MutableLiveData<String>()
-    val error : LiveData<String>
-        get() = _error
-
-    private val _networkError = MutableLiveData<Boolean>()
-    val networkError : LiveData<Boolean>
-        get() = _networkError
-
     private val _resultUserFollowing = MutableLiveData<List<UserFollowingResponseItem>>()
     val resultUserFollowing : LiveData<List<UserFollowingResponseItem>>
         get() = _resultUserFollowing
