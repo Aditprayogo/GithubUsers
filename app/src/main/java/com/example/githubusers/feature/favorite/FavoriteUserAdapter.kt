@@ -34,7 +34,7 @@ class FavoriteUserAdapter(val mContext: Context) : RecyclerView.Adapter<Favorite
                 itemView.setOnClickListener {
                     val intent = Intent(itemView.context, UserDetailActivity::class.java).apply {
                         putExtra(UserDetailActivity.USERNAME_KEY, user.username)
-                        flags = Intent.FLAG_ACTIVITY_NEW_TASK
+                        setFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
                     }.also {
                         itemView.context.startActivity(it)
                     }

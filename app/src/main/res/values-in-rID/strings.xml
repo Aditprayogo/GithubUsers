@@ -1,0 +1,34 @@
+<resources>
+    <string name="app_name">GithubUsers</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="follower_title">Pengikut</string>
+    <string name="following_title">Mengikuti</string>
+    <string name="user_success">User berhasil di tambahkan</string>
+    <string name="user_deleted">User berhasil di hapus</string>
+    <string name="reminder_title">Pengingat</string>
+    <string name="github_appp">Github App</string>
+    <string name="alarm_enabled">Alarm di aktifkan</string>
+    <string name="alarm_canceled">Alarm di nonaktifkan</string>
+    <string name="reminder">Pengingat</string>
+    <string name="reminder_time">Pengingat pada 9:00 AM</string>
+    <string name="lets_find_user_popular">Mari kita cari user populer di githubUsers</string>
+    <string name="user">User</string>
+    <string name="follower_placeholder">100</string>
+    <string name="following_placeholder">100</string>
+    <string name="no_data_available">Tidak ada data</string>
+    <string name="username">username</string>
+    <string name="follower">Pengikut</string>
+    <string name="following">Mengikuti</string>
+    <string name="_9999">9999</string>
+    <string name="repositories">Repositori</string>
+    <string name="no_location">Tidak ada lokasi</string>
+    <string name="indonesia">Indonesia</string>
+    <string name="dicoding">Dicoding</string>
+    <string name="no_company">Tidak ada perusahaan</string>
+    <string name="change_language_settings">Ganti bahasa</string>
+    <string name="settings">Pengaturan</string>
+    <string name="no_bio">Tidak ada bio</string>
+    <string name="created_by_aditiya_prayogo">Dibuat oleh : Aditiya Prayogo</string>
+    <string name="aditiya_prayogo">Aditiya Prayogo</string>
+    <string name="favorite_user">User yang disukai</string>
+</resources>

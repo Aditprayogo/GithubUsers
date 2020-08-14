@@ -56,7 +56,7 @@ class FavoriteUserActivity : BaseActivity() {
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         supportActionBar?.setDisplayShowHomeEnabled(true)
         supportActionBar?.elevation = 0f
-        supportActionBar?.title = "Favorite User"
+        supportActionBar?.title = getString(R.string.favorite_user)
     }
 
     override fun onSupportNavigateUp(): Boolean {
