@@ -26,7 +26,7 @@ class UserDetailActivity : BaseActivity() {
     @Inject
     lateinit var viewModelFactory: ViewModelProvider.Factory
 
-    lateinit var viewModel: UserDetailViewModel
+    private lateinit var viewModel: UserDetailViewModel
 
     private var userDetail: UserDetailResponse? = null
 

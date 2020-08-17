@@ -31,4 +31,6 @@
     <string name="created_by_aditiya_prayogo">Dibuat oleh : Aditiya Prayogo</string>
     <string name="aditiya_prayogo">Aditiya Prayogo</string>
     <string name="favorite_user">User yang disukai</string>
+    <string name="github_users">GithubUsers</string>
+    <string name="favorite">Difavorite</string>
 </resources>

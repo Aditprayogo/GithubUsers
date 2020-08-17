@@ -23,7 +23,7 @@ class FollowingFragment : BaseFragment() {
     @Inject
     lateinit var viewModelFactory: ViewModelProvider.Factory
 
-    lateinit var viewModel : FollowingViewModel
+    private lateinit var viewModel : FollowingViewModel
 
     private var lists = mutableListOf<UserFollowingResponseItem>()
 

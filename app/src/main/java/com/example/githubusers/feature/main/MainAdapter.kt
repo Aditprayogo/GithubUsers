@@ -23,7 +23,7 @@ class MainAdapter(val context: Context) : RecyclerView.Adapter<MainAdapter.ViewH
         fun bind(data: UserSearchResponseItem, activity: MainActivity) {
             with(itemView) {
                 Glide.with(context)
-                    .load(data.avatarUrl!!)
+                    .load(data.avatarUrl)
                     .apply(RequestOptions().circleCrop())
                     .placeholder(R.drawable.ic_user)
                     .into(iv_user)

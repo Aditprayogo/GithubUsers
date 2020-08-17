@@ -12,7 +12,7 @@ import com.example.githubusers.data.entity.UserFollowingResponseItem
 import com.example.githubusers.feature.detail.UserDetailActivity
 import kotlinx.android.synthetic.main.item_row_user.view.*
 
-class FollowingAdapter(val mContext: Context) : RecyclerView.Adapter<FollowingAdapter.ViewHolder>() {
+class FollowingAdapter(private val mContext: Context) : RecyclerView.Adapter<FollowingAdapter.ViewHolder>() {
 
     private var items = mutableListOf<UserFollowingResponseItem>()
 

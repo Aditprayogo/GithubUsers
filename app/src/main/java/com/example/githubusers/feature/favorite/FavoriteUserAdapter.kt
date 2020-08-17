@@ -12,7 +12,7 @@ import com.example.githubusers.data.db.entity.UserFavorite
 import com.example.githubusers.feature.detail.UserDetailActivity
 import kotlinx.android.synthetic.main.item_row_favorite_user.view.*
 
-class FavoriteUserAdapter(val mContext: Context) : RecyclerView.Adapter<FavoriteUserAdapter.ViewHolder>() {
+class FavoriteUserAdapter(private val mContext: Context) : RecyclerView.Adapter<FavoriteUserAdapter.ViewHolder>() {
 
     private var items: MutableList<UserFavorite> = mutableListOf()
 

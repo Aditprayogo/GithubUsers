@@ -11,7 +11,7 @@ import com.example.consumerapp.R
 import com.example.consumerapp.data.UserFavorite
 import kotlinx.android.synthetic.main.item_row_favorite_user.view.*
 
-class MainAdapter(val mContext: Context) : RecyclerView.Adapter<MainAdapter.ViewHolder>() {
+class MainAdapter(private val mContext: Context) : RecyclerView.Adapter<MainAdapter.ViewHolder>() {
 
     private var items: MutableList<UserFavorite> = mutableListOf()
 

@@ -21,7 +21,7 @@ class FavoriteUserActivity : BaseActivity() {
     @Inject
     lateinit var viewModelFactory: ViewModelProvider.Factory
 
-    lateinit var viewModel: FavoriteUserViewModel
+    private lateinit var viewModel: FavoriteUserViewModel
 
     private val listUser = mutableListOf<UserFavorite>()
 

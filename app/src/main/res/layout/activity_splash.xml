@@ -23,7 +23,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
-        android:text="GithubUsers"
+        android:text="@string/github_users"
         android:textColor="@color/colorGrey"
         android:textSize="24sp"
         android:textStyle="normal|bold|italic"
