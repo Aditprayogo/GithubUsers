@@ -17,3 +17,16 @@
     />
 </p>
 
+<p align="center">
+    <img src="assets/screenshot_2.png"
+        style="margin-right: 20px;"
+    />
+</p>
+
+
+<p align="center">
+    <img src="assets/screenshot_3.png"
+        style="margin-right: 20px;"
+    />
+</p>
+
