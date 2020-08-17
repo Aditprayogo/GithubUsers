@@ -38,7 +38,7 @@
 </p>
 
 ## Libraries Used
-- Retrofit2
+- Retrofit2(https://square.github.io/retrofit/)
 - Material Design
 - Room
 - Coroutines
