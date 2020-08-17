@@ -12,7 +12,7 @@
 
 ## Clean Architecture :
 <p align="center">
-    <img src="assets/clean.png"
+    <img src="assets/cleean.png"
         style="margin-right: 20px;"
     />
 </p>
@@ -36,4 +36,18 @@
         style="margin-right: 20px;"
     />
 </p>
+
+## Libraries Used
+- Retrofit2
+- Material Design
+- Room
+- Coroutines
+- ViewModel
+- LiveData
+- Glide
+- Shimmer
+- Dagger2
+- OkHttp
+- GSON
+- Preferences
 
