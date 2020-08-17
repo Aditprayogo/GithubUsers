@@ -5,10 +5,11 @@
 ## Apps Feature :
 - Search User On Github
 - Reminder At 9:00 AM
-- Favorite User
+- Add Favorite User
 - Delete Favorite User
+- User Favorite
 - Localization
-- Consumer
+- Content Provider
 
 ## Clean Architecture :
 <p align="center">
@@ -37,6 +38,12 @@
     />
 </p>
 
+<p align="center">
+    <img src="assets/screenshot_4.png"
+        style="margin-right: 20px;"
+    />
+</p>
+
 # Libraries Used
 * [Android Support Libraries](https://developer.android.com/topic/libraries/support-library/index.html)
 * [Dagger 2](https://google.github.io/dagger/)
@@ -55,6 +62,22 @@
 > Just Follow my Github and **star** this repo
 
 # License
-Free software Hell yeah
+```
+
+   Copyright © 2020 Aditiya Ihzar Eka Prayogo
+
+   Licensed under the Apache License, Version 2.0 (the "License");
+   you may not use this file except in compliance with the License.
+   You may obtain a copy of the License at
+
+       http://www.apache.org/licenses/LICENSE-2.0
+
+   Unless required by applicable law or agreed to in writing, software
+   distributed under the License is distributed on an "AS IS" BASIS,
+   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+   See the License for the specific language governing permissions and
+   limitations under the License.
+
+```
 
 
