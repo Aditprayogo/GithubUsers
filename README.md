@@ -20,26 +20,26 @@
 
 ## Demo :
 <p align="center">
-    <img src="assets/screenshot_1.png"
+    <img src="assets/rev1.png"
         style="margin-right: 20px;"
     />
 </p>
 
 <p align="center">
-    <img src="assets/screenshot_2.png"
+    <img src="assets/rev2.png"
         style="margin-right: 20px;"
     />
 </p>
 
 
 <p align="center">
-    <img src="assets/screenshot_3.png"
+    <img src="assets/rev3.png"
         style="margin-right: 20px;"
     />
 </p>
 
 <p align="center">
-    <img src="assets/screenshot_4.png"
+    <img src="assets/rev4.png"
         style="margin-right: 20px;"
     />
 </p>
