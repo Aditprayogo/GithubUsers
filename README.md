@@ -18,13 +18,14 @@
     />
 </p>
 
+## Demo :
+
 <p align="center">
-    <img src="assets/low_cov.png"
+    <img src="assets/med_cov.png"
         style="margin-right: 20px;"
     />
 </p>
 
-## Demo :
 <p align="center">
     <img src="assets/low1.png"
         style="margin-right: 20px;"
