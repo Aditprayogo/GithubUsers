@@ -20,26 +20,26 @@
 
 ## Demo :
 <p align="center">
-    <img src="assets/revi1.webp"
+    <img src="assets/low1.png"
         style="margin-right: 20px;"
     />
 </p>
 
 <p align="center">
-    <img src="assets/revi2.webp"
+    <img src="assets/low2.png"
         style="margin-right: 20px;"
     />
 </p>
 
 
 <p align="center">
-    <img src="assets/revi3.webp"
+    <img src="assets/low3.png"
         style="margin-right: 20px;"
     />
 </p>
 
 <p align="center">
-    <img src="assets/revi4.webp"
+    <img src="assets/low4.png"
         style="margin-right: 20px;"
     />
 </p>
