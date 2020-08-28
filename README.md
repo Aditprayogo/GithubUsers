@@ -64,6 +64,7 @@
 * [Gson](https://github.com/google/gson)
 * [Preferences](https://developer.android.com/reference/android/preference/Preference)
 * [Material Design](https://material.io/develop/android/docs/getting-started)
+* [Lottie-Android](https://github.com/airbnb/lottie-android)
 
 # How to Support me ?
 > Just Follow my Github and **star** this repo
