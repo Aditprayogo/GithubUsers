@@ -3,11 +3,12 @@ package com.example.githubusers.feature.main
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import com.example.githubusers.core.state.LoaderState
 import com.example.githubusers.core.state.ResultState
-import com.example.githubusers.core.util.Coroutine
 import com.example.githubusers.data.entity.UserSearchResponseItem
 import com.example.githubusers.domain.UserUseCase
+import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 class MainViewModel @Inject constructor(
@@ -42,7 +43,7 @@ class MainViewModel @Inject constructor(
 
     fun getUserFromApi(query: String) {
         _state.value = LoaderState.ShowLoading
-        Coroutine.main {
+        viewModelScope.launch {
             val result = userUseCase.getUserFromApi(query)
             _state.value = LoaderState.HideLoading
             when(result) {

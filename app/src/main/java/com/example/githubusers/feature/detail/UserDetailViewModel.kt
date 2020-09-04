@@ -3,12 +3,13 @@ package com.example.githubusers.feature.detail
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import com.example.githubusers.core.state.LoaderState
 import com.example.githubusers.core.state.ResultState
-import com.example.githubusers.core.util.Coroutine
 import com.example.githubusers.data.db.entity.UserFavorite
 import com.example.githubusers.data.entity.UserDetailResponse
 import com.example.githubusers.domain.UserUseCase
+import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 class UserDetailViewModel @Inject constructor(
@@ -65,7 +66,7 @@ class UserDetailViewModel @Inject constructor(
      */
     fun getUserDetailFromApi(username: String) {
         _state.value = LoaderState.ShowLoading
-        Coroutine.main {
+        viewModelScope.launch {
             val result = userUseCase.getUserDetailFromApi(username)
             _state.value = LoaderState.HideLoading
             when(result) {
@@ -86,7 +87,7 @@ class UserDetailViewModel @Inject constructor(
      * Local
      */
     fun addUserToFavDB(userFavorite: UserFavorite) {
-        Coroutine.main {
+        viewModelScope.launch {
             try {
                 userUseCase.addUserToFavDB(userFavorite)
                 _resultInsertUserToDb.postValue(true)
@@ -97,7 +98,7 @@ class UserDetailViewModel @Inject constructor(
     }
 
     fun deleteUserFromDb(userFavorite: UserFavorite) {
-        Coroutine.main {
+        viewModelScope.launch {
             try {
                 userUseCase.deleteUserFromDb(userFavorite)
                 _resultDeleteFromDb.postValue(true)
@@ -108,7 +109,7 @@ class UserDetailViewModel @Inject constructor(
     }
 
     fun getFavUserByUsername(username: String) {
-        Coroutine.main {
+        viewModelScope.launch {
             val result = userUseCase.getFavUserByUsername(username)
             when(result) {
                 is ResultState.Success -> _resultUserDetailFromDb.postValue(result.data)

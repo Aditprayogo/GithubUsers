@@ -3,11 +3,12 @@ package com.example.githubusers.feature.follower
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import com.example.githubusers.core.state.LoaderState
 import com.example.githubusers.core.state.ResultState
-import com.example.githubusers.core.util.Coroutine
 import com.example.githubusers.data.entity.UserFollowersResponseItem
 import com.example.githubusers.domain.UserUseCase
+import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 class FollowerViewModel @Inject constructor(
@@ -40,7 +41,7 @@ class FollowerViewModel @Inject constructor(
 
     fun getUserFollowers(username: String) {
         _state.value = LoaderState.ShowLoading
-        Coroutine.main {
+        viewModelScope.launch {
             val result = userUseCase.getUserFollowers(username)
             _state.value = LoaderState.HideLoading
             when(result) {

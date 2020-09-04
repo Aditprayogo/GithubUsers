@@ -3,10 +3,11 @@ package com.example.githubusers.feature.favorite
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import com.example.githubusers.core.state.ResultState
-import com.example.githubusers.core.util.Coroutine
 import com.example.githubusers.data.db.entity.UserFavorite
 import com.example.githubusers.domain.UserUseCase
+import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 class FavoriteUserViewModel @Inject constructor(
@@ -30,7 +31,7 @@ class FavoriteUserViewModel @Inject constructor(
     }
 
     fun fetchAllUserFavorite() {
-        Coroutine.main {
+        viewModelScope.launch {
             val result = userUseCase.fetchAllUserFavorite()
             when(result) {
                 is ResultState.Success -> _resultUserFromDb.postValue(result.data)
