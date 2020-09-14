@@ -15,6 +15,7 @@ class MainViewModel @Inject constructor(
     private val userUseCase: UserUseCase
 ) : ViewModel() {
 
+
     /**
      * Loading state
      */
