@@ -5,6 +5,8 @@ import android.os.Bundle
 import android.provider.Settings
 import android.view.Menu
 import android.view.MenuItem
+import android.view.View.INVISIBLE
+import android.view.View.VISIBLE
 import android.widget.SearchView
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
@@ -53,20 +55,10 @@ class MainActivity : BaseActivity() {
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        if (item.itemId == R.id.menu_favorite) {
-            val intent = Intent(this, FavoriteUserActivity::class.java).also {
-                startActivity(it)
-            }
-        }
-        if (item.itemId == R.id.menu_settings) {
-           val intent = Intent(this, SettingsActivity::class.java).also {
-               startActivity(it)
-           }
-        }
-        if (item.itemId == R.id.menu_language) {
-            val intent = Intent(Settings.ACTION_LOCALE_SETTINGS).also {
-                startActivity(it)
-            }
+        when (item.itemId) {
+            R.id.menu_favorite -> startActivity(Intent(this, FavoriteUserActivity::class.java))
+            R.id.menu_settings -> startActivity(Intent(this, SettingsActivity::class.java))
+            R.id.menu_language -> startActivity(Intent(Settings.ACTION_LOCALE_SETTINGS))
         }
         return super.onOptionsItemSelected(item)
     }
@@ -77,17 +69,16 @@ class MainActivity : BaseActivity() {
     }
 
     private fun searchUsers() {
-        sv_search.setOnQueryTextListener(object: SearchView.OnQueryTextListener,
+        sv_search.setOnQueryTextListener(object : SearchView.OnQueryTextListener,
             androidx.appcompat.widget.SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String?): Boolean {
-                if (query != null) {
-                    if(query.isNotEmpty()) {
+                query?.let {
+                    if (it.isNotEmpty()) {
                         items.clear()
                         viewModel.getUserFromApi(query)
                         sv_search.clearFocus()
                         setIllustration(false)
-                    }
-                    if (query.isEmpty()) {
+                    } else {
                         sv_search.clearFocus()
                         setIllustration(true)
                     }
@@ -163,10 +154,6 @@ class MainActivity : BaseActivity() {
     }
 
     private fun setIllustration(status: Boolean) {
-        if(status) {
-            base_empty.setVisible()
-        } else {
-            base_empty.setGone()
-        }
+        base_empty.visibility = if (status) VISIBLE else INVISIBLE
     }
 }

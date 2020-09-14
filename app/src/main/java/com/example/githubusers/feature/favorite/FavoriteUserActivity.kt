@@ -44,19 +44,19 @@ class FavoriteUserActivity : BaseActivity() {
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        if(item.itemId == R.id.menu_settings) {
-            val intent = Intent(this, SettingsActivity::class.java).also {
-                startActivity(it)
-            }
+        if (item.itemId == R.id.menu_settings) {
+            startActivity(Intent(this, SettingsActivity::class.java))
         }
         return super.onOptionsItemSelected(item)
     }
 
     private fun initToolbar() {
-        supportActionBar?.setDisplayHomeAsUpEnabled(true)
-        supportActionBar?.setDisplayShowHomeEnabled(true)
-        supportActionBar?.elevation = 0f
-        supportActionBar?.title = getString(R.string.favorite_user)
+        supportActionBar?.apply {
+            setDisplayHomeAsUpEnabled(true)
+            setDisplayShowHomeEnabled(true)
+            elevation = 0f
+            title = getString(R.string.favorite_user)
+        }
     }
 
     override fun onSupportNavigateUp(): Boolean {
