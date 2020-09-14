@@ -9,7 +9,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 import java.util.concurrent.TimeUnit
 
 object Network {
-    fun retrofitClient(url: String = BuildConfig.BASE_URL) : Retrofit {
+    fun retrofitClient(url: String = BuildConfig.BASE_URL): Retrofit {
         return Retrofit.Builder()
             .baseUrl(url)
             .addCallAdapterFactory(CoroutineCallAdapterFactory())
@@ -18,19 +18,15 @@ object Network {
             .build()
     }
 
-    private fun okHttpClient() : OkHttpClient {
-        return OkHttpClient.Builder()
-            .retryOnConnectionFailure(true)
-            .addInterceptor(createLoggingInterceptor())
-            .pingInterval(30, TimeUnit.SECONDS)
-            .readTimeout(1, TimeUnit.MINUTES)
-            .connectTimeout(1, TimeUnit.MINUTES)
-            .build()
-    }
+    private fun okHttpClient() = OkHttpClient.Builder()
+        .retryOnConnectionFailure(true)
+        .addInterceptor(createLoggingInterceptor())
+        .pingInterval(30, TimeUnit.SECONDS)
+        .readTimeout(1, TimeUnit.MINUTES)
+        .connectTimeout(1, TimeUnit.MINUTES)
+        .build()
 
-    private fun createLoggingInterceptor() : HttpLoggingInterceptor {
-        val interceptor = HttpLoggingInterceptor()
-        interceptor.level = HttpLoggingInterceptor.Level.BODY
-        return interceptor
+    private fun createLoggingInterceptor() = HttpLoggingInterceptor().apply {
+        level = HttpLoggingInterceptor.Level.BODY
     }
 }

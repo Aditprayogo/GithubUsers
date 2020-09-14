@@ -32,8 +32,7 @@ class FavoriteUserViewModel @Inject constructor(
 
     fun fetchAllUserFavorite() {
         viewModelScope.launch {
-            val result = userUseCase.fetchAllUserFavorite()
-            when(result) {
+            when (val result = userUseCase.fetchAllUserFavorite()) {
                 is ResultState.Success -> _resultUserFromDb.postValue(result.data)
                 is ResultState.Error -> _error.postValue(result.error)
             }
