@@ -30,11 +30,11 @@ class UserDetailActivity : BaseActivity() {
 
     private var userDetail: UserDetailResponse? = null
 
-    private var userFavoriteEntity : UserFavorite? = null
+    private var userFavoriteEntity: UserFavorite? = null
 
     private var favoriteActive = false
 
-    private var username : String? = null
+    private var username: String? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -53,15 +53,17 @@ class UserDetailActivity : BaseActivity() {
         return super.onCreateOptionsMenu(menu)
     }
 
-    fun getUsername() : String? {
+    fun getUsername(): String? {
         return username
     }
 
     private fun initToolbar() {
-        supportActionBar?.setDisplayHomeAsUpEnabled(true)
-        supportActionBar?.setDisplayShowHomeEnabled(true)
-        supportActionBar?.elevation = 0f
-        supportActionBar?.title = "$username\'s Profile"
+        supportActionBar?.apply {
+            setDisplayHomeAsUpEnabled(true)
+            setDisplayShowHomeEnabled(true)
+            elevation = 0f
+            title = "$username\'s Profile"
+        }
 
         fav_button.setOnClickListener {
             setFavoriteUser()
@@ -75,19 +77,15 @@ class UserDetailActivity : BaseActivity() {
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        if (item.itemId == R.id.menu_settings) {
-            val intent = Intent(this, SettingsActivity::class.java).also {
-                startActivity(it)
+        when (item.itemId) {
+            R.id.menu_settings -> {
+                startActivity(Intent(this, SettingsActivity::class.java))
             }
-        }
-        if (item.itemId == R.id.menu_favorite) {
-            val intent = Intent(this, FavoriteUserActivity::class.java).also {
-                startActivity(it)
+            R.id.menu_favorite -> {
+                startActivity(Intent(this, FavoriteUserActivity::class.java))
             }
-        }
-        if (item.itemId == R.id.menu_language) {
-            val intent = Intent(Settings.ACTION_LOCALE_SETTINGS).also {
-                startActivity(it)
+            R.id.menu_language -> {
+                startActivity(Intent(Settings.ACTION_LOCALE_SETTINGS))
             }
         }
         return super.onOptionsItemSelected(item)
@@ -146,7 +144,7 @@ class UserDetailActivity : BaseActivity() {
             userFavoriteEntity?.let {
                 viewModel.deleteUserFromDb(it)
             }
-        }else {
+        } else {
             val userFavorite = userDetail?.login?.let {
                 UserFavorite(
                     username = it,
@@ -171,7 +169,7 @@ class UserDetailActivity : BaseActivity() {
             favoriteActive = false
             val icon = R.drawable.ic_baseline_favorite_border_24
             fav_button.setImageResource(icon)
-        }else {
+        } else {
             userFavoriteEntity = userFavorite.first()
             favoriteActive = true
             val icon = R.drawable.ic_baseline_favorite_24
@@ -180,7 +178,7 @@ class UserDetailActivity : BaseActivity() {
     }
 
     private fun handleStateLoading(loading: LoaderState) {
-        if(loading is LoaderState.ShowLoading) {
+        if (loading is LoaderState.ShowLoading) {
             fav_button.setGone()
         } else {
             fav_button.setVisible()

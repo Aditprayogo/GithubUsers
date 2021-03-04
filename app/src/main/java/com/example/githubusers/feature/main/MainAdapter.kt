@@ -18,7 +18,7 @@ class MainAdapter(val context: Context) : RecyclerView.Adapter<MainAdapter.ViewH
     private var items = mutableListOf<UserSearchResponseItem>()
     private lateinit var mainActivity: MainActivity
 
-    inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView){
+    inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         fun bind(data: UserSearchResponseItem, activity: MainActivity) {
             with(itemView) {
                 Glide.with(context)
@@ -30,18 +30,20 @@ class MainAdapter(val context: Context) : RecyclerView.Adapter<MainAdapter.ViewH
                 txt_username.text = data.login
             }
             itemView.setOnClickListener {
-                val intent = Intent(itemView.context, UserDetailActivity::class.java).apply {
-                    putExtra(UserDetailActivity.USERNAME_KEY, data.login)
-                    setFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
-                }.also {
-                    itemView.context.startActivity(it)
-                }
+                itemView.context.startActivity(
+                    Intent(itemView.context, UserDetailActivity::class.java).apply {
+                        putExtra(UserDetailActivity.USERNAME_KEY, data.login)
+                        flags = Intent.FLAG_ACTIVITY_NEW_TASK
+                    }
+                )
             }
         }
     }
 
     override fun onCreateViewHolder(viewGroup: ViewGroup, viewType: Int): MainAdapter.ViewHolder {
-        return ViewHolder(LayoutInflater.from(context).inflate(R.layout.item_row_user, viewGroup, false))
+        return ViewHolder(
+            LayoutInflater.from(context).inflate(R.layout.item_row_user, viewGroup, false)
+        )
     }
 
     fun setActivity(activity: MainActivity) {

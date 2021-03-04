@@ -12,12 +12,13 @@ import com.example.githubusers.data.db.entity.UserFavorite
 import com.example.githubusers.feature.detail.UserDetailActivity
 import kotlinx.android.synthetic.main.item_row_favorite_user.view.*
 
-class FavoriteUserAdapter(private val mContext: Context) : RecyclerView.Adapter<FavoriteUserAdapter.ViewHolder>() {
+class FavoriteUserAdapter(private val mContext: Context) :
+    RecyclerView.Adapter<FavoriteUserAdapter.ViewHolder>() {
 
     private var items: MutableList<UserFavorite> = mutableListOf()
 
-    inner class ViewHolder(itemView : View) : RecyclerView.ViewHolder(itemView)  {
-        fun bind(user : UserFavorite) {
+    inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+        fun bind(user: UserFavorite) {
             with(itemView) {
                 Glide.with(itemView.context)
                     .load(user.avatarUrl)
@@ -32,12 +33,14 @@ class FavoriteUserAdapter(private val mContext: Context) : RecyclerView.Adapter<
                 txt_company.text = user.company ?: context.getString(R.string.no_company)
 
                 itemView.setOnClickListener {
-                    val intent = Intent(itemView.context, UserDetailActivity::class.java).apply {
-                        putExtra(UserDetailActivity.USERNAME_KEY, user.username)
-                        setFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
-                    }.also {
-                        itemView.context.startActivity(it)
-                    }
+                    itemView.context.startActivity(
+                        Intent(
+                            itemView.context,
+                            UserDetailActivity::class.java
+                        ).apply {
+                            putExtra(UserDetailActivity.USERNAME_KEY, user.username)
+                            flags = Intent.FLAG_ACTIVITY_NEW_TASK
+                        })
                 }
 
             }
@@ -50,7 +53,9 @@ class FavoriteUserAdapter(private val mContext: Context) : RecyclerView.Adapter<
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        return ViewHolder(LayoutInflater.from(mContext).inflate(R.layout.item_row_favorite_user, parent, false))
+        return ViewHolder(
+            LayoutInflater.from(mContext).inflate(R.layout.item_row_favorite_user, parent, false)
+        )
     }
 
     override fun getItemCount(): Int = items.size

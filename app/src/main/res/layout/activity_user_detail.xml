@@ -192,6 +192,6 @@
         android:layout_gravity="end|bottom"
         android:layout_marginEnd="10dp"
         android:layout_marginBottom="10dp"
-        android:contentDescription="TODO" />
+        android:contentDescription="@string/favbutton" />
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

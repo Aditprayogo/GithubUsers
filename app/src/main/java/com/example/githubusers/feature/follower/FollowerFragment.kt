@@ -14,6 +14,7 @@ import com.example.githubusers.core.util.setGone
 import com.example.githubusers.core.util.setVisible
 import com.example.githubusers.data.entity.UserFollowersResponseItem
 import com.example.githubusers.feature.detail.UserDetailActivity
+import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.fragment_follower.*
 import kotlinx.coroutines.InternalCoroutinesApi
 import javax.inject.Inject
@@ -55,8 +56,10 @@ class FollowerFragment : BaseFragment() {
     }
 
     private fun initRecyclerView() {
-        rc_view.layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
-        rc_view.adapter = followerAdapter
+        rc_view.apply {
+            layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
+            adapter = followerAdapter
+        }
     }
 
     private fun initViewModel() {

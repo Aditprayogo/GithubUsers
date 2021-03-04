@@ -12,7 +12,8 @@ import com.example.githubusers.data.entity.UserFollowingResponseItem
 import com.example.githubusers.feature.detail.UserDetailActivity
 import kotlinx.android.synthetic.main.item_row_user.view.*
 
-class FollowingAdapter(private val mContext: Context) : RecyclerView.Adapter<FollowingAdapter.ViewHolder>() {
+class FollowingAdapter(private val mContext: Context) :
+    RecyclerView.Adapter<FollowingAdapter.ViewHolder>() {
 
     private var items = mutableListOf<UserFollowingResponseItem>()
 
@@ -29,23 +30,25 @@ class FollowingAdapter(private val mContext: Context) : RecyclerView.Adapter<Fol
                 txt_username.text = data.login
 
                 itemView.setOnClickListener {
-                    val intent = Intent(itemView.context, UserDetailActivity::class.java).apply {
-                        putExtra(UserDetailActivity.USERNAME_KEY, data.login)
-                    }.also {
-                        itemView.context.startActivity(it)
-                    }
+                    itemView.context.startActivity(
+                        Intent(itemView.context, UserDetailActivity::class.java).apply {
+                            putExtra(UserDetailActivity.USERNAME_KEY, data.login)
+                        }
+                    )
                 }
             }
         }
     }
 
-    fun setItems(data : MutableList<UserFollowingResponseItem>) {
+    fun setItems(data: MutableList<UserFollowingResponseItem>) {
         this.items = data
         notifyDataSetChanged()
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        return ViewHolder(LayoutInflater.from(mContext).inflate(R.layout.item_row_user, parent, false))
+        return ViewHolder(
+            LayoutInflater.from(mContext).inflate(R.layout.item_row_user, parent, false)
+        )
     }
 
     override fun getItemCount(): Int = items.size

@@ -120,8 +120,10 @@ class MainActivity : BaseActivity() {
     }
 
     private fun initRecyclerView() {
-        rv_user.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
-        rv_user.adapter = mainAdapter
+        rv_user.apply {
+            layoutManager = LinearLayoutManager(this@MainActivity, LinearLayoutManager.VERTICAL, false)
+            adapter = mainAdapter
+        }
         mainAdapter.setActivity(this)
     }
 

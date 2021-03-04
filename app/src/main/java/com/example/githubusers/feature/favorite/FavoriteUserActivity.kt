@@ -25,7 +25,7 @@ class FavoriteUserActivity : BaseActivity() {
 
     private val listUser = mutableListOf<UserFavorite>()
 
-    private val favoriteUserAdapter : FavoriteUserAdapter by lazy {
+    private val favoriteUserAdapter: FavoriteUserAdapter by lazy {
         FavoriteUserAdapter(applicationContext)
     }
 
@@ -70,8 +70,11 @@ class FavoriteUserActivity : BaseActivity() {
     }
 
     private fun initRecyclerView() {
-        rc_user.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
-        rc_user.adapter = favoriteUserAdapter
+        rc_user.apply {
+            layoutManager =
+                LinearLayoutManager(this@FavoriteUserActivity, LinearLayoutManager.VERTICAL, false)
+            adapter = favoriteUserAdapter
+        }
     }
 
     private fun initObserver() {

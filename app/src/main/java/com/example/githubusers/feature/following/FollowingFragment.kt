@@ -58,8 +58,10 @@ class FollowingFragment : BaseFragment() {
     }
 
     private fun initRecyclerView() {
-        rc_view.layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
-        rc_view.adapter = followingAdapter
+        rc_view.apply {
+            layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
+            adapter = followingAdapter
+        }
     }
 
     private fun initObserver() {

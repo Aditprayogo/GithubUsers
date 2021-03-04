@@ -12,11 +12,12 @@ import com.example.githubusers.data.entity.UserFollowersResponseItem
 import com.example.githubusers.feature.detail.UserDetailActivity
 import kotlinx.android.synthetic.main.item_row_user.view.*
 
-class FollowerAdapter(private val mContext: Context) : RecyclerView.Adapter<FollowerAdapter.ViewHolder>(){
+class FollowerAdapter(private val mContext: Context) :
+    RecyclerView.Adapter<FollowerAdapter.ViewHolder>() {
 
     private var items = mutableListOf<UserFollowersResponseItem>()
 
-    inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView){
+    inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         fun bind(data: UserFollowersResponseItem) {
             with(itemView) {
                 Glide.with(context)
@@ -27,21 +28,25 @@ class FollowerAdapter(private val mContext: Context) : RecyclerView.Adapter<Foll
 
                 txt_username.text = data.login
                 itemView.setOnClickListener {
-                    val intent = Intent(itemView.context, UserDetailActivity::class.java).apply {
-                        putExtra(UserDetailActivity.USERNAME_KEY, data.login)
-                    }.also {
-                        itemView.context.startActivity(it)
-                    }
+                    itemView.context.startActivity(
+                        Intent(
+                            itemView.context,
+                            UserDetailActivity::class.java
+                        ).apply {
+                            putExtra(UserDetailActivity.USERNAME_KEY, data.login)
+                        })
                 }
             }
         }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): FollowerAdapter.ViewHolder {
-        return ViewHolder(LayoutInflater.from(mContext).inflate(R.layout.item_row_user, parent , false))
+        return ViewHolder(
+            LayoutInflater.from(mContext).inflate(R.layout.item_row_user, parent, false)
+        )
     }
 
-    fun setItems(data : MutableList<UserFollowersResponseItem>) {
+    fun setItems(data: MutableList<UserFollowersResponseItem>) {
         this.items = data
         notifyDataSetChanged()
     }

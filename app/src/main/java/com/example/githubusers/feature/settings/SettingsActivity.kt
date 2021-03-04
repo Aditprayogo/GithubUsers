@@ -17,9 +17,11 @@ class SettingsActivity : BaseActivity() {
             .replace(R.id.settings, MySettingsFragment())
             .commit()
 
-        supportActionBar?.setDisplayShowHomeEnabled(true)
-        supportActionBar?.setDisplayHomeAsUpEnabled(true)
-        supportActionBar?.title = getString(R.string.settings)
+        supportActionBar?.apply {
+            setDisplayShowHomeEnabled(true)
+            setDisplayHomeAsUpEnabled(true)
+            title = getString(R.string.settings)
+        }
     }
 
     override fun onSupportNavigateUp(): Boolean {
