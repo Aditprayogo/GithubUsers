@@ -18,6 +18,19 @@
     />
 </p>
 
+## How to Use This App :
+Generate your token in here https://github.com/settings/tokens and replace with your token in **data/network/NetwokService.kt**
+```kotlin
+    /**
+     * Endpoints Detail User
+     */
+    @GET("users/{username}")
+    @Headers("Authorization: token {{ REPLACE WITH YOUR OWN TOKEN }}")
+    suspend fun getDetailUser(
+        @Path("username") username: String
+    ) : Response<UserDetailResponse>
+```
+
 ## Demo :
 
 <p align="center">

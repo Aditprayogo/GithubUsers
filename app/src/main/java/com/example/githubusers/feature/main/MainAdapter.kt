@@ -5,7 +5,6 @@ import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.core.app.ActivityOptionsCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
@@ -31,13 +30,6 @@ class MainAdapter(val context: Context) : RecyclerView.Adapter<MainAdapter.ViewH
                 txt_username.text = data.login
             }
             itemView.setOnClickListener {
-                val options: ActivityOptionsCompat =
-                    ActivityOptionsCompat
-                        .makeSceneTransitionAnimation(
-                            activity,
-                            itemView.iv_user,
-                            "image"
-                        )
                 val intent = Intent(itemView.context, UserDetailActivity::class.java).apply {
                     putExtra(UserDetailActivity.USERNAME_KEY, data.login)
                     setFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
