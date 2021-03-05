@@ -11,11 +11,13 @@ import com.bumptech.glide.Glide
 import com.example.githubusers.R
 import com.example.githubusers.core.base.BaseActivity
 import com.example.githubusers.core.state.LoaderState
+import com.example.githubusers.core.util.load
 import com.example.githubusers.core.util.setGone
 import com.example.githubusers.core.util.setVisible
 import com.example.githubusers.core.util.toast
 import com.example.githubusers.data.db.entity.UserFavorite
 import com.example.githubusers.data.entity.UserDetailResponse
+import com.example.githubusers.databinding.ActivityUserDetailBinding
 import com.example.githubusers.feature.favorite.FavoriteUserActivity
 import com.example.githubusers.feature.pager.ViewPagerAdapter
 import com.example.githubusers.feature.settings.SettingsActivity
@@ -25,6 +27,10 @@ import javax.inject.Inject
 class UserDetailActivity : BaseActivity() {
     @Inject
     lateinit var viewModelFactory: ViewModelProvider.Factory
+
+    private val binding: ActivityUserDetailBinding by lazy {
+        ActivityUserDetailBinding.inflate(layoutInflater)
+    }
 
     private lateinit var viewModel: UserDetailViewModel
 
@@ -38,7 +44,7 @@ class UserDetailActivity : BaseActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_user_detail)
+        setContentView(binding.root)
         handleIntent()
         initViewModels()
         initObserver()
@@ -65,15 +71,17 @@ class UserDetailActivity : BaseActivity() {
             title = "$username\'s Profile"
         }
 
-        fav_button.setOnClickListener {
+        binding.favButton.setOnClickListener {
             setFavoriteUser()
         }
     }
 
     private fun initPageAdapter() {
         val sectionPagerAdapter = ViewPagerAdapter(this, supportFragmentManager)
-        viewPager.adapter = sectionPagerAdapter
-        tabs.setupWithViewPager(viewPager)
+        binding.apply {
+            viewPager.adapter = sectionPagerAdapter
+            tabs.setupWithViewPager(viewPager)
+        }
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
@@ -121,7 +129,7 @@ class UserDetailActivity : BaseActivity() {
         viewModel.resultUserDetailFromDb.observe(this, Observer {
             handleUserDetailFromDb(it)
         })
-        viewModel.resultInsertUserDb.observe(this, Observer {
+        viewModel.resultInsertUserDb.observe(this, Observer { it ->
             if (it) {
                 username?.let {
                     viewModel.getFavUserByUsername(it)
@@ -129,7 +137,7 @@ class UserDetailActivity : BaseActivity() {
                 toast(getString(R.string.user_success))
             }
         })
-        viewModel.resultDeleteFromDb.observe(this, Observer {
+        viewModel.resultDeleteFromDb.observe(this, Observer { it ->
             if (it) {
                 username?.let {
                     viewModel.getFavUserByUsername(it)
@@ -168,31 +176,34 @@ class UserDetailActivity : BaseActivity() {
         if (userFavorite.isEmpty()) {
             favoriteActive = false
             val icon = R.drawable.ic_baseline_favorite_border_24
-            fav_button.setImageResource(icon)
+            binding.favButton.setImageResource(icon)
         } else {
             userFavoriteEntity = userFavorite.first()
             favoriteActive = true
             val icon = R.drawable.ic_baseline_favorite_24
-            fav_button.setImageResource(icon)
+            binding.favButton.setImageResource(icon)
         }
     }
 
     private fun handleStateLoading(loading: LoaderState) {
         if (loading is LoaderState.ShowLoading) {
-            fav_button.setGone()
+            binding.favButton.setGone()
         } else {
-            fav_button.setVisible()
+            binding.favButton.setVisible()
         }
     }
 
     private fun handleResultUserDetail(data: UserDetailResponse) {
         userDetail = data
-        txt_username.text = data.login
-        txt_bio.text = data.bio ?: getString(R.string.no_bio)
-        txt_follower.text = data.followers.toString()
-        txt_following.text = data.following.toString()
-        txt_repo.text = data.publicRepos.toString()
-        Glide.with(this).load(data.avatarUrl).circleCrop().into(iv_user)
+        binding.apply {
+            txtUsername.text = data.login
+            txtBio.text = data.bio ?: getString(R.string.no_bio)
+            txtFollower.text = data.followers.toString()
+            txtFollowing.text = data.following.toString()
+            txtRepo.text = data.publicRepos.toString()
+            ivUser.load(data.avatarUrl)
+        }
+
     }
 
     override fun onBackPressed() {

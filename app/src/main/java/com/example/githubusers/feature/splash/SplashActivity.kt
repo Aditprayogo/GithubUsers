@@ -7,14 +7,19 @@ import android.os.Looper
 import android.view.animation.AnimationUtils
 import com.example.githubusers.R
 import com.example.githubusers.core.base.BaseActivity
+import com.example.githubusers.databinding.ActivitySplashBinding
 import com.example.githubusers.feature.main.MainActivity
 import kotlinx.android.synthetic.main.activity_splash.*
 
 class SplashActivity : BaseActivity() {
 
+    private val binding : ActivitySplashBinding by lazy {
+        ActivitySplashBinding.inflate(layoutInflater)
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_splash)
+        setContentView(binding.root)
         loadAnimation()
         startIntent()
     }
@@ -23,9 +28,11 @@ class SplashActivity : BaseActivity() {
         val logoAnimation = AnimationUtils.loadAnimation(this, R.anim.logo_animation)
         val textAnimation = AnimationUtils.loadAnimation(this, R.anim.bottom_to_top_animation)
 
-        imageView.startAnimation(logoAnimation)
-        txt_title.startAnimation(textAnimation)
-        txt_sub.startAnimation(textAnimation)
+        binding.apply {
+            imageView.startAnimation(logoAnimation)
+            txtTitle.startAnimation(textAnimation)
+            txtSub.startAnimation(textAnimation)
+        }
     }
 
     private fun startIntent() {

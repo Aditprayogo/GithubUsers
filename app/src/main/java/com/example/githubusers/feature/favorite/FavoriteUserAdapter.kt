@@ -8,7 +8,9 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.githubusers.R
+import com.example.githubusers.core.util.load
 import com.example.githubusers.data.db.entity.UserFavorite
+import com.example.githubusers.databinding.ItemRowFavoriteUserBinding
 import com.example.githubusers.feature.detail.UserDetailActivity
 import kotlinx.android.synthetic.main.item_row_favorite_user.view.*
 
@@ -18,32 +20,31 @@ class FavoriteUserAdapter(private val mContext: Context) :
     private var items: MutableList<UserFavorite> = mutableListOf()
 
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+        private val binding: ItemRowFavoriteUserBinding = ItemRowFavoriteUserBinding.bind(itemView)
+
         fun bind(user: UserFavorite) {
             with(itemView) {
-                Glide.with(itemView.context)
-                    .load(user.avatarUrl)
-                    .circleCrop()
-                    .into(iv_user)
-
-                txt_username.text = user.username
-                txt_location.text = user.location ?: context.getString(R.string.no_location)
-                txt_follower.text = user.followers.toString()
-                txt_following.text = user.following.toString()
-                txt_repository.text = user.publicRepos.toString()
-                txt_company.text = user.company ?: context.getString(R.string.no_company)
-
+                binding.apply {
+                    txtUsername.text = user.username
+                    txtLocation.text = user.location ?: context.getString(R.string.no_location)
+                    txtFollower.text = user.followers.toString()
+                    txtFollowing.text = user.following.toString()
+                    txtRepository.text = user.publicRepos.toString()
+                    txtCompany.text = user.company ?: context.getString(R.string.no_company)
+                    binding.ivUser.load(user.avatarUrl)
+                }
                 itemView.setOnClickListener {
-                    itemView.context.startActivity(
+                    context.startActivity(
                         Intent(
-                            itemView.context,
+                            context,
                             UserDetailActivity::class.java
                         ).apply {
                             putExtra(UserDetailActivity.USERNAME_KEY, user.username)
                             flags = Intent.FLAG_ACTIVITY_NEW_TASK
                         })
                 }
-
             }
+
         }
     }
 

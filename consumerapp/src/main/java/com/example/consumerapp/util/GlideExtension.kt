@@ -1,10 +1,10 @@
-package com.example.githubusers.core.util
+package com.example.consumerapp.util
 
 import android.widget.ImageView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
 import com.bumptech.glide.request.transition.DrawableCrossFadeFactory
-import com.example.githubusers.R
+import com.example.consumerapp.R
 
 fun ImageView.load(imgResource : Any?) {
     Glide.with(context.applicationContext)

@@ -3,12 +3,17 @@ package com.example.githubusers.feature.settings
 import android.os.Bundle
 import com.example.githubusers.R
 import com.example.githubusers.core.base.BaseActivity
+import com.example.githubusers.databinding.ActivitySettingsBinding
 
 class SettingsActivity : BaseActivity() {
 
+    private val binding : ActivitySettingsBinding by lazy {
+        ActivitySettingsBinding.inflate(layoutInflater)
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_settings)
+        setContentView(binding.root)
         initToolbar()
     }
 

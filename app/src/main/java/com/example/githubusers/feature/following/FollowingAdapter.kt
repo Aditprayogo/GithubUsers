@@ -8,7 +8,9 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.githubusers.R
+import com.example.githubusers.core.util.load
 import com.example.githubusers.data.entity.UserFollowingResponseItem
+import com.example.githubusers.databinding.ItemRowUserBinding
 import com.example.githubusers.feature.detail.UserDetailActivity
 import kotlinx.android.synthetic.main.item_row_user.view.*
 
@@ -18,20 +20,17 @@ class FollowingAdapter(private val mContext: Context) :
     private var items = mutableListOf<UserFollowingResponseItem>()
 
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+        private val binding: ItemRowUserBinding = ItemRowUserBinding.bind(itemView)
+
         fun bind(data: UserFollowingResponseItem) {
+            binding.apply {
+                ivUser.load(data.avatarUrl)
+                binding.txtUsername.text = data.login
+            }
             with(itemView) {
-                Glide
-                    .with(itemView.context)
-                    .load(data.avatarUrl)
-                    .placeholder(R.drawable.ic_user)
-                    .circleCrop()
-                    .into(iv_user)
-
-                txt_username.text = data.login
-
-                itemView.setOnClickListener {
-                    itemView.context.startActivity(
-                        Intent(itemView.context, UserDetailActivity::class.java).apply {
+                setOnClickListener {
+                    context.startActivity(
+                        Intent(context, UserDetailActivity::class.java).apply {
                             putExtra(UserDetailActivity.USERNAME_KEY, data.login)
                         }
                     )

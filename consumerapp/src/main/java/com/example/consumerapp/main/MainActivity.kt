@@ -6,6 +6,7 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.consumerapp.R
+import com.example.consumerapp.databinding.ActivityMainBinding
 import com.example.consumerapp.util.toListUserFavorite
 import kotlinx.android.synthetic.main.activity_main.*
 
@@ -15,9 +16,13 @@ class MainActivity : AppCompatActivity() {
         MainAdapter(applicationContext)
     }
 
+    private val binding : ActivityMainBinding by lazy {
+        ActivityMainBinding.inflate(layoutInflater)
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        setContentView(binding.root)
         fetchDataFromContentProvider()
     }
 
@@ -48,7 +53,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun initAdapter(cursor: Cursor?) {
-        rc_user?.apply {
+        binding.rcUser.apply {
             layoutManager = LinearLayoutManager(this@MainActivity)
             adapter = mainAdapter
         }

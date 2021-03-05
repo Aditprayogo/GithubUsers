@@ -12,6 +12,7 @@ import com.example.githubusers.core.base.BaseActivity
 import com.example.githubusers.core.util.setGone
 import com.example.githubusers.core.util.setVisible
 import com.example.githubusers.data.db.entity.UserFavorite
+import com.example.githubusers.databinding.ActivityFavoriteUserBinding
 import com.example.githubusers.feature.settings.SettingsActivity
 import kotlinx.android.synthetic.main.activity_favorite_user.*
 import javax.inject.Inject
@@ -20,6 +21,10 @@ class FavoriteUserActivity : BaseActivity() {
 
     @Inject
     lateinit var viewModelFactory: ViewModelProvider.Factory
+
+    private val binding: ActivityFavoriteUserBinding by lazy {
+        ActivityFavoriteUserBinding.inflate(layoutInflater)
+    }
 
     private lateinit var viewModel: FavoriteUserViewModel
 
@@ -31,7 +36,7 @@ class FavoriteUserActivity : BaseActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_favorite_user)
+        setContentView(binding.root)
         initViewModels()
         initObserver()
         initRecyclerView()
@@ -70,7 +75,7 @@ class FavoriteUserActivity : BaseActivity() {
     }
 
     private fun initRecyclerView() {
-        rc_user.apply {
+        binding.rcUser.apply {
             layoutManager =
                 LinearLayoutManager(this@FavoriteUserActivity, LinearLayoutManager.VERTICAL, false)
             adapter = favoriteUserAdapter
@@ -97,11 +102,11 @@ class FavoriteUserActivity : BaseActivity() {
 
     private fun handleEmptyUser(user: List<UserFavorite>) {
         if (user.isEmpty()) {
-            rc_user.setGone()
-            base_empty.setVisible()
+            binding.rcUser.setGone()
+            binding.baseEmpty.root.setVisible()
         } else {
-            rc_user.setVisible()
-            base_empty.setGone()
+            binding.rcUser.setVisible()
+            binding.baseEmpty.root.setGone()
         }
     }
 }
