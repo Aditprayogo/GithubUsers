@@ -13,6 +13,7 @@ import com.example.githubusers.core.state.LoaderState
 import com.example.githubusers.core.util.setGone
 import com.example.githubusers.core.util.setVisible
 import com.example.githubusers.data.entity.UserFollowingResponseItem
+import com.example.githubusers.databinding.FragmentFollowingBinding
 import com.example.githubusers.feature.detail.UserDetailActivity
 import kotlinx.android.synthetic.main.fragment_following.*
 import javax.inject.Inject
@@ -31,12 +32,16 @@ class FollowingFragment : BaseFragment() {
         FollowingAdapter(requireContext())
     }
 
+    private val binding : FragmentFollowingBinding by lazy {
+        FragmentFollowingBinding.inflate(layoutInflater)
+    }
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_following, container, false)
+        return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -54,12 +59,14 @@ class FollowingFragment : BaseFragment() {
     private fun handleUserName() {
         val activity = activity as UserDetailActivity
         val username : String? = activity.getUsername()
-        viewModel.getUserFollowing(username!!)
+        username?.let { viewModel.getUserFollowing(it) }
     }
 
     private fun initRecyclerView() {
-        rc_view.layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
-        rc_view.adapter = followingAdapter
+        binding.rcView.apply {
+            layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
+            adapter = followingAdapter
+        }
     }
 
     private fun initObserver() {
@@ -73,11 +80,11 @@ class FollowingFragment : BaseFragment() {
 
     private fun handlingEmptyFollowing(data: List<UserFollowingResponseItem>){
         if (data.isEmpty()) {
-            base_empty_following.setVisible()
-            rc_view.setGone()
+            binding.baseEmptyFollowing.root.setVisible()
+            binding.rcView.setGone()
         } else {
-            base_empty_following.setGone()
-            rc_view.setVisible()
+            binding.baseEmptyFollowing.root.setGone()
+            binding.rcView.setVisible()
         }
     }
 
@@ -90,11 +97,11 @@ class FollowingFragment : BaseFragment() {
 
     private fun handleStateLoading(loading: LoaderState) {
         if (loading is LoaderState.ShowLoading) {
-            baseLoader.setVisible()
-            rc_view.setGone()
+            binding.baseLoader.root.setVisible()
+            binding.rcView.setGone()
         } else {
-            baseLoader.setGone()
-            rc_view.setVisible()
+            binding.baseLoader.root.setGone()
+            binding.rcView.setVisible()
         }
     }
 

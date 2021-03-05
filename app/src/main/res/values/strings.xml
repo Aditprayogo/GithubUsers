@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">GithubUsers</string>
+    <string name="app_name" translatable="false">GithubUsers</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="follower_title">Followers</string>
     <string name="following_title">Following</string>
@@ -23,14 +23,15 @@
     <string name="repositories">Repositories</string>
     <string name="no_location">No Location</string>
     <string name="indonesia">Indonesia</string>
-    <string name="dicoding">Dicoding</string>
+    <string name="dicoding" translatable="false">Dicoding</string>
     <string name="no_company">No Company</string>
     <string name="change_language_settings">Change Language Settings</string>
     <string name="no_bio">No Bio</string>
     <string name="created_by_aditiya_prayogo">Created By : Aditiya Prayogo</string>
-    <string name="aditiya_prayogo">Aditiya Prayogo</string>
+    <string name="aditiya_prayogo" translatable="false">Aditiya Prayogo</string>
     <string name="favorite_user">Favorite User</string>
-    <string name="github_users">GithubUsers</string>
+    <string name="github_users" translatable="false">GithubUsers</string>
     <string name="favorite">Favorite</string>
     <string name="settings">Settings</string>
+    <string name="favbutton" translatable="false">favButton</string>
 </resources>

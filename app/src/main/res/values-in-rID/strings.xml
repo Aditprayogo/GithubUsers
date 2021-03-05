@@ -1,5 +1,4 @@
 <resources>
-    <string name="app_name">GithubUsers</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="follower_title">Pengikut</string>
     <string name="following_title">Mengikuti</string>
@@ -23,14 +22,11 @@
     <string name="repositories">Repositori</string>
     <string name="no_location">Tidak ada lokasi</string>
     <string name="indonesia">Indonesia</string>
-    <string name="dicoding">Dicoding</string>
     <string name="no_company">Tidak ada perusahaan</string>
     <string name="change_language_settings">Ganti bahasa</string>
     <string name="settings">Pengaturan</string>
     <string name="no_bio">Tidak ada bio</string>
     <string name="created_by_aditiya_prayogo">Dibuat oleh : Aditiya Prayogo</string>
-    <string name="aditiya_prayogo">Aditiya Prayogo</string>
     <string name="favorite_user">User yang disukai</string>
-    <string name="github_users">GithubUsers</string>
     <string name="favorite">Difavorite</string>
 </resources>

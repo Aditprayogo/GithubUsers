@@ -17,6 +17,7 @@ import com.example.githubusers.core.state.LoaderState
 import com.example.githubusers.core.util.setGone
 import com.example.githubusers.core.util.setVisible
 import com.example.githubusers.data.entity.UserSearchResponseItem
+import com.example.githubusers.databinding.ActivityMainBinding
 import com.example.githubusers.feature.favorite.FavoriteUserActivity
 import com.example.githubusers.feature.settings.SettingsActivity
 import kotlinx.android.synthetic.main.activity_main.*
@@ -35,9 +36,13 @@ class MainActivity : BaseActivity() {
         MainAdapter(applicationContext)
     }
 
+    private val binding: ActivityMainBinding by lazy {
+        ActivityMainBinding.inflate(layoutInflater)
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        setContentView(binding.root)
         initToolbar()
         searchUsers()
         initViewModels()
@@ -69,17 +74,17 @@ class MainActivity : BaseActivity() {
     }
 
     private fun searchUsers() {
-        sv_search.setOnQueryTextListener(object : SearchView.OnQueryTextListener,
+        binding.svSearch.setOnQueryTextListener(object : SearchView.OnQueryTextListener,
             androidx.appcompat.widget.SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String?): Boolean {
                 query?.let {
                     if (it.isNotEmpty()) {
                         items.clear()
                         viewModel.getUserFromApi(query)
-                        sv_search.clearFocus()
+                        binding.svSearch.clearFocus()
                         setIllustration(false)
                     } else {
-                        sv_search.clearFocus()
+                        binding.svSearch.clearFocus()
                         setIllustration(true)
                     }
                 }
@@ -89,7 +94,7 @@ class MainActivity : BaseActivity() {
             override fun onQueryTextChange(p0: String?): Boolean = false
         })
 
-        sv_search.setOnCloseListener(object: SearchView.OnCloseListener,
+        binding.svSearch.setOnCloseListener(object : SearchView.OnCloseListener,
             androidx.appcompat.widget.SearchView.OnCloseListener {
             override fun onClose(): Boolean {
                 items.clear()
@@ -120,8 +125,11 @@ class MainActivity : BaseActivity() {
     }
 
     private fun initRecyclerView() {
-        rv_user.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
-        rv_user.adapter = mainAdapter
+        binding.rvUser.apply {
+            layoutManager =
+                LinearLayoutManager(this@MainActivity, LinearLayoutManager.VERTICAL, false)
+            adapter = mainAdapter
+        }
         mainAdapter.setActivity(this)
     }
 
@@ -132,28 +140,28 @@ class MainActivity : BaseActivity() {
     }
 
     private fun handleStateInternet(error: Boolean) {
-        if(error) {
-            baseLoading.setVisible()
-            rv_user.setGone()
+        if (error) {
+            binding.baseLoading.root.setVisible()
+            binding.rvUser.setGone()
         } else {
-            baseLoading.setGone()
-            rv_user.setVisible()
+            binding.baseLoading.root.setGone()
+            binding.rvUser.setVisible()
         }
     }
 
     private fun handleStateLoading(loading: LoaderState) {
-        if(loading is LoaderState.ShowLoading) {
-            baseLoading.setVisible()
+        if (loading is LoaderState.ShowLoading) {
+            binding.baseLoading.root.setVisible()
             setIllustration(false)
-            rv_user.setGone()
+            binding.rvUser.setGone()
         } else {
-            baseLoading.setGone()
+            binding.baseLoading.root.setGone()
             setIllustration(false)
-            rv_user.setVisible()
+            binding.rvUser.setVisible()
         }
     }
 
     private fun setIllustration(status: Boolean) {
-        base_empty.visibility = if (status) VISIBLE else INVISIBLE
+        binding.baseEmpty.root.visibility = if (status) VISIBLE else INVISIBLE
     }
 }
