@@ -74,50 +74,48 @@ class MainActivity : BaseActivity() {
     }
 
     private fun searchUsers() {
-        binding.svSearch.setOnQueryTextListener(object : SearchView.OnQueryTextListener,
-            androidx.appcompat.widget.SearchView.OnQueryTextListener {
-            override fun onQueryTextSubmit(query: String?): Boolean {
-                query?.let {
-                    if (it.isNotEmpty()) {
-                        items.clear()
-                        viewModel.getUserFromApi(query)
-                        binding.svSearch.clearFocus()
-                        setIllustration(false)
-                    } else {
-                        binding.svSearch.clearFocus()
-                        setIllustration(true)
+        binding.apply {
+            svSearch.setOnQueryTextListener(object : SearchView.OnQueryTextListener,
+                androidx.appcompat.widget.SearchView.OnQueryTextListener {
+                override fun onQueryTextSubmit(query: String?): Boolean {
+                    query?.let {
+                        if (it.isNotEmpty()) {
+                            items.clear()
+                            viewModel.getUserFromApi(query)
+                            binding.svSearch.clearFocus()
+                            setIllustration(false)
+                        } else {
+                            binding.svSearch.clearFocus()
+                            setIllustration(true)
+                        }
                     }
+                    return true
                 }
-                return true
-            }
 
-            override fun onQueryTextChange(p0: String?): Boolean = false
-        })
-
-        binding.svSearch.setOnCloseListener(object : SearchView.OnCloseListener,
-            androidx.appcompat.widget.SearchView.OnCloseListener {
-            override fun onClose(): Boolean {
-                items.clear()
+                override fun onQueryTextChange(p0: String?): Boolean = false
+            })
+            svSearch.setOnCloseListener {
+                svSearch.setQuery("", false)
+                svSearch.clearFocus()
                 mainAdapter.clearItems()
                 setIllustration(true)
-                return true
+                true
             }
-        })
-
+        }
     }
 
     private fun initObserver() {
-        viewModel.state.observe(this, Observer {
+        viewModel.state.observe(this, {
             it?.let {
                 handleStateLoading(it)
             }
         })
-        viewModel.resultUserApi.observe(this, Observer {
+        viewModel.resultUserApi.observe(this, {
             it?.let {
                 handleUserFromApi(it)
             }
         })
-        viewModel.networkError.observe(this, Observer {
+        viewModel.networkError.observe(this, {
             it?.let {
                 handleStateInternet(it)
             }
