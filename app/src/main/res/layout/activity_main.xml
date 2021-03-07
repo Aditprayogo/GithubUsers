@@ -11,6 +11,7 @@
         android:layout_height="wrap_content">
 
         <androidx.cardview.widget.CardView
+            app:cardCornerRadius="20dp"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
@@ -22,13 +23,14 @@
                 <androidx.appcompat.widget.SearchView
                     android:id="@+id/sv_search"
                     android:layout_marginTop="5dp"
-                    android:layout_weight="1"
-                    android:layout_marginBottom="15sp"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="16dp"
                     android:layout_marginStart="16dp"
                     android:layout_marginEnd="16dp"
+                    android:layout_weight="1"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
                     android:background="@drawable/bg_search"
+                    app:iconifiedByDefault="false"
                     app:defaultQueryHint="Search Some User"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.0"
