@@ -4,7 +4,6 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
-import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.githubusers.R
@@ -31,7 +30,7 @@ class FavoriteUserActivity : BaseActivity() {
     private val listUser = mutableListOf<UserFavorite>()
 
     private val favoriteUserAdapter: FavoriteUserAdapter by lazy {
-        FavoriteUserAdapter(applicationContext)
+        FavoriteUserAdapter(this)
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -83,7 +82,7 @@ class FavoriteUserActivity : BaseActivity() {
     }
 
     private fun initObserver() {
-        viewModel.resultUserFromDb.observe(this, Observer {
+        viewModel.resultUserFromDb.observe(this, {
             handleUserFromDb(it)
         })
     }

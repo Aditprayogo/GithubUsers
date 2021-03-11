@@ -8,7 +8,6 @@ import android.view.MenuItem
 import android.view.View.INVISIBLE
 import android.view.View.VISIBLE
 import android.widget.SearchView
-import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.githubusers.R
@@ -33,7 +32,7 @@ class MainActivity : BaseActivity() {
     private val items = mutableListOf<UserSearchResponseItem>()
 
     private val mainAdapter: MainAdapter by lazy {
-        MainAdapter(applicationContext)
+        MainAdapter(this)
     }
 
     private val binding: ActivityMainBinding by lazy {
@@ -82,10 +81,10 @@ class MainActivity : BaseActivity() {
                         if (it.isNotEmpty()) {
                             items.clear()
                             viewModel.getUserFromApi(query)
-                            binding.svSearch.clearFocus()
+                            svSearch.clearFocus()
                             setIllustration(false)
                         } else {
-                            binding.svSearch.clearFocus()
+                            svSearch.clearFocus()
                             setIllustration(true)
                         }
                     }
@@ -105,21 +104,23 @@ class MainActivity : BaseActivity() {
     }
 
     private fun initObserver() {
-        viewModel.state.observe(this, {
-            it?.let {
-                handleStateLoading(it)
-            }
-        })
-        viewModel.resultUserApi.observe(this, {
-            it?.let {
-                handleUserFromApi(it)
-            }
-        })
-        viewModel.networkError.observe(this, {
-            it?.let {
-                handleStateInternet(it)
-            }
-        })
+        with(viewModel) {
+            state.observe(this@MainActivity, {
+                it?.let {
+                    handleStateLoading(it)
+                }
+            })
+            resultUserApi.observe(this@MainActivity, {
+                it?.let {
+                    handleUserFromApi(it)
+                }
+            })
+            networkError.observe(this@MainActivity, {
+                it?.let {
+                    handleStateInternet(it)
+                }
+            })
+        }
     }
 
     private fun initRecyclerView() {
@@ -138,25 +139,31 @@ class MainActivity : BaseActivity() {
     }
 
     private fun handleStateInternet(error: Boolean) {
-        if (error) {
-            binding.baseLoading.root.setVisible()
-            binding.rvUser.setGone()
-        } else {
-            binding.baseLoading.root.setGone()
-            binding.rvUser.setVisible()
+        with(binding) {
+            if (error) {
+                baseLoading.root.setVisible()
+                rvUser.setGone()
+            } else {
+                baseLoading.root.setGone()
+                rvUser.setVisible()
+            }
         }
+
     }
 
     private fun handleStateLoading(loading: LoaderState) {
-        if (loading is LoaderState.ShowLoading) {
-            binding.baseLoading.root.setVisible()
-            setIllustration(false)
-            binding.rvUser.setGone()
-        } else {
-            binding.baseLoading.root.setGone()
-            setIllustration(false)
-            binding.rvUser.setVisible()
+        with(binding) {
+            if (loading is LoaderState.ShowLoading) {
+                baseLoading.root.setVisible()
+                setIllustration(false)
+                rvUser.setGone()
+            } else {
+                baseLoading.root.setGone()
+                setIllustration(false)
+                rvUser.setVisible()
+            }
         }
+
     }
 
     private fun setIllustration(status: Boolean) {

@@ -4,7 +4,6 @@ import com.example.githubusers.core.state.ResultState
 import com.example.githubusers.core.util.safeApiCall
 import com.example.githubusers.data.db.entity.UserFavorite
 import com.example.githubusers.data.entity.*
-import com.example.githubusers.data.repository.UserRepository
 import javax.inject.Inject
 
 class UserUseCase @Inject constructor(

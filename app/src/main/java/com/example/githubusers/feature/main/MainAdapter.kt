@@ -18,7 +18,7 @@ class MainAdapter(val context: Context) : RecyclerView.Adapter<MainAdapter.ViewH
     private lateinit var mainActivity: MainActivity
 
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        private val binding : ItemRowUserBinding = ItemRowUserBinding.bind(itemView)
+        private val binding: ItemRowUserBinding = ItemRowUserBinding.bind(itemView)
 
         fun bind(data: UserSearchResponseItem) {
             binding.apply {
@@ -30,7 +30,6 @@ class MainAdapter(val context: Context) : RecyclerView.Adapter<MainAdapter.ViewH
                     context.startActivity(
                         Intent(context, UserDetailActivity::class.java).apply {
                             putExtra(UserDetailActivity.USERNAME_KEY, data.login)
-                            flags = Intent.FLAG_ACTIVITY_NEW_TASK
                         }
                     )
                 }

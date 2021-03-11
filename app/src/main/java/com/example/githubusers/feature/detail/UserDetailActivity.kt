@@ -5,9 +5,7 @@ import android.os.Bundle
 import android.provider.Settings
 import android.view.Menu
 import android.view.MenuItem
-import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
-import com.bumptech.glide.Glide
 import com.example.githubusers.R
 import com.example.githubusers.core.base.BaseActivity
 import com.example.githubusers.core.state.LoaderState
@@ -86,15 +84,9 @@ class UserDetailActivity : BaseActivity() {
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
-            R.id.menu_settings -> {
-                startActivity(Intent(this, SettingsActivity::class.java))
-            }
-            R.id.menu_favorite -> {
-                startActivity(Intent(this, FavoriteUserActivity::class.java))
-            }
-            R.id.menu_language -> {
-                startActivity(Intent(Settings.ACTION_LOCALE_SETTINGS))
-            }
+            R.id.menu_settings ->  startActivity(Intent(this, SettingsActivity::class.java))
+            R.id.menu_favorite -> startActivity(Intent(this, FavoriteUserActivity::class.java))
+            R.id.menu_language -> startActivity(Intent(Settings.ACTION_LOCALE_SETTINGS))
         }
         return super.onOptionsItemSelected(item)
     }
@@ -120,31 +112,34 @@ class UserDetailActivity : BaseActivity() {
     }
 
     private fun initObserver() {
-        viewModel.state.observe(this, Observer {
-            handleStateLoading(it)
-        })
-        viewModel.resultUserDetail.observe(this, Observer {
-            handleResultUserDetail(it)
-        })
-        viewModel.resultUserDetailFromDb.observe(this, Observer {
-            handleUserDetailFromDb(it)
-        })
-        viewModel.resultInsertUserDb.observe(this, Observer { it ->
-            if (it) {
-                username?.let {
-                    viewModel.getFavUserByUsername(it)
+        with(viewModel) {
+            state.observe(this@UserDetailActivity, {
+                handleStateLoading(it)
+            })
+            resultUserDetail.observe(this@UserDetailActivity, {
+                handleResultUserDetail(it)
+            })
+            resultUserDetailFromDb.observe(this@UserDetailActivity, {
+                handleUserDetailFromDb(it)
+            })
+            resultInsertUserDb.observe(this@UserDetailActivity, { it ->
+                if (it) {
+                    username?.let {
+                        viewModel.getFavUserByUsername(it)
+                    }
+                    toast(getString(R.string.user_success))
                 }
-                toast(getString(R.string.user_success))
-            }
-        })
-        viewModel.resultDeleteFromDb.observe(this, Observer { it ->
-            if (it) {
-                username?.let {
-                    viewModel.getFavUserByUsername(it)
+            })
+            resultDeleteFromDb.observe(this@UserDetailActivity, { it ->
+                if (it) {
+                    username?.let {
+                        viewModel.getFavUserByUsername(it)
+                    }
+                    toast(getString(R.string.user_deleted))
                 }
-                toast(getString(R.string.user_deleted))
-            }
-        })
+            })
+        }
+
     }
 
     private fun setFavoriteUser() {

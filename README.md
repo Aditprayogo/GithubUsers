@@ -34,35 +34,17 @@ Generate your token in here https://github.com/settings/tokens and replace with 
 ## Demo :
 
 <p align="center">
-    <img src="assets/med_cov.png"
+    <img src="assets/mockup1.jpg"
         style="margin-right: 20px;"
     />
 </p>
 
 <p align="center">
-    <img src="assets/low1.png"
+    <img src="assets/mockup2.jpg"
         style="margin-right: 20px;"
     />
 </p>
 
-<p align="center">
-    <img src="assets/low2.png"
-        style="margin-right: 20px;"
-    />
-</p>
-
-
-<p align="center">
-    <img src="assets/low3.png"
-        style="margin-right: 20px;"
-    />
-</p>
-
-<p align="center">
-    <img src="assets/low4.png"
-        style="margin-right: 20px;"
-    />
-</p>
 
 # Libraries Used
 * [Android Support Libraries](https://developer.android.com/topic/libraries/support-library/index.html)
@@ -73,7 +55,6 @@ Generate your token in here https://github.com/settings/tokens and replace with 
 * [ViewModel](https://developer.android.com/topic/libraries/architecture/viewmodel.html)
 * [LiveData](https://developer.android.com/topic/libraries/architecture/livedata.html)
 * [Shimmer](https://facebook.github.io/shimmer-android/#:~:text=Shimmer%20is%20an%20Android%20library,view%20in%20your%20Android%20app.&text=Shimmer%20for%20Android%20is%20implemented,the%20animation%20from%20your%20code.)
-* [Coroutines](https://github.com/Kotlin/kotlinx.coroutines)
 * [Gson](https://github.com/google/gson)
 * [Preferences](https://developer.android.com/reference/android/preference/Preference)
 * [Material Design](https://material.io/develop/android/docs/getting-started)

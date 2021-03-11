@@ -1,4 +1,4 @@
-package com.example.githubusers.data.repository
+package com.example.githubusers.domain
 
 import com.example.githubusers.data.db.entity.UserFavorite
 import com.example.githubusers.data.entity.SearchUserResponse

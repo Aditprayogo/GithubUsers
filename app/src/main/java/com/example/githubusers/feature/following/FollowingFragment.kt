@@ -4,10 +4,8 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.githubusers.R
 import com.example.githubusers.core.base.BaseFragment
 import com.example.githubusers.core.state.LoaderState
 import com.example.githubusers.core.util.setGone
@@ -15,7 +13,6 @@ import com.example.githubusers.core.util.setVisible
 import com.example.githubusers.data.entity.UserFollowingResponseItem
 import com.example.githubusers.databinding.FragmentFollowingBinding
 import com.example.githubusers.feature.detail.UserDetailActivity
-import kotlinx.android.synthetic.main.fragment_following.*
 import javax.inject.Inject
 
 
@@ -39,7 +36,7 @@ class FollowingFragment : BaseFragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         // Inflate the layout for this fragment
         return binding.root
     }
@@ -70,21 +67,27 @@ class FollowingFragment : BaseFragment() {
     }
 
     private fun initObserver() {
-        viewModel.state.observe(viewLifecycleOwner, Observer {
-            handleStateLoading(it)
-        })
-        viewModel.resultUserFollowing.observe(viewLifecycleOwner, Observer {
-            handleResultUserFollowing(it)
-        })
+        with(viewModel) {
+            state.observe(viewLifecycleOwner, {
+                handleStateLoading(it)
+            })
+            resultUserFollowing.observe(viewLifecycleOwner, {
+                handleResultUserFollowing(it)
+            })
+        }
     }
 
     private fun handlingEmptyFollowing(data: List<UserFollowingResponseItem>){
         if (data.isEmpty()) {
-            binding.baseEmptyFollowing.root.setVisible()
-            binding.rcView.setGone()
+            binding.apply {
+                baseEmptyFollowing.root.setVisible()
+                rcView.setGone()
+            }
         } else {
-            binding.baseEmptyFollowing.root.setGone()
-            binding.rcView.setVisible()
+            binding.apply {
+                baseEmptyFollowing.root.setGone()
+                rcView.setVisible()
+            }
         }
     }
 
@@ -97,11 +100,15 @@ class FollowingFragment : BaseFragment() {
 
     private fun handleStateLoading(loading: LoaderState) {
         if (loading is LoaderState.ShowLoading) {
-            binding.baseLoader.root.setVisible()
-            binding.rcView.setGone()
+            binding.apply {
+                baseLoader.root.setVisible()
+                rcView.setGone()
+            }
         } else {
-            binding.baseLoader.root.setGone()
-            binding.rcView.setVisible()
+            binding.apply {
+                baseLoader.root.setGone()
+                rcView.setVisible()
+            }
         }
     }
 

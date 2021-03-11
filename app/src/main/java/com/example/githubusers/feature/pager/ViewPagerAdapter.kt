@@ -17,17 +17,15 @@ class ViewPagerAdapter(
     @StringRes
     private val TAB_TITLES = intArrayOf(R.string.follower_title, R.string.following_title)
 
-    override fun getPageTitle(position: Int): CharSequence? {
+    override fun getPageTitle(position: Int): CharSequence {
         return mContext.resources.getString(TAB_TITLES[position])
     }
 
     override fun getItem(position: Int): Fragment {
         var fragment : Fragment? = null
         when(position) {
-            0 -> fragment =
-                FollowerFragment()
-            1 -> fragment =
-                FollowingFragment()
+            0 -> fragment = FollowerFragment()
+            1 -> fragment = FollowingFragment()
         }
         return fragment as Fragment
     }

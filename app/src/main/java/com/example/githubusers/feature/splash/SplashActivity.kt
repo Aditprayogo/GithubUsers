@@ -3,13 +3,11 @@ package com.example.githubusers.feature.splash
 import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
-import android.os.Looper
 import android.view.animation.AnimationUtils
 import com.example.githubusers.R
 import com.example.githubusers.core.base.BaseActivity
 import com.example.githubusers.databinding.ActivitySplashBinding
 import com.example.githubusers.feature.main.MainActivity
-import kotlinx.android.synthetic.main.activity_splash.*
 
 class SplashActivity : BaseActivity() {
 
@@ -36,8 +34,8 @@ class SplashActivity : BaseActivity() {
     }
 
     private fun startIntent() {
-        Handler(Looper.getMainLooper()).postDelayed({
-            startActivity(Intent(this, MainActivity::class.java))
+        Handler(mainLooper).postDelayed({
+            startActivity(Intent(this, MainActivity::class.java)).also { finish() }
         },2000)
     }
 }

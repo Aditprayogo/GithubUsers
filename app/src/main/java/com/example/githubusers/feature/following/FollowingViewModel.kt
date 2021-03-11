@@ -28,11 +28,7 @@ class FollowingViewModel @Inject constructor(
         viewModelScope.launch {
             val result = userUseCase.getUserFollowing(username)
             _state.value = LoaderState.HideLoading
-            when(result) {
-                is ResultState.Success -> {
-                    _resultUserFollowing.postValue(result.data)
-                }
-            }
+            if (result is ResultState.Success) _resultUserFollowing.postValue(result.data)
         }
     }
 

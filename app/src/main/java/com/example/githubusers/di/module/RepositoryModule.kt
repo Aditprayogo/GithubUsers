@@ -2,7 +2,7 @@ package com.example.githubusers.di.module
 
 import com.example.githubusers.data.db.dao.UserFavoriteDao
 import com.example.githubusers.data.network.NetworkService
-import com.example.githubusers.data.repository.UserRepository
+import com.example.githubusers.domain.UserRepository
 import com.example.githubusers.data.repository.UserRepositoryImpl
 import com.example.githubusers.di.DataScope
 import dagger.Module

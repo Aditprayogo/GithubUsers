@@ -5,7 +5,6 @@ import android.net.Uri
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.consumerapp.R
 import com.example.consumerapp.databinding.ActivityMainBinding
 import com.example.consumerapp.util.toListUserFavorite
 import kotlinx.android.synthetic.main.activity_main.*
@@ -13,7 +12,7 @@ import kotlinx.android.synthetic.main.activity_main.*
 class MainActivity : AppCompatActivity() {
 
     private val mainAdapter: MainAdapter by lazy {
-        MainAdapter(applicationContext)
+        MainAdapter(this)
     }
 
     private val binding : ActivityMainBinding by lazy {

@@ -29,7 +29,6 @@
 
                 <ImageView
                     android:id="@+id/iv_user"
-                    android:transitionName="image"
                     android:contentDescription="@string/app_name"
                     android:layout_width="115dp"
                     android:layout_height="115dp"

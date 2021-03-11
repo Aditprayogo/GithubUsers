@@ -45,15 +45,9 @@ class FollowerViewModel @Inject constructor(
             val result = userUseCase.getUserFollowers(username)
             _state.value = LoaderState.HideLoading
             when(result) {
-                is ResultState.Success -> {
-                    _resultUserFollower.postValue(result.data)
-                }
-                is ResultState.Error -> {
-                    _error.postValue(result.error)
-                }
-                is ResultState.NetworkError -> {
-                    _networkError.postValue(true)
-                }
+                is ResultState.Success -> _resultUserFollower.postValue(result.data)
+                is ResultState.Error -> _error.postValue(result.error)
+                is ResultState.NetworkError -> _networkError.postValue(true)
             }
         }
     }

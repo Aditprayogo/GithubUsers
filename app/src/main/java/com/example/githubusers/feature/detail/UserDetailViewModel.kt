@@ -70,15 +70,9 @@ class UserDetailViewModel @Inject constructor(
             val result = userUseCase.getUserDetailFromApi(username)
             _state.value = LoaderState.HideLoading
             when(result) {
-                is ResultState.Success -> {
-                    _resultUserDetail.postValue(result.data)
-                }
-                is ResultState.Error -> {
-                    _error.postValue(result.error)
-                }
-                is ResultState.NetworkError -> {
-                    _networkError.postValue(true)
-                }
+                is ResultState.Success -> _resultUserDetail.postValue(result.data)
+                is ResultState.Error -> _error.postValue(result.error)
+                is ResultState.NetworkError -> _networkError.postValue(true)
             }
         }
     }

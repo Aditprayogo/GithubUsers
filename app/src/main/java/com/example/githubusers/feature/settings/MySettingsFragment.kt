@@ -58,13 +58,9 @@ class MySettingsFragment :  PreferenceFragmentCompat(),
 
     private fun setReminder(state: Boolean) {
         if (state) {
-            context?.let {
-                alarmReceiver.setRepeatingAlarm(it)
-            }
+            context?.let { alarmReceiver.setRepeatingAlarm(it) }
         }else {
-            context?.let {
-                alarmReceiver.cancelAlarm(it)
-            }
+            context?.let{ alarmReceiver.cancelAlarm(it) }
         }
     }
 
