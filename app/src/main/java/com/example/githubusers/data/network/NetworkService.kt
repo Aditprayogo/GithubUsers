@@ -18,7 +18,7 @@ interface NetworkService {
      * Endpoints Detail User
      */
     @GET("users/{username}")
-    @Headers("Authorization: token {{ REPLACE WITH YOUR OWN TOKEN }}")
+    @Headers("Authorization: token {{ REPLACE YOUR GITHUB TOKEN }}")
     suspend fun getDetailUser(
         @Path("username") username: String
     ) : Response<UserDetailResponse>
