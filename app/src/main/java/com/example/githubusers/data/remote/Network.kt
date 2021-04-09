@@ -1,4 +1,4 @@
-package com.example.githubusers.core.util.network
+package com.example.githubusers.data.remote
 
 import com.example.githubusers.BuildConfig
 import com.jakewharton.retrofit2.adapter.kotlin.coroutines.CoroutineCallAdapterFactory
