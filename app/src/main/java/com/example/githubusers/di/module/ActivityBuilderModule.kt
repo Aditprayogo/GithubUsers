@@ -1,10 +1,10 @@
 package com.example.githubusers.di.module
 
-import com.example.githubusers.feature.detail.UserDetailActivity
-import com.example.githubusers.feature.favorite.FavoriteUserActivity
-import com.example.githubusers.feature.main.MainActivity
-import com.example.githubusers.feature.settings.SettingsActivity
-import com.example.githubusers.feature.splash.SplashActivity
+import com.example.githubusers.ui.detail.UserDetailActivity
+import com.example.githubusers.ui.favorite.FavoriteUserActivity
+import com.example.githubusers.ui.main.MainActivity
+import com.example.githubusers.ui.settings.SettingsActivity
+import com.example.githubusers.ui.splash.SplashActivity
 import dagger.Module
 import dagger.android.ContributesAndroidInjector
 

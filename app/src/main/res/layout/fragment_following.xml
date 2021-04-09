@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     android:padding="10dp"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".feature.following.FollowingFragment">
+    tools:context=".ui.following.FollowingFragment">
 
     <include
         android:id="@+id/baseLoader"

@@ -4,4 +4,4 @@
     android:id="@+id/settings"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".feature.settings.SettingsActivity" />
+    tools:context=".ui.settings.SettingsActivity" />

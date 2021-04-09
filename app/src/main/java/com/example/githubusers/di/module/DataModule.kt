@@ -1,8 +1,8 @@
 package com.example.githubusers.di.module
 
-import com.example.githubusers.data.network.NetworkService
+import com.example.githubusers.data.remote.NetworkService
 import com.example.githubusers.di.DataScope
-import com.example.githubusers.network.Network
+import com.example.githubusers.core.util.network.Network
 import dagger.Module
 import dagger.Provides
 

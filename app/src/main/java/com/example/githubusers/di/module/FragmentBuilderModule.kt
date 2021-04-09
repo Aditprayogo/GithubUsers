@@ -1,7 +1,7 @@
 package com.example.githubusers.di.module
 
-import com.example.githubusers.feature.follower.FollowerFragment
-import com.example.githubusers.feature.following.FollowingFragment
+import com.example.githubusers.ui.follower.FollowerFragment
+import com.example.githubusers.ui.following.FollowingFragment
 import dagger.Module
 import dagger.android.ContributesAndroidInjector
 

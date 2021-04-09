@@ -1,6 +1,6 @@
 package com.example.githubusers.di.module
 
-import com.example.githubusers.domain.UserRepository
+import com.example.githubusers.data.local.repository.UserRepository
 import com.example.githubusers.domain.UserUseCase
 import dagger.Module
 import dagger.Provides

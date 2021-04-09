@@ -2,8 +2,8 @@ package com.example.githubusers.di.module
 
 import android.app.Application
 import androidx.room.Room
-import com.example.githubusers.data.db.AppDatabase
-import com.example.githubusers.data.db.dao.UserFavoriteDao
+import com.example.githubusers.data.local.db.AppDatabase
+import com.example.githubusers.data.local.db.dao.UserFavoriteDao
 import dagger.Module
 import dagger.Provides
 import javax.inject.Singleton

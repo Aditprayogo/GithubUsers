@@ -2,8 +2,13 @@ package com.example.githubusers.domain
 
 import com.example.githubusers.core.state.ResultState
 import com.example.githubusers.core.util.safeApiCall
-import com.example.githubusers.data.db.entity.UserFavorite
-import com.example.githubusers.data.entity.*
+import com.example.githubusers.data.local.db.entity.UserFavorite
+import com.example.githubusers.data.local.responses.SearchUserResponse
+import com.example.githubusers.data.local.responses.UserDetailResponse
+import com.example.githubusers.data.local.responses.UserFollowersResponse
+import com.example.githubusers.data.local.responses.UserFollowingResponse
+import com.example.githubusers.data.responses.*
+import com.example.githubusers.data.local.repository.UserRepository
 import javax.inject.Inject
 
 class UserUseCase @Inject constructor(

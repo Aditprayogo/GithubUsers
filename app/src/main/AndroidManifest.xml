@@ -22,12 +22,12 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".feature.settings.SettingsActivity" />
-        <activity android:name=".feature.favorite.FavoriteUserActivity" />
-        <activity android:name=".feature.detail.UserDetailActivity" />
-        <activity android:name=".feature.main.MainActivity" />
+        <activity android:name=".ui.settings.SettingsActivity" />
+        <activity android:name=".ui.favorite.FavoriteUserActivity" />
+        <activity android:name=".ui.detail.UserDetailActivity" />
+        <activity android:name=".ui.main.MainActivity" />
         <activity
-            android:name=".feature.splash.SplashActivity"
+            android:name=".ui.splash.SplashActivity"
             android:windowSoftInputMode="adjustResize"
             android:theme="@style/AppThemeNoAppBar">
             <intent-filter>
@@ -38,13 +38,13 @@
         </activity>
 
         <receiver
-            android:name=".feature.alarm.AlarmReceiver"
+            android:name=".ui.alarm.AlarmReceiver"
             android:enabled="true"
             android:exported="true"
             tools:ignore="ExportedReceiver" />
 
         <provider
-            android:name=".feature.contentprovider.MyContentProvider"
+            android:name=".ui.contentprovider.MyContentProvider"
             android:authorities="com.example.githubusers.provider"
             android:enabled="true"
             android:exported="true"

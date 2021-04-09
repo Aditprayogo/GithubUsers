@@ -2,13 +2,13 @@ package com.example.githubusers.di.module
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import com.example.githubusers.feature.detail.UserDetailViewModel
-import com.example.githubusers.feature.favorite.FavoriteUserViewModel
-import com.example.githubusers.feature.follower.FollowerViewModel
-import com.example.githubusers.feature.following.FollowingViewModel
-import com.example.githubusers.feature.main.MainViewModel
-import com.example.githubusers.viewmodel.ViewModelFactory
-import com.example.githubusers.viewmodel.ViewModelKey
+import com.example.githubusers.ui.detail.UserDetailViewModel
+import com.example.githubusers.ui.favorite.FavoriteUserViewModel
+import com.example.githubusers.ui.follower.FollowerViewModel
+import com.example.githubusers.ui.following.FollowingViewModel
+import com.example.githubusers.ui.main.MainViewModel
+import com.example.githubusers.core.util.viewmodel_factory.ViewModelFactory
+import com.example.githubusers.core.util.viewmodel_factory.ViewModelKey
 import dagger.Binds
 import dagger.Module
 import dagger.multibindings.IntoMap
