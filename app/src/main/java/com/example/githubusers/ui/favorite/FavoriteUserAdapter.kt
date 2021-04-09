@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.githubusers.R
+import com.example.githubusers.core.util.load
 import com.example.githubusers.data.local.db.entity.UserFavorite
 import com.example.githubusers.databinding.ItemRowFavoriteUserBinding
 import com.example.githubusers.ui.detail.UserDetailActivity

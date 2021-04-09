@@ -8,6 +8,8 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.githubusers.core.base.BaseFragment
 import com.example.githubusers.core.state.LoaderState
+import com.example.githubusers.core.util.setGone
+import com.example.githubusers.core.util.setVisible
 import com.example.githubusers.data.local.responses.UserFollowersResponseItem
 import com.example.githubusers.databinding.FragmentFollowerBinding
 import com.example.githubusers.ui.detail.UserDetailActivity

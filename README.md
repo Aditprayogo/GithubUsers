@@ -73,6 +73,38 @@ Generate your token in here https://github.com/settings/tokens and replace with 
 - [Lottie-Android](https://github.com/airbnb/lottie-android) JSON-based animation file format that enables designers to ship animations on any platform as easily as shipping static assets.
 - [Material Design](https://material.io/develop/android/docs/getting-started)
 
+## Project Structure
+```
+    com.example.githubusers         # Root package
+
+    ├── BaseApplication.kt          # Base Application
+    ├── core                        # Contains Base, State, Util
+    │   ├── base                    # Contains Base our apps,(Activity/Fragment
+    │   ├── state                   # Contains state for handling data (Loading / Result)
+    │   └── util                    # Utility Classes / Kotlin extensions
+    ├── data                        # Contains needed data for our app
+    │   ├── local                   # Local Data Handler
+    │   └── remote                  # Remote Data Handler
+    ├── di                          # Depedency Injection
+    │   ├── component               # Component for our DI
+    │   ├── DataScope.kt
+    │   └── module                  # Module for our DI
+    ├── domain                      # Application Executors
+    │   └── UserUseCase.kt
+    └── ui                          # Contains all presenter layers (Activity, Fragment and ViewModel)
+        ├── alarm
+        ├── contentprovider
+        ├── detail
+        ├── favorite
+        ├── follower
+        ├── following
+        ├── main
+        ├── pager
+        ├── settings
+        └── splash
+```
+
+
 ## How to Support me ?
 > Just Follow my Github and **star** this repo
 

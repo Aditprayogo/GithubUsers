@@ -6,7 +6,6 @@ import com.example.githubusers.data.local.responses.SearchUserResponse
 import com.example.githubusers.data.local.responses.UserDetailResponse
 import com.example.githubusers.data.local.responses.UserFollowersResponse
 import com.example.githubusers.data.local.responses.UserFollowingResponse
-import com.example.githubusers.data.responses.*
 import com.example.githubusers.data.remote.NetworkService
 import retrofit2.Response
 import javax.inject.Inject
