@@ -24,11 +24,12 @@ Generate your token in here https://github.com/settings/tokens and replace with 
     /**
      * Endpoints Detail User
      */
-    @GET("users/{username}")
-    @Headers("Authorization: token {{ REPLACE WITH YOUR OWN TOKEN }}")
-    suspend fun getDetailUser(
-        @Path("username") username: String
-    ) : Response<UserDetailResponse>
+    defaultConfig {
+            ---
+            ---
+            buildConfigField "String", "GITHUB_TOKEN", "\"REPLACE WITH YOUR GITHUB TOKEN\""
+
+        }
 ```
 
 ## Demo :

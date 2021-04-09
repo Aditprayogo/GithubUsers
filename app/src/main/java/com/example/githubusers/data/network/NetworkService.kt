@@ -1,5 +1,6 @@
 package com.example.githubusers.data.network
 
+import com.example.githubusers.BuildConfig
 import com.example.githubusers.data.entity.*
 import retrofit2.Response
 import retrofit2.http.*
@@ -18,7 +19,7 @@ interface NetworkService {
      * Endpoints Detail User
      */
     @GET("users/{username}")
-    @Headers("Authorization: token {{ REPLACE YOUR GITHUB TOKEN }}")
+    @Headers("Authorization: token ${BuildConfig.GITHUB_TOKEN}")
     suspend fun getDetailUser(
         @Path("username") username: String
     ) : Response<UserDetailResponse>
