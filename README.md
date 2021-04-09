@@ -19,7 +19,7 @@
 </p>
 
 ## How to Use This App :
-Generate your token in here https://github.com/settings/tokens and replace with your token in **data/network/NetwokService.kt**
+Generate your token in here https://github.com/settings/tokens and replace with your token in **build.gradle**
 ```kotlin
 
     defaultConfig {
