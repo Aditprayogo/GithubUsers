@@ -8,9 +8,11 @@ import com.example.githubusers.core.state.LoaderState
 import com.example.githubusers.core.state.ResultState
 import com.example.githubusers.data.local.responses.UserSearchResponseItem
 import com.example.githubusers.domain.UserUseCase
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
+@HiltViewModel
 class MainViewModel @Inject constructor(
     private val userUseCase: UserUseCase
 ) : ViewModel() {

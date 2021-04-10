@@ -4,24 +4,22 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.lifecycle.ViewModelProvider
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.githubusers.core.base.BaseFragment
 import com.example.githubusers.core.state.LoaderState
 import com.example.githubusers.core.util.setGone
 import com.example.githubusers.core.util.setVisible
 import com.example.githubusers.data.local.responses.UserFollowersResponseItem
 import com.example.githubusers.databinding.FragmentFollowerBinding
 import com.example.githubusers.ui.detail.UserDetailActivity
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.InternalCoroutinesApi
-import javax.inject.Inject
 
-class FollowerFragment : BaseFragment() {
+@AndroidEntryPoint
+class FollowerFragment : Fragment() {
 
-    @Inject
-    lateinit var viewModelFactory: ViewModelProvider.Factory
-
-    private lateinit var viewModel: FollowerViewModel
+    private val followerViewModel: FollowerViewModel by viewModels()
 
     private var lists = mutableListOf<UserFollowersResponseItem>()
 
@@ -44,7 +42,6 @@ class FollowerFragment : BaseFragment() {
     @InternalCoroutinesApi
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        initViewModel()
         handleUserName()
         initObserver()
         initRecyclerView()
@@ -53,7 +50,7 @@ class FollowerFragment : BaseFragment() {
     private fun handleUserName() {
         val activity = activity as UserDetailActivity
         val username: String? = activity.getUsername()
-        viewModel.getUserFollowers(username!!)
+        followerViewModel.getUserFollowers(username!!)
     }
 
     private fun initRecyclerView() {
@@ -63,12 +60,8 @@ class FollowerFragment : BaseFragment() {
         }
     }
 
-    private fun initViewModel() {
-        viewModel = ViewModelProvider(this, viewModelFactory)[FollowerViewModel::class.java]
-    }
-
     private fun initObserver() {
-        with(viewModel) {
+        with(followerViewModel) {
             state.observe(viewLifecycleOwner, {
                 handleStateLoading(it)
             })

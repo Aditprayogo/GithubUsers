@@ -4,28 +4,26 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
-import androidx.lifecycle.ViewModelProvider
+import androidx.activity.viewModels
+import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.githubusers.R
-import com.example.githubusers.core.base.BaseActivity
 import com.example.githubusers.core.util.setGone
 import com.example.githubusers.core.util.setVisible
 import com.example.githubusers.data.local.db.entity.UserFavorite
 import com.example.githubusers.databinding.ActivityFavoriteUserBinding
 import com.example.githubusers.ui.settings.SettingsActivity
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.activity_favorite_user.*
-import javax.inject.Inject
 
-class FavoriteUserActivity : BaseActivity() {
-
-    @Inject
-    lateinit var viewModelFactory: ViewModelProvider.Factory
+@AndroidEntryPoint
+class FavoriteUserActivity : AppCompatActivity() {
 
     private val binding: ActivityFavoriteUserBinding by lazy {
         ActivityFavoriteUserBinding.inflate(layoutInflater)
     }
 
-    private lateinit var viewModel: FavoriteUserViewModel
+    private val favoriteUserViewModel: FavoriteUserViewModel by viewModels()
 
     private val listUser = mutableListOf<UserFavorite>()
 
@@ -36,7 +34,6 @@ class FavoriteUserActivity : BaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
-        initViewModels()
         initObserver()
         initRecyclerView()
         initToolbar()
@@ -68,11 +65,6 @@ class FavoriteUserActivity : BaseActivity() {
         return super.onSupportNavigateUp()
     }
 
-
-    private fun initViewModels() {
-        viewModel = ViewModelProvider(this, viewModelFactory)[FavoriteUserViewModel::class.java]
-    }
-
     private fun initRecyclerView() {
         binding.rcUser.apply {
             layoutManager =
@@ -82,14 +74,14 @@ class FavoriteUserActivity : BaseActivity() {
     }
 
     private fun initObserver() {
-        viewModel.resultUserFromDb.observe(this, {
+        favoriteUserViewModel.resultUserFromDb.observe(this, {
             handleUserFromDb(it)
         })
     }
 
     override fun onRestart() {
         super.onRestart()
-        viewModel.fetchAllUserFavorite()
+        favoriteUserViewModel.fetchAllUserFavorite()
     }
 
     private fun handleUserFromDb(user: List<UserFavorite>) {

@@ -6,13 +6,18 @@ import android.content.UriMatcher
 import android.database.Cursor
 import android.net.Uri
 import com.example.githubusers.data.local.db.dao.UserFavoriteDao
-import dagger.android.AndroidInjection
-import javax.inject.Inject
+import dagger.hilt.EntryPoint
+import dagger.hilt.InstallIn
+import dagger.hilt.android.EntryPointAccessors
+import dagger.hilt.components.SingletonComponent
 
 class MyContentProvider : ContentProvider() {
 
-    @Inject
-    lateinit var userFavoriteDao: UserFavoriteDao
+    @InstallIn(SingletonComponent::class)
+    @EntryPoint
+    interface UserFavoriteDaoContent {
+        fun userFavDao(): UserFavoriteDao
+    }
 
     companion object {
         private const val USER = 1
@@ -36,7 +41,6 @@ class MyContentProvider : ContentProvider() {
     }
 
     override fun onCreate(): Boolean {
-        AndroidInjection.inject(this)
         return true
     }
 
@@ -44,8 +48,14 @@ class MyContentProvider : ContentProvider() {
         uri: Uri, projection: Array<String>?, selection: String?,
         selectionArgs: Array<String>?, sortOrder: String?
     ): Cursor? {
-        return when(sUriMatcher.match(uri)) {
-            USER -> userFavoriteDao.cursorGetAllUserFavorite()
+
+        val appContext = context?.applicationContext ?: throw IllegalStateException()
+        val hiltEntryPoint =
+            EntryPointAccessors.fromApplication(appContext, UserFavoriteDaoContent::class.java)
+        val favoriteDao = hiltEntryPoint.userFavDao()
+
+        return when (sUriMatcher.match(uri)) {
+            USER -> favoriteDao.cursorGetAllUserFavorite()
             else -> null
         }
     }

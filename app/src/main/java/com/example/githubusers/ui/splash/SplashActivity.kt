@@ -4,12 +4,14 @@ import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
 import android.view.animation.AnimationUtils
+import androidx.appcompat.app.AppCompatActivity
 import com.example.githubusers.R
-import com.example.githubusers.core.base.BaseActivity
 import com.example.githubusers.databinding.ActivitySplashBinding
 import com.example.githubusers.ui.main.MainActivity
+import dagger.hilt.android.AndroidEntryPoint
 
-class SplashActivity : BaseActivity() {
+@AndroidEntryPoint
+class SplashActivity : AppCompatActivity() {
 
     private val binding : ActivitySplashBinding by lazy {
         ActivitySplashBinding.inflate(layoutInflater)

@@ -7,9 +7,11 @@ import androidx.lifecycle.viewModelScope
 import com.example.githubusers.core.state.ResultState
 import com.example.githubusers.data.local.db.entity.UserFavorite
 import com.example.githubusers.domain.UserUseCase
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
+@HiltViewModel
 class FavoriteUserViewModel @Inject constructor(
     private val userUseCase: UserUseCase
 ) : ViewModel() {

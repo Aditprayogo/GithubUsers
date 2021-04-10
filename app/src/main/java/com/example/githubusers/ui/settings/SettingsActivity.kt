@@ -1,11 +1,13 @@
 package com.example.githubusers.ui.settings
 
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
 import com.example.githubusers.R
-import com.example.githubusers.core.base.BaseActivity
 import com.example.githubusers.databinding.ActivitySettingsBinding
+import dagger.hilt.android.AndroidEntryPoint
 
-class SettingsActivity : BaseActivity() {
+@AndroidEntryPoint
+class SettingsActivity : AppCompatActivity() {
 
     private val binding : ActivitySettingsBinding by lazy {
         ActivitySettingsBinding.inflate(layoutInflater)

@@ -8,10 +8,10 @@ import android.view.MenuItem
 import android.view.View.INVISIBLE
 import android.view.View.VISIBLE
 import android.widget.SearchView
-import androidx.lifecycle.ViewModelProvider
+import androidx.activity.viewModels
+import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.githubusers.R
-import com.example.githubusers.core.base.BaseActivity
 import com.example.githubusers.core.state.LoaderState
 import com.example.githubusers.core.util.setGone
 import com.example.githubusers.core.util.setVisible
@@ -19,15 +19,13 @@ import com.example.githubusers.data.local.responses.UserSearchResponseItem
 import com.example.githubusers.databinding.ActivityMainBinding
 import com.example.githubusers.ui.favorite.FavoriteUserActivity
 import com.example.githubusers.ui.settings.SettingsActivity
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.activity_main.*
-import javax.inject.Inject
 
-class MainActivity : BaseActivity() {
+@AndroidEntryPoint
+class MainActivity : AppCompatActivity() {
 
-    @Inject
-    lateinit var viewModelFactory: ViewModelProvider.Factory
-
-    lateinit var viewModel: MainViewModel
+    private val mainViewModel: MainViewModel by viewModels()
 
     private val items = mutableListOf<UserSearchResponseItem>()
 
@@ -44,7 +42,6 @@ class MainActivity : BaseActivity() {
         setContentView(binding.root)
         initToolbar()
         searchUsers()
-        initViewModels()
         initRecyclerView()
         initObserver()
     }
@@ -67,11 +64,6 @@ class MainActivity : BaseActivity() {
         return super.onOptionsItemSelected(item)
     }
 
-
-    private fun initViewModels() {
-        viewModel = ViewModelProvider(this, viewModelFactory)[MainViewModel::class.java]
-    }
-
     private fun searchUsers() {
         binding.apply {
             svSearch.setOnQueryTextListener(object : SearchView.OnQueryTextListener,
@@ -80,7 +72,7 @@ class MainActivity : BaseActivity() {
                     query?.let {
                         if (it.isNotEmpty()) {
                             items.clear()
-                            viewModel.getUserFromApi(query)
+                            mainViewModel.getUserFromApi(query)
                             svSearch.clearFocus()
                             setIllustration(false)
                         } else {
@@ -104,7 +96,7 @@ class MainActivity : BaseActivity() {
     }
 
     private fun initObserver() {
-        with(viewModel) {
+        with(mainViewModel) {
             state.observe(this@MainActivity, {
                 it?.let {
                     handleStateLoading(it)

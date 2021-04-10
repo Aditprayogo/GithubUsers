@@ -4,24 +4,21 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.lifecycle.ViewModelProvider
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.githubusers.core.base.BaseFragment
 import com.example.githubusers.core.state.LoaderState
 import com.example.githubusers.core.util.setGone
 import com.example.githubusers.core.util.setVisible
 import com.example.githubusers.data.local.responses.UserFollowingResponseItem
 import com.example.githubusers.databinding.FragmentFollowingBinding
 import com.example.githubusers.ui.detail.UserDetailActivity
-import javax.inject.Inject
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
+class FollowingFragment : Fragment() {
 
-class FollowingFragment : BaseFragment() {
-
-    @Inject
-    lateinit var viewModelFactory: ViewModelProvider.Factory
-
-    private lateinit var viewModel : FollowingViewModel
+    private val followingViewModel : FollowingViewModel by viewModels()
 
     private var lists = mutableListOf<UserFollowingResponseItem>()
 
@@ -43,20 +40,15 @@ class FollowingFragment : BaseFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        initViewModels()
         handleUserName()
         initObserver()
         initRecyclerView()
     }
 
-    private fun initViewModels() {
-        viewModel = ViewModelProvider(this, viewModelFactory)[FollowingViewModel::class.java]
-    }
-
     private fun handleUserName() {
         val activity = activity as UserDetailActivity
         val username : String? = activity.getUsername()
-        username?.let { viewModel.getUserFollowing(it) }
+        username?.let { followingViewModel.getUserFollowing(it) }
     }
 
     private fun initRecyclerView() {
@@ -67,7 +59,7 @@ class FollowingFragment : BaseFragment() {
     }
 
     private fun initObserver() {
-        with(viewModel) {
+        with(followingViewModel) {
             state.observe(viewLifecycleOwner, {
                 handleStateLoading(it)
             })

@@ -5,9 +5,9 @@ import android.os.Bundle
 import android.provider.Settings
 import android.view.Menu
 import android.view.MenuItem
-import androidx.lifecycle.ViewModelProvider
+import androidx.activity.viewModels
+import androidx.appcompat.app.AppCompatActivity
 import com.example.githubusers.R
-import com.example.githubusers.core.base.BaseActivity
 import com.example.githubusers.core.state.LoaderState
 import com.example.githubusers.core.util.load
 import com.example.githubusers.core.util.setGone
@@ -19,18 +19,17 @@ import com.example.githubusers.databinding.ActivityUserDetailBinding
 import com.example.githubusers.ui.favorite.FavoriteUserActivity
 import com.example.githubusers.ui.pager.ViewPagerAdapter
 import com.example.githubusers.ui.settings.SettingsActivity
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.activity_user_detail.*
-import javax.inject.Inject
 
-class UserDetailActivity : BaseActivity() {
-    @Inject
-    lateinit var viewModelFactory: ViewModelProvider.Factory
+@AndroidEntryPoint
+class UserDetailActivity : AppCompatActivity() {
 
     private val binding: ActivityUserDetailBinding by lazy {
         ActivityUserDetailBinding.inflate(layoutInflater)
     }
 
-    private lateinit var viewModel: UserDetailViewModel
+    private val userDetailViewModel: UserDetailViewModel by viewModels()
 
     private var userDetail: UserDetailResponse? = null
 
@@ -44,7 +43,6 @@ class UserDetailActivity : BaseActivity() {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
         handleIntent()
-        initViewModels()
         initObserver()
         fetchData()
         initToolbar()
@@ -98,8 +96,8 @@ class UserDetailActivity : BaseActivity() {
 
     private fun fetchData() {
         username?.let {
-            viewModel.getUserDetailFromApi(it)
-            viewModel.getFavUserByUsername(it)
+            userDetailViewModel.getUserDetailFromApi(it)
+            userDetailViewModel.getFavUserByUsername(it)
         }
     }
 
@@ -107,12 +105,8 @@ class UserDetailActivity : BaseActivity() {
         username = intent.getStringExtra(USERNAME_KEY) as String
     }
 
-    private fun initViewModels() {
-        viewModel = ViewModelProvider(this, viewModelFactory)[UserDetailViewModel::class.java]
-    }
-
     private fun initObserver() {
-        with(viewModel) {
+        with(userDetailViewModel) {
             state.observe(this@UserDetailActivity, {
                 handleStateLoading(it)
             })
@@ -125,7 +119,7 @@ class UserDetailActivity : BaseActivity() {
             resultInsertUserDb.observe(this@UserDetailActivity, { it ->
                 if (it) {
                     username?.let {
-                        viewModel.getFavUserByUsername(it)
+                        userDetailViewModel.getFavUserByUsername(it)
                     }
                     toast(getString(R.string.user_success))
                 }
@@ -133,7 +127,7 @@ class UserDetailActivity : BaseActivity() {
             resultDeleteFromDb.observe(this@UserDetailActivity, { it ->
                 if (it) {
                     username?.let {
-                        viewModel.getFavUserByUsername(it)
+                        userDetailViewModel.getFavUserByUsername(it)
                     }
                     toast(getString(R.string.user_deleted))
                 }
@@ -145,7 +139,7 @@ class UserDetailActivity : BaseActivity() {
     private fun setFavoriteUser() {
         if (favoriteActive) {
             userFavoriteEntity?.let {
-                viewModel.deleteUserFromDb(it)
+                userDetailViewModel.deleteUserFromDb(it)
             }
         } else {
             val userFavorite = userDetail?.login?.let {
@@ -163,7 +157,7 @@ class UserDetailActivity : BaseActivity() {
                     location = userDetail?.location
                 )
             }
-            userFavorite?.let { viewModel.addUserToFavDB(it) }
+            userFavorite?.let { userDetailViewModel.addUserToFavDB(it) }
         }
     }
 

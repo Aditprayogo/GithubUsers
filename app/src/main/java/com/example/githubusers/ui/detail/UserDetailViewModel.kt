@@ -9,9 +9,11 @@ import com.example.githubusers.core.state.ResultState
 import com.example.githubusers.data.local.db.entity.UserFavorite
 import com.example.githubusers.data.local.responses.UserDetailResponse
 import com.example.githubusers.domain.UserUseCase
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
+@HiltViewModel
 class UserDetailViewModel @Inject constructor(
     private val userUseCase: UserUseCase
 ) : ViewModel() {
