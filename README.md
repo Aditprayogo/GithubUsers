@@ -1,5 +1,5 @@
 
-# Dicoding Submission: Belajar Fundamental Aplikasi Android
+# Dicoding Submission: Learn Application Android Fundamental
  [![Platform](https://img.shields.io/badge/platform-Android-green.svg)](http://developer.android.com/index.html) [![Kotlin](https://img.shields.io/badge/kotlin-1.4.21-orange.svg)](http://kotlinlang.org) [![Gradle](https://img.shields.io/badge/gradle-4.0.0-%2366DCB8.svg)](https://developer.android.com/studio/releases/gradle-plugin)
 
 ## Apps Feature :
