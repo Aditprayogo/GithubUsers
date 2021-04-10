@@ -72,37 +72,36 @@ Generate your token in here https://github.com/settings/tokens and replace with 
 - [Gson](https://github.com/google/gson) A Java serialization/deserialization library to convert Java Objects into JSON and back
 - [Glide](https://github.com/bumptech/glide) An image loading and caching library for Android focused on smooth scrolling
 - [Lottie-Android](https://github.com/airbnb/lottie-android) JSON-based animation file format that enables designers to ship animations on any platform as easily as shipping static assets.
-- [Material Design](https://material.io/develop/android/docs/getting-started)
+- [Material Design](https://material.io/develop/android/docs/getting-started) Material is a design system created by Google to help teams build high-quality digital experiences for Android, iOS, Flutter, and the web.
 
 ## Project Structure
 ```
     com.example.githubusers         # Root package
 
     ├── BaseApplication.kt          # Base Application
-    ├── core                        # Contains Base, State, Util
-    │   ├── base                    # Contains Base our apps,(Activity/Fragment
-    │   ├── state                   # Contains state for handling data (Loading / Result)
-    │   └── util                    # Utility Classes / Kotlin extensions
-    ├── data                        # Contains needed data for our app
-    │   ├── local                   # Local Data Handler
-    │   └── remote                  # Remote Data Handler
+    ├── data                        # Contains Data for our Application
+    │   ├── local                   # Local Data source (Database)
+    │   └── remote                  # Remote Data Source (API)
     ├── di                          # Depedency Injection
-    │   ├── component               # Component for our DI
-    │   ├── DataScope.kt
-    │   └── module                  # Module for our DI
-    ├── domain                      # Application Executors
-    │   └── UserUseCase.kt
-    └── ui                          # Contains all presenter layers (Activity, Fragment and ViewModel)
-        ├── alarm
-        ├── contentprovider
-        ├── detail
-        ├── favorite
-        ├── follower
-        ├── following
-        ├── main
-        ├── pager
-        ├── settings
-        └── splash
+    │   └── module                  # Provide dependencies from the dependency graph
+    ├── domain
+    │   └── UserUseCase.kt          # Application Executors
+    ├── ui                          # Contains presentation layers (Activity, Fragment and ViewModel)
+    │   ├── alarm
+    │   ├── contentprovider
+    │   ├── detail
+    │   ├── favorite
+    │   ├── follower
+    │   ├── following
+    │   ├── main
+    │   ├── pager
+    │   ├── settings
+    │   └── splash
+    └── utils                       # Utility application
+        ├── SafeApiCall.kt
+        ├── state
+        └── viewUtils
+
 ```
 
 

@@ -1,4 +1,4 @@
-package com.example.githubusers.core.state
+package com.example.githubusers.utils.state
 
 sealed class ResultState<out T : Any> {
     data class Success<out T: Any>(val data: T?) : ResultState<T>()

@@ -1,7 +1,7 @@
 package com.example.githubusers.domain
 
-import com.example.githubusers.core.state.ResultState
-import com.example.githubusers.core.util.safeApiCall
+import com.example.githubusers.utils.state.ResultState
+import com.example.githubusers.utils.util.safeApiCall
 import com.example.githubusers.data.local.db.entity.UserFavorite
 import com.example.githubusers.data.local.responses.SearchUserResponse
 import com.example.githubusers.data.local.responses.UserDetailResponse

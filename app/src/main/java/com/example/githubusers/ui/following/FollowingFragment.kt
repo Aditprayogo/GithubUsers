@@ -7,9 +7,9 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.githubusers.core.state.LoaderState
-import com.example.githubusers.core.util.setGone
-import com.example.githubusers.core.util.setVisible
+import com.example.githubusers.utils.state.LoaderState
+import com.example.githubusers.utils.util.setGone
+import com.example.githubusers.utils.util.setVisible
 import com.example.githubusers.data.local.responses.UserFollowingResponseItem
 import com.example.githubusers.databinding.FragmentFollowingBinding
 import com.example.githubusers.ui.detail.UserDetailActivity

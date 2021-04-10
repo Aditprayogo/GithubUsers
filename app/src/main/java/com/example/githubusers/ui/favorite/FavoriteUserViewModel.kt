@@ -4,7 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.githubusers.core.state.ResultState
+import com.example.githubusers.utils.state.ResultState
 import com.example.githubusers.data.local.db.entity.UserFavorite
 import com.example.githubusers.domain.UserUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel

@@ -1,7 +1,7 @@
-package com.example.githubusers.core.util
+package com.example.githubusers.utils.util
 
 import com.bumptech.glide.load.HttpException
-import com.example.githubusers.core.state.ResultState
+import com.example.githubusers.utils.state.ResultState
 
 import java.io.IOException
 import java.net.ConnectException

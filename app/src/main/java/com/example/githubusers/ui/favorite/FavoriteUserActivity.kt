@@ -8,8 +8,8 @@ import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.githubusers.R
-import com.example.githubusers.core.util.setGone
-import com.example.githubusers.core.util.setVisible
+import com.example.githubusers.utils.util.setGone
+import com.example.githubusers.utils.util.setVisible
 import com.example.githubusers.data.local.db.entity.UserFavorite
 import com.example.githubusers.databinding.ActivityFavoriteUserBinding
 import com.example.githubusers.ui.settings.SettingsActivity

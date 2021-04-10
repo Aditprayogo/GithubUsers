@@ -7,7 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.githubusers.R
-import com.example.githubusers.core.util.load
+import com.example.githubusers.utils.util.load
 import com.example.githubusers.data.local.responses.UserSearchResponseItem
 import com.example.githubusers.databinding.ItemRowUserBinding
 import com.example.githubusers.ui.detail.UserDetailActivity

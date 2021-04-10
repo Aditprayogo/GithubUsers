@@ -1,4 +1,4 @@
-package com.example.githubusers.core.state
+package com.example.githubusers.utils.state
 
 sealed class LoaderState {
     object ShowLoading: LoaderState()

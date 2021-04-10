@@ -1,4 +1,4 @@
-package com.example.githubusers.core.util
+package com.example.githubusers.utils.util
 
 import android.app.Activity
 import android.widget.Toast

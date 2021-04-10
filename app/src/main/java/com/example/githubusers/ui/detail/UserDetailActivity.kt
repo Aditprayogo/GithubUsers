@@ -8,11 +8,11 @@ import android.view.MenuItem
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import com.example.githubusers.R
-import com.example.githubusers.core.state.LoaderState
-import com.example.githubusers.core.util.load
-import com.example.githubusers.core.util.setGone
-import com.example.githubusers.core.util.setVisible
-import com.example.githubusers.core.util.toast
+import com.example.githubusers.utils.state.LoaderState
+import com.example.githubusers.utils.util.load
+import com.example.githubusers.utils.util.setGone
+import com.example.githubusers.utils.util.setVisible
+import com.example.githubusers.utils.util.toast
 import com.example.githubusers.data.local.db.entity.UserFavorite
 import com.example.githubusers.data.local.responses.UserDetailResponse
 import com.example.githubusers.databinding.ActivityUserDetailBinding
