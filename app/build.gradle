@@ -13,13 +13,13 @@ android {
     buildToolsVersion "30.0.3"
 
     defaultConfig {
-        applicationId "com.example.githubusers"
+        applicationId "com.aditPrayogo.githubusers"
         minSdkVersion 21
         targetSdkVersion 30
         versionCode 1
         versionName "1.0"
         buildConfigField "String", "BASE_URL", "\"https://api.github.com/\""
-        buildConfigField "String", "GITHUB_TOKEN", "\"GITHUB_TOKEN\""
+        buildConfigField "String", "GITHUB_TOKEN", "\"GITHUB TOKEN\""
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 
