@@ -7,14 +7,14 @@ import androidx.lifecycle.viewModelScope
 import com.aditprayogo.core.utils.state.LoaderState
 import com.aditprayogo.core.utils.state.ResultState
 import com.aditprayogo.core.data.local.responses.UserFollowersResponseItem
-import com.aditprayogo.core.domain.UserUseCase
+import com.aditprayogo.core.domain.usecase.UserUseCaseImpl
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
 class FollowerViewModel @Inject constructor(
-    private val userUseCase: UserUseCase
+    private val userUseCaseImpl: UserUseCaseImpl
 ) : ViewModel() {
 
     /**
@@ -44,7 +44,7 @@ class FollowerViewModel @Inject constructor(
     fun getUserFollowers(username: String) {
         _state.value = LoaderState.ShowLoading
         viewModelScope.launch {
-            val result = userUseCase.getUserFollowers(username)
+            val result = userUseCaseImpl.getUserFollowers(username)
             _state.value = LoaderState.HideLoading
             when(result) {
                 is ResultState.Success -> _resultUserFollower.postValue(result.data)

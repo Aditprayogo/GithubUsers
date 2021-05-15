@@ -6,16 +6,16 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.aditprayogo.core.utils.state.LoaderState
 import com.aditprayogo.core.utils.state.ResultState
-import com.aditprayogo.core.data.local.db.entity.UserFavorite
+import com.aditprayogo.core.data.local.db.entity.UserFavoriteEntity
 import com.aditprayogo.core.data.local.responses.UserDetailResponse
-import com.aditprayogo.core.domain.UserUseCase
+import com.aditprayogo.core.domain.usecase.UserUseCaseImpl
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
 class UserDetailViewModel @Inject constructor(
-    private val userUseCase: UserUseCase
+    private val userUseCaseImpl: UserUseCaseImpl
 ) : ViewModel() {
 
     /**
@@ -45,8 +45,8 @@ class UserDetailViewModel @Inject constructor(
     /**
      * User Detail from DB
      */
-    private val _resultUserDetailFromDb = MutableLiveData<List<UserFavorite>>()
-    val resultUserDetailFromDb : LiveData<List<UserFavorite>>
+    private val _resultUserDetailFromDb = MutableLiveData<List<UserFavoriteEntity>>()
+    val resultUserDetailFromDbEntity : LiveData<List<UserFavoriteEntity>>
         get() = _resultUserDetailFromDb
 
     /**
@@ -69,7 +69,7 @@ class UserDetailViewModel @Inject constructor(
     fun getUserDetailFromApi(username: String) {
         _state.value = LoaderState.ShowLoading
         viewModelScope.launch {
-            val result = userUseCase.getUserDetailFromApi(username)
+            val result = userUseCaseImpl.getUserDetailFromApi(username)
             _state.value = LoaderState.HideLoading
             when(result) {
                 is ResultState.Success -> _resultUserDetail.postValue(result.data)
@@ -82,10 +82,10 @@ class UserDetailViewModel @Inject constructor(
     /**
      * Local
      */
-    fun addUserToFavDB(userFavorite: UserFavorite) {
+    fun addUserToFavDB(userFavoriteEntity: UserFavoriteEntity) {
         viewModelScope.launch {
             try {
-                userUseCase.addUserToFavDB(userFavorite)
+                userUseCaseImpl.addUserToFavDB(userFavoriteEntity)
                 _resultInsertUserToDb.postValue(true)
             }catch (e: Exception) {
                 _error.postValue(e.localizedMessage)
@@ -93,10 +93,10 @@ class UserDetailViewModel @Inject constructor(
         }
     }
 
-    fun deleteUserFromDb(userFavorite: UserFavorite) {
+    fun deleteUserFromDb(userFavoriteEntity: UserFavoriteEntity) {
         viewModelScope.launch {
             try {
-                userUseCase.deleteUserFromDb(userFavorite)
+                userUseCaseImpl.deleteUserFromDb(userFavoriteEntity)
                 _resultDeleteFromDb.postValue(true)
             }catch (e: Exception) {
                 _error.postValue(e.localizedMessage)
@@ -106,7 +106,7 @@ class UserDetailViewModel @Inject constructor(
 
     fun getFavUserByUsername(username: String) {
         viewModelScope.launch {
-            val result = userUseCase.getFavUserByUsername(username)
+            val result = userUseCaseImpl.getFavUserByUsername(username)
             when(result) {
                 is ResultState.Success -> _resultUserDetailFromDb.postValue(result.data)
                 is ResultState.Error -> _error.postValue(result.error)

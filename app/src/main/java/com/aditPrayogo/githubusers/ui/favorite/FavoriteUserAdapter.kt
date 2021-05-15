@@ -7,7 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.aditPrayogo.githubusers.R
-import com.aditprayogo.core.data.local.db.entity.UserFavorite
+import com.aditprayogo.core.data.local.db.entity.UserFavoriteEntity
 import com.aditPrayogo.githubusers.databinding.ItemRowFavoriteUserBinding
 import com.aditPrayogo.githubusers.ui.detail.UserDetailActivity
 import com.aditPrayogo.githubusers.utils.util.load
@@ -15,21 +15,21 @@ import com.aditPrayogo.githubusers.utils.util.load
 class FavoriteUserAdapter(private val mContext: Context) :
     RecyclerView.Adapter<FavoriteUserAdapter.ViewHolder>() {
 
-    private var items: MutableList<UserFavorite> = mutableListOf()
+    private var items: MutableList<UserFavoriteEntity> = mutableListOf()
 
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         private val binding: ItemRowFavoriteUserBinding = ItemRowFavoriteUserBinding.bind(itemView)
 
-        fun bind(user: UserFavorite) {
+        fun bind(userEntity: UserFavoriteEntity) {
             with(itemView) {
                 binding.apply {
-                    txtUsername.text = user.username
-                    txtLocation.text = user.location ?: context.getString(R.string.no_location)
-                    txtFollower.text = user.followers.toString()
-                    txtFollowing.text = user.following.toString()
-                    txtRepository.text = user.publicRepos.toString()
-                    txtCompany.text = user.company ?: context.getString(R.string.no_company)
-                    binding.ivUser.load(user.avatarUrl)
+                    txtUsername.text = userEntity.username
+                    txtLocation.text = userEntity.location ?: context.getString(R.string.no_location)
+                    txtFollower.text = userEntity.followers.toString()
+                    txtFollowing.text = userEntity.following.toString()
+                    txtRepository.text = userEntity.publicRepos.toString()
+                    txtCompany.text = userEntity.company ?: context.getString(R.string.no_company)
+                    binding.ivUser.load(userEntity.avatarUrl)
                 }
                 itemView.setOnClickListener {
                     context.startActivity(
@@ -37,7 +37,7 @@ class FavoriteUserAdapter(private val mContext: Context) :
                             context,
                             UserDetailActivity::class.java
                         ).apply {
-                            putExtra(UserDetailActivity.USERNAME_KEY, user.username)
+                            putExtra(UserDetailActivity.USERNAME_KEY, userEntity.username)
                             flags = Intent.FLAG_ACTIVITY_NEW_TASK
                         })
                 }
@@ -46,7 +46,7 @@ class FavoriteUserAdapter(private val mContext: Context) :
         }
     }
 
-    fun setItems(items: MutableList<UserFavorite>) {
+    fun setItems(items: MutableList<UserFavoriteEntity>) {
         this.items = items
         notifyDataSetChanged()
     }

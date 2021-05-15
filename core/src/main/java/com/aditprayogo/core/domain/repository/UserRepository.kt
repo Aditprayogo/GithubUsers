@@ -1,6 +1,6 @@
-package com.aditprayogo.core.data.local.repository
+package com.aditprayogo.core.domain.repository
 
-import com.aditprayogo.core.data.local.db.entity.UserFavorite
+import com.aditprayogo.core.data.local.db.entity.UserFavoriteEntity
 import com.aditprayogo.core.data.local.responses.SearchUserResponse
 import com.aditprayogo.core.data.local.responses.UserDetailResponse
 import com.aditprayogo.core.data.local.responses.UserFollowersResponse
@@ -23,13 +23,13 @@ interface UserRepository {
     /**
      * Local
      */
-    suspend fun fetchAllUserFavorite() : List<UserFavorite>
+    suspend fun fetchAllUserFavorite() : List<UserFavoriteEntity>
 
-    suspend fun getFavoriteUserByUsername(username: String) : List<UserFavorite>
+    suspend fun getFavoriteUserByUsername(username: String) : List<UserFavoriteEntity>
 
-    suspend fun addUserToFavDB(userFavorite: UserFavorite)
+    suspend fun addUserToFavDB(userFavoriteEntity: UserFavoriteEntity)
 
-    suspend fun deleteUserFromFavDB(userFavorite: UserFavorite)
+    suspend fun deleteUserFromFavDB(userFavoriteEntity: UserFavoriteEntity)
 
 
 

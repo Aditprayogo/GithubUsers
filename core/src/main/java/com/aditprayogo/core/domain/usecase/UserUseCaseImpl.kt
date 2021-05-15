@@ -1,22 +1,22 @@
-package com.aditprayogo.core.domain
+package com.aditprayogo.core.domain.usecase
 
 import com.aditprayogo.core.utils.state.ResultState
 import com.aditPrayogo.githubusers.utils.util.safeApiCall
-import com.aditprayogo.core.data.local.db.entity.UserFavorite
+import com.aditprayogo.core.data.local.db.entity.UserFavoriteEntity
 import com.aditprayogo.core.data.local.responses.SearchUserResponse
 import com.aditprayogo.core.data.local.responses.UserDetailResponse
 import com.aditprayogo.core.data.local.responses.UserFollowersResponse
 import com.aditprayogo.core.data.local.responses.UserFollowingResponse
-import com.aditprayogo.core.data.local.repository.UserRepository
+import com.aditprayogo.core.domain.repository.UserRepository
 import javax.inject.Inject
 
-class UserUseCase @Inject constructor(
+class UserUseCaseImpl @Inject constructor(
     private val userRepository: UserRepository
-) {
+) : UserUseCase{
     /**
      * Remote
      */
-    suspend fun getUserFromApi(username: String) : ResultState<SearchUserResponse> {
+    override suspend fun getUserFromApi(username: String) : ResultState<SearchUserResponse> {
         return safeApiCall {
             val response = userRepository.getUserFromApi(username)
             try {
@@ -27,7 +27,7 @@ class UserUseCase @Inject constructor(
         }
     }
 
-    suspend fun getUserDetailFromApi(username: String) : ResultState<UserDetailResponse> {
+    override suspend fun getUserDetailFromApi(username: String) : ResultState<UserDetailResponse> {
         return safeApiCall {
             val response = userRepository.getDetailUserFromApi(username)
             try {
@@ -38,7 +38,7 @@ class UserUseCase @Inject constructor(
         }
     }
 
-    suspend fun getUserFollowers(username: String) : ResultState<UserFollowersResponse> {
+    override suspend fun getUserFollowers(username: String) : ResultState<UserFollowersResponse> {
         return safeApiCall {
             val response = userRepository.getUserFollowers(username)
             try {
@@ -49,7 +49,7 @@ class UserUseCase @Inject constructor(
         }
     }
 
-    suspend fun getUserFollowing(username: String) : ResultState<UserFollowingResponse> {
+    override suspend fun getUserFollowing(username: String) : ResultState<UserFollowingResponse> {
         return safeApiCall {
             val response = userRepository.getUserFollowing(username)
             try {
@@ -63,7 +63,7 @@ class UserUseCase @Inject constructor(
     /**
      * Local
      */
-    suspend fun fetchAllUserFavorite() : ResultState<List<UserFavorite>> {
+    override suspend fun fetchAllUserFavorite() : ResultState<List<UserFavoriteEntity>> {
         return try {
             val result = userRepository.fetchAllUserFavorite()
             ResultState.Success(result)
@@ -72,23 +72,23 @@ class UserUseCase @Inject constructor(
         }
     }
 
-    suspend fun deleteUserFromDb(userFavorite: UserFavorite) {
+    override suspend fun deleteUserFromDb(userFavoriteEntity: UserFavoriteEntity) {
         try {
-            userRepository.deleteUserFromFavDB(userFavorite)
+            userRepository.deleteUserFromFavDB(userFavoriteEntity)
         }catch (e: Exception) {
             throw Exception(e)
         }
     }
 
-    suspend fun addUserToFavDB(userFavorite: UserFavorite) {
+    override suspend fun addUserToFavDB(userFavoriteEntity: UserFavoriteEntity) {
         try {
-            userRepository.addUserToFavDB(userFavorite)
+            userRepository.addUserToFavDB(userFavoriteEntity)
         }catch (e: Exception) {
             throw Exception(e)
         }
     }
 
-    suspend fun getFavUserByUsername(username: String) : ResultState<List<UserFavorite>> {
+    override suspend fun getFavUserByUsername(username: String) : ResultState<List<UserFavoriteEntity>> {
         return try {
             val result = userRepository.getFavoriteUserByUsername(username)
             ResultState.Success(result)

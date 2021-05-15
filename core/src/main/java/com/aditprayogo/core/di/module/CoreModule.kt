@@ -4,8 +4,6 @@ import android.app.Application
 import androidx.room.Room
 import com.aditprayogo.core.data.local.db.AppDatabase
 import com.aditprayogo.core.data.local.db.dao.UserFavoriteDao
-import com.aditprayogo.core.data.local.repository.UserRepository
-import com.aditprayogo.core.data.local.repository.UserRepositoryImpl
 import com.aditprayogo.core.data.remote.Network
 import com.aditprayogo.core.data.remote.NetworkService
 import dagger.Module
@@ -16,24 +14,12 @@ import javax.inject.Singleton
 
 @Module
 @InstallIn(SingletonComponent::class)
-object AppModule {
+object CoreModule {
 
     @Provides
     @Singleton
     fun provideNetworkService() : NetworkService {
         return Network.retrofitClient().create(NetworkService::class.java)
-    }
-
-    @Provides
-    @Singleton
-    fun provideUserRepository(
-        service: NetworkService,
-        userFavoriteDao: UserFavoriteDao
-    ) : UserRepository {
-        return UserRepositoryImpl(
-            service,
-            userFavoriteDao
-        )
     }
 
     private val mDatabaseName = "user_favorite_database"
@@ -53,5 +39,17 @@ object AppModule {
     fun provideUserFavoriteDao(appDatabase: AppDatabase) : UserFavoriteDao {
         return appDatabase.userFavDao()
     }
+
+//    @Provides
+//    @Singleton
+//    fun provideUserRepository(
+//        service: NetworkService,
+//        userFavoriteDao: UserFavoriteDao
+//    ) : UserRepository {
+//        return UserRepositoryImpl(
+//            service,
+//            userFavoriteDao
+//        )
+//    }
 
 }

@@ -1,12 +1,13 @@
-package com.aditprayogo.core.data.local.repository
+package com.aditprayogo.core.data
 
 import com.aditprayogo.core.data.local.db.dao.UserFavoriteDao
-import com.aditprayogo.core.data.local.db.entity.UserFavorite
+import com.aditprayogo.core.data.local.db.entity.UserFavoriteEntity
 import com.aditprayogo.core.data.local.responses.SearchUserResponse
 import com.aditprayogo.core.data.local.responses.UserDetailResponse
 import com.aditprayogo.core.data.local.responses.UserFollowersResponse
 import com.aditprayogo.core.data.local.responses.UserFollowingResponse
 import com.aditprayogo.core.data.remote.NetworkService
+import com.aditprayogo.core.domain.repository.UserRepository
 import retrofit2.Response
 import javax.inject.Inject
 
@@ -37,20 +38,20 @@ class UserRepositoryImpl @Inject constructor(
     /**
      * Local
      */
-    override suspend fun fetchAllUserFavorite(): List<UserFavorite> {
+    override suspend fun fetchAllUserFavorite(): List<UserFavoriteEntity> {
         return userFavoriteDao.fetchAllUsers()
     }
 
-    override suspend fun getFavoriteUserByUsername(username: String): List<UserFavorite> {
+    override suspend fun getFavoriteUserByUsername(username: String): List<UserFavoriteEntity> {
         return userFavoriteDao.getFavByUsername(username)
     }
 
-    override suspend fun addUserToFavDB(userFavorite: UserFavorite) {
-        return userFavoriteDao.addUserToFavoriteDB(userFavorite)
+    override suspend fun addUserToFavDB(userFavoriteEntity: UserFavoriteEntity) {
+        return userFavoriteDao.addUserToFavoriteDB(userFavoriteEntity)
     }
 
-    override suspend fun deleteUserFromFavDB(userFavorite: UserFavorite) {
-        return userFavoriteDao.deleteUserFromFavoriteDB(userFavorite)
+    override suspend fun deleteUserFromFavDB(userFavoriteEntity: UserFavoriteEntity) {
+        return userFavoriteDao.deleteUserFromFavoriteDB(userFavoriteEntity)
     }
 
 }

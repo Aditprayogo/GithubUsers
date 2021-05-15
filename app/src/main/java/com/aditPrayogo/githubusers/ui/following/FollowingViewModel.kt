@@ -7,14 +7,14 @@ import androidx.lifecycle.viewModelScope
 import com.aditprayogo.core.utils.state.LoaderState
 import com.aditprayogo.core.utils.state.ResultState
 import com.aditprayogo.core.data.local.responses.UserFollowingResponseItem
-import com.aditprayogo.core.domain.UserUseCase
+import com.aditprayogo.core.domain.usecase.UserUseCaseImpl
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
 class FollowingViewModel @Inject constructor(
-    private val userUseCase: UserUseCase
+    private val userUseCaseImpl: UserUseCaseImpl
 ) : ViewModel() {
 
     private val _state = MutableLiveData<LoaderState>()
@@ -28,7 +28,7 @@ class FollowingViewModel @Inject constructor(
     fun getUserFollowing(username: String) {
         _state.value = LoaderState.ShowLoading
         viewModelScope.launch {
-            val result = userUseCase.getUserFollowing(username)
+            val result = userUseCaseImpl.getUserFollowing(username)
             _state.value = LoaderState.HideLoading
             if (result is ResultState.Success) _resultUserFollowing.postValue(result.data)
         }

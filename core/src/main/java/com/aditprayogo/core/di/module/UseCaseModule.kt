@@ -1,20 +1,18 @@
 package com.aditprayogo.core.di.module
 
-import com.aditprayogo.core.data.local.repository.UserRepository
-import com.aditprayogo.core.domain.UserUseCase
+import com.aditprayogo.core.domain.usecase.UserUseCase
+import com.aditprayogo.core.domain.usecase.UserUseCaseImpl
+import dagger.Binds
 import dagger.Module
-import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.android.components.ViewModelComponent
 import dagger.hilt.android.scopes.ViewModelScoped
 
 @InstallIn(ViewModelComponent::class)
 @Module
-object UseCaseModule {
+abstract class UseCaseModule {
 
-    @Provides
+    @Binds
     @ViewModelScoped
-    fun provideUserUseCaseModule(userRepository: UserRepository) : UserUseCase {
-        return UserUseCase(userRepository)
-    }
+    abstract fun provideUserUseCaseModule(userUseCaseImpl: UserUseCaseImpl) : UserUseCase
 }

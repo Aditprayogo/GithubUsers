@@ -7,14 +7,14 @@ import androidx.lifecycle.viewModelScope
 import com.aditprayogo.core.utils.state.LoaderState
 import com.aditprayogo.core.utils.state.ResultState
 import com.aditprayogo.core.data.local.responses.UserSearchResponseItem
-import com.aditprayogo.core.domain.UserUseCase
+import com.aditprayogo.core.domain.usecase.UserUseCaseImpl
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
 class MainViewModel @Inject constructor(
-    private val userUseCase: com.aditprayogo.core.domain.UserUseCase
+    private val userUseCaseImpl: UserUseCaseImpl
 ) : ViewModel() {
 
 
@@ -47,7 +47,7 @@ class MainViewModel @Inject constructor(
     fun getUserFromApi(query: String) {
         _state.value = LoaderState.ShowLoading
         viewModelScope.launch {
-            val result = userUseCase.getUserFromApi(query)
+            val result = userUseCaseImpl.getUserFromApi(query)
             _state.value = LoaderState.HideLoading
             when(result) {
                 is ResultState.Success -> {

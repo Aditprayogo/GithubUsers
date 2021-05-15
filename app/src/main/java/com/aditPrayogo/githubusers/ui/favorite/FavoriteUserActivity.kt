@@ -8,7 +8,7 @@ import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.aditPrayogo.githubusers.R
-import com.aditprayogo.core.data.local.db.entity.UserFavorite
+import com.aditprayogo.core.data.local.db.entity.UserFavoriteEntity
 import com.aditPrayogo.githubusers.databinding.ActivityFavoriteUserBinding
 import com.aditPrayogo.githubusers.ui.settings.SettingsActivity
 import com.aditPrayogo.githubusers.utils.util.setGone
@@ -25,7 +25,7 @@ class FavoriteUserActivity : AppCompatActivity() {
 
     private val favoriteUserViewModel: FavoriteUserViewModel by viewModels()
 
-    private val listUser = mutableListOf<UserFavorite>()
+    private val listUser = mutableListOf<UserFavoriteEntity>()
 
     private val favoriteUserAdapter: FavoriteUserAdapter by lazy {
         FavoriteUserAdapter(this)
@@ -74,7 +74,7 @@ class FavoriteUserActivity : AppCompatActivity() {
     }
 
     private fun initObserver() {
-        favoriteUserViewModel.resultUserFromDb.observe(this, {
+        favoriteUserViewModel.resultUserFromDbEntity.observe(this, {
             handleUserFromDb(it)
         })
     }
@@ -84,15 +84,15 @@ class FavoriteUserActivity : AppCompatActivity() {
         favoriteUserViewModel.fetchAllUserFavorite()
     }
 
-    private fun handleUserFromDb(user: List<UserFavorite>) {
-        handleEmptyUser(user)
+    private fun handleUserFromDb(userEntity: List<UserFavoriteEntity>) {
+        handleEmptyUser(userEntity)
         listUser.clear()
-        listUser.addAll(user)
+        listUser.addAll(userEntity)
         favoriteUserAdapter.setItems(listUser)
     }
 
-    private fun handleEmptyUser(user: List<UserFavorite>) {
-        if (user.isEmpty()) {
+    private fun handleEmptyUser(userEntity: List<UserFavoriteEntity>) {
+        if (userEntity.isEmpty()) {
             binding.rcUser.setGone()
             binding.baseEmpty.root.setVisible()
         } else {
