@@ -1,7 +1,10 @@
 package com.aditprayogo.core.data
 
 import com.aditprayogo.core.data.local.db.dao.UserFavoriteDao
-import com.aditprayogo.core.data.local.responses.*
+import com.aditprayogo.core.data.local.responses.UserDetailResponse
+import com.aditprayogo.core.data.local.responses.UserFollowersResponseItem
+import com.aditprayogo.core.data.local.responses.UserFollowingResponseItem
+import com.aditprayogo.core.data.local.responses.UserSearchResponseItem
 import com.aditprayogo.core.data.remote.NetworkService
 import com.aditprayogo.core.domain.model.UserFavorite
 import com.aditprayogo.core.domain.repository.UserRepository
@@ -12,7 +15,6 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.flowOn
 import kotlinx.coroutines.flow.map
-import retrofit2.Response
 import javax.inject.Inject
 
 class UserRepositoryImpl @Inject constructor(

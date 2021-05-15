@@ -1,6 +1,7 @@
 package com.aditprayogo.core.utils
 
 import com.aditprayogo.core.data.local.db.entity.UserFavoriteEntity
+import com.aditprayogo.core.data.local.responses.UserDetailResponse
 import com.aditprayogo.core.domain.model.UserFavorite
 
 /**
@@ -37,6 +38,21 @@ object DataMapper {
             followers = data.followers,
             following = data.following,
             location = data.location
+        )
+
+    fun mapResponseToDomain(it : UserDetailResponse) : UserFavorite =
+        UserFavorite(
+            username = it.login.toString(),
+            name = it.name,
+            avatarUrl = it.avatarUrl,
+            followersUrl = it.followersUrl,
+            bio = it.bio,
+            company = it.company,
+            publicRepos = it.publicRepos,
+            followingUrl = it.followingUrl,
+            followers = it.followers,
+            following = it.following,
+            location = it.location
         )
 
 
