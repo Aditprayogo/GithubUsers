@@ -8,10 +8,10 @@ import android.view.MenuItem
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import com.aditPrayogo.githubusers.R
-import com.aditPrayogo.githubusers.utils.state.LoaderState
+import com.aditprayogo.core.utils.state.LoaderState
 import com.aditPrayogo.githubusers.utils.util.toast
-import com.aditPrayogo.githubusers.data.local.db.entity.UserFavorite
-import com.aditPrayogo.githubusers.data.local.responses.UserDetailResponse
+import com.aditprayogo.core.data.local.db.entity.UserFavorite
+import com.aditprayogo.core.data.local.responses.UserDetailResponse
 import com.aditPrayogo.githubusers.databinding.ActivityUserDetailBinding
 import com.aditPrayogo.githubusers.ui.favorite.FavoriteUserActivity
 import com.aditPrayogo.githubusers.ui.pager.ViewPagerAdapter

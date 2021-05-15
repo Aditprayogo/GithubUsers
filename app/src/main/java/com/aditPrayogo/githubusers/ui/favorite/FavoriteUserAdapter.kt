@@ -7,7 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.aditPrayogo.githubusers.R
-import com.aditPrayogo.githubusers.data.local.db.entity.UserFavorite
+import com.aditprayogo.core.data.local.db.entity.UserFavorite
 import com.aditPrayogo.githubusers.databinding.ItemRowFavoriteUserBinding
 import com.aditPrayogo.githubusers.ui.detail.UserDetailActivity
 import com.aditPrayogo.githubusers.utils.util.load

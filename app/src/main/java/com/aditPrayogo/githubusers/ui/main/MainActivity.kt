@@ -12,8 +12,8 @@ import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.aditPrayogo.githubusers.R
-import com.aditPrayogo.githubusers.utils.state.LoaderState
-import com.aditPrayogo.githubusers.data.local.responses.UserSearchResponseItem
+import com.aditprayogo.core.utils.state.LoaderState
+import com.aditprayogo.core.data.local.responses.UserSearchResponseItem
 import com.aditPrayogo.githubusers.databinding.ActivityMainBinding
 import com.aditPrayogo.githubusers.ui.favorite.FavoriteUserActivity
 import com.aditPrayogo.githubusers.ui.settings.SettingsActivity

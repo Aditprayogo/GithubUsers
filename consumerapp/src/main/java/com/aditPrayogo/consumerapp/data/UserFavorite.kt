@@ -1,10 +1,6 @@
 package com.aditPrayogo.consumerapp.data
 
-import android.os.Parcelable
-import kotlinx.android.parcel.Parcelize
-
-@Parcelize
-class UserFavorite(
+data class UserFavorite(
     val username: String?,
     val avatar_url: String?,
     val company: String?,
@@ -12,4 +8,4 @@ class UserFavorite(
     val followers: String?,
     val following: String?,
     val location: String?
-) : Parcelable
+)

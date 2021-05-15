@@ -8,7 +8,7 @@ import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.aditPrayogo.githubusers.R
-import com.aditPrayogo.githubusers.data.local.db.entity.UserFavorite
+import com.aditprayogo.core.data.local.db.entity.UserFavorite
 import com.aditPrayogo.githubusers.databinding.ActivityFavoriteUserBinding
 import com.aditPrayogo.githubusers.ui.settings.SettingsActivity
 import com.aditPrayogo.githubusers.utils.util.setGone

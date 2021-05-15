@@ -4,25 +4,25 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.aditPrayogo.githubusers.utils.state.LoaderState
-import com.aditPrayogo.githubusers.utils.state.ResultState
-import com.aditPrayogo.githubusers.data.local.responses.UserSearchResponseItem
-import com.aditPrayogo.githubusers.domain.UserUseCase
+import com.aditprayogo.core.utils.state.LoaderState
+import com.aditprayogo.core.utils.state.ResultState
+import com.aditprayogo.core.data.local.responses.UserSearchResponseItem
+import com.aditprayogo.core.domain.UserUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
 class MainViewModel @Inject constructor(
-    private val userUseCase: UserUseCase
+    private val userUseCase: com.aditprayogo.core.domain.UserUseCase
 ) : ViewModel() {
 
 
     /**
      * Loading state
      */
-    private val _state = MutableLiveData<LoaderState>()
-    val state : LiveData<LoaderState>
+    private val _state = MutableLiveData<com.aditprayogo.core.utils.state.LoaderState>()
+    val state : LiveData<com.aditprayogo.core.utils.state.LoaderState>
         get() = _state
 
     /**

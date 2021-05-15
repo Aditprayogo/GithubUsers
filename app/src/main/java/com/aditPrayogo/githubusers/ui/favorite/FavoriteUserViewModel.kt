@@ -4,9 +4,9 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.aditPrayogo.githubusers.utils.state.ResultState
-import com.aditPrayogo.githubusers.data.local.db.entity.UserFavorite
-import com.aditPrayogo.githubusers.domain.UserUseCase
+import com.aditprayogo.core.utils.state.ResultState
+import com.aditprayogo.core.data.local.db.entity.UserFavorite
+import com.aditprayogo.core.domain.UserUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
