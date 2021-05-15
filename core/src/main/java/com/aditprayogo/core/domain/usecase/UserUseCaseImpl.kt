@@ -7,7 +7,9 @@ import com.aditprayogo.core.data.local.responses.SearchUserResponse
 import com.aditprayogo.core.data.local.responses.UserDetailResponse
 import com.aditprayogo.core.data.local.responses.UserFollowersResponse
 import com.aditprayogo.core.data.local.responses.UserFollowingResponse
+import com.aditprayogo.core.domain.model.UserFavorite
 import com.aditprayogo.core.domain.repository.UserRepository
+import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
 
 class UserUseCaseImpl @Inject constructor(
@@ -63,37 +65,25 @@ class UserUseCaseImpl @Inject constructor(
     /**
      * Local
      */
-    override suspend fun fetchAllUserFavorite() : ResultState<List<UserFavoriteEntity>> {
-        return try {
-            val result = userRepository.fetchAllUserFavorite()
-            ResultState.Success(result)
-        }catch (e: Exception) {
-            ResultState.Error(e.localizedMessage, 500)
-        }
-    }
+    override fun fetchAllUserFavorite() = userRepository.fetchAllUserFavorite()
 
-    override suspend fun deleteUserFromDb(userFavoriteEntity: UserFavoriteEntity) {
+    override fun getFavUserByUsername(username: String) = userRepository.getFavoriteUserByUsername(username)
+
+    override suspend fun deleteUserFromDb(userFavorite: UserFavorite) {
         try {
-            userRepository.deleteUserFromFavDB(userFavoriteEntity)
+            userRepository.deleteUserFromFavDB(userFavorite)
         }catch (e: Exception) {
             throw Exception(e)
         }
     }
 
-    override suspend fun addUserToFavDB(userFavoriteEntity: UserFavoriteEntity) {
+    override suspend fun addUserToFavDB(userFavorite: UserFavorite) {
         try {
-            userRepository.addUserToFavDB(userFavoriteEntity)
+            userRepository.addUserToFavDB(userFavorite)
         }catch (e: Exception) {
             throw Exception(e)
         }
     }
 
-    override suspend fun getFavUserByUsername(username: String) : ResultState<List<UserFavoriteEntity>> {
-        return try {
-            val result = userRepository.getFavoriteUserByUsername(username)
-            ResultState.Success(result)
-        }catch (e: Exception) {
-            ResultState.Error(e.localizedMessage, 500)
-        }
-    }
+
 }

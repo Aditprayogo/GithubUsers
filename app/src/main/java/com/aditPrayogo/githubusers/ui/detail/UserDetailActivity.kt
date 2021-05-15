@@ -19,6 +19,7 @@ import com.aditPrayogo.githubusers.ui.settings.SettingsActivity
 import com.aditPrayogo.githubusers.utils.util.load
 import com.aditPrayogo.githubusers.utils.util.setGone
 import com.aditPrayogo.githubusers.utils.util.setVisible
+import com.aditprayogo.core.domain.model.UserFavorite
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.activity_user_detail.*
 
@@ -33,7 +34,7 @@ class UserDetailActivity : AppCompatActivity() {
 
     private var userDetail: UserDetailResponse? = null
 
-    private var userFavoriteEntityEntity: UserFavoriteEntity? = null
+    private var userFavorite: UserFavorite? = null
 
     private var favoriteActive = false
 
@@ -113,9 +114,11 @@ class UserDetailActivity : AppCompatActivity() {
             resultUserDetail.observe(this@UserDetailActivity, {
                 handleResultUserDetail(it)
             })
-            resultUserDetailFromDbEntity.observe(this@UserDetailActivity, {
-                handleUserDetailFromDb(it)
-            })
+            username?.let {
+                getFavUserByUsername(it).observe(this@UserDetailActivity, {
+                    handleUserDetailFromDb(it)
+                })
+            }
             resultInsertUserDb.observe(this@UserDetailActivity, { it ->
                 if (it) {
                     username?.let {
@@ -138,12 +141,12 @@ class UserDetailActivity : AppCompatActivity() {
 
     private fun setFavoriteUser() {
         if (favoriteActive) {
-            userFavoriteEntityEntity?.let {
+            userFavorite?.let {
                 userDetailViewModel.deleteUserFromDb(it)
             }
         } else {
             val userFavorite = userDetail?.login?.let {
-                UserFavoriteEntity(
+                UserFavorite(
                     username = it,
                     name = userDetail?.name,
                     avatarUrl = userDetail?.avatarUrl,
@@ -161,13 +164,13 @@ class UserDetailActivity : AppCompatActivity() {
         }
     }
 
-    private fun handleUserDetailFromDb(userFavoriteEntity: List<UserFavoriteEntity>) {
-        if (userFavoriteEntity.isEmpty()) {
+    private fun handleUserDetailFromDb(userFavorite: List<UserFavorite>) {
+        if (userFavorite.isEmpty()) {
             favoriteActive = false
             val icon = R.drawable.ic_baseline_favorite_border_24
             binding.favButton.setImageResource(icon)
         } else {
-            this.userFavoriteEntityEntity = userFavoriteEntity.first()
+            this.userFavorite = userFavorite.first()
             favoriteActive = true
             val icon = R.drawable.ic_baseline_favorite_24
             binding.favButton.setImageResource(icon)

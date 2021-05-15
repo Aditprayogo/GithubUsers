@@ -5,6 +5,8 @@ import com.aditprayogo.core.data.local.responses.SearchUserResponse
 import com.aditprayogo.core.data.local.responses.UserDetailResponse
 import com.aditprayogo.core.data.local.responses.UserFollowersResponse
 import com.aditprayogo.core.data.local.responses.UserFollowingResponse
+import com.aditprayogo.core.domain.model.UserFavorite
+import kotlinx.coroutines.flow.Flow
 import retrofit2.Response
 
 interface UserRepository {
@@ -23,13 +25,13 @@ interface UserRepository {
     /**
      * Local
      */
-    suspend fun fetchAllUserFavorite() : List<UserFavoriteEntity>
+    fun fetchAllUserFavorite() : Flow<List<UserFavorite>>
 
-    suspend fun getFavoriteUserByUsername(username: String) : List<UserFavoriteEntity>
+    fun getFavoriteUserByUsername(username: String) : Flow<List<UserFavorite>>
 
-    suspend fun addUserToFavDB(userFavoriteEntity: UserFavoriteEntity)
+    suspend fun addUserToFavDB(userFavoriteEntity: UserFavorite)
 
-    suspend fun deleteUserFromFavDB(userFavoriteEntity: UserFavoriteEntity)
+    suspend fun deleteUserFromFavDB(userFavoriteEntity: UserFavorite)
 
 
 

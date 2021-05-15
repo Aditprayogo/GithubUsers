@@ -3,15 +3,16 @@ package com.aditprayogo.core.data.local.db.dao
 import android.database.Cursor
 import androidx.room.*
 import com.aditprayogo.core.data.local.db.entity.UserFavoriteEntity
+import kotlinx.coroutines.flow.Flow
 
 @Dao
 interface UserFavoriteDao {
 
     @Query("SELECT * FROM user_favorite_table")
-    suspend fun fetchAllUsers() : List<UserFavoriteEntity>
+    fun fetchAllUsers() : Flow<List<UserFavoriteEntity>>
 
     @Query("SELECT * FROM user_favorite_table WHERE username = :userName")
-    suspend fun getFavByUsername(userName: String) : List<UserFavoriteEntity>
+    fun getFavByUsername(userName: String) : Flow<List<UserFavoriteEntity>>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun addUserToFavoriteDB(userEntity: UserFavoriteEntity)

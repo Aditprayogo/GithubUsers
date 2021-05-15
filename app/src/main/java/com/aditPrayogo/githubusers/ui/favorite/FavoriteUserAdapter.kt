@@ -11,16 +11,17 @@ import com.aditprayogo.core.data.local.db.entity.UserFavoriteEntity
 import com.aditPrayogo.githubusers.databinding.ItemRowFavoriteUserBinding
 import com.aditPrayogo.githubusers.ui.detail.UserDetailActivity
 import com.aditPrayogo.githubusers.utils.util.load
+import com.aditprayogo.core.domain.model.UserFavorite
 
 class FavoriteUserAdapter(private val mContext: Context) :
     RecyclerView.Adapter<FavoriteUserAdapter.ViewHolder>() {
 
-    private var items: MutableList<UserFavoriteEntity> = mutableListOf()
+    private var items: MutableList<UserFavorite> = mutableListOf()
 
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         private val binding: ItemRowFavoriteUserBinding = ItemRowFavoriteUserBinding.bind(itemView)
 
-        fun bind(userEntity: UserFavoriteEntity) {
+        fun bind(userEntity: UserFavorite) {
             with(itemView) {
                 binding.apply {
                     txtUsername.text = userEntity.username
@@ -46,7 +47,7 @@ class FavoriteUserAdapter(private val mContext: Context) :
         }
     }
 
-    fun setItems(items: MutableList<UserFavoriteEntity>) {
+    fun setItems(items: MutableList<UserFavorite>) {
         this.items = items
         notifyDataSetChanged()
     }

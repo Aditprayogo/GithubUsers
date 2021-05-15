@@ -7,7 +7,11 @@ import com.aditprayogo.core.data.local.responses.UserDetailResponse
 import com.aditprayogo.core.data.local.responses.UserFollowersResponse
 import com.aditprayogo.core.data.local.responses.UserFollowingResponse
 import com.aditprayogo.core.data.remote.NetworkService
+import com.aditprayogo.core.domain.model.UserFavorite
 import com.aditprayogo.core.domain.repository.UserRepository
+import com.aditprayogo.core.utils.DataMapper
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.map
 import retrofit2.Response
 import javax.inject.Inject
 
@@ -38,20 +42,26 @@ class UserRepositoryImpl @Inject constructor(
     /**
      * Local
      */
-    override suspend fun fetchAllUserFavorite(): List<UserFavoriteEntity> {
-        return userFavoriteDao.fetchAllUsers()
+    override fun fetchAllUserFavorite(): Flow<List<UserFavorite>> {
+        return userFavoriteDao.fetchAllUsers().map {
+            DataMapper.mapEntitiesToDomain(it)
+        }
     }
 
-    override suspend fun getFavoriteUserByUsername(username: String): List<UserFavoriteEntity> {
-        return userFavoriteDao.getFavByUsername(username)
+    override fun getFavoriteUserByUsername(username: String): Flow<List<UserFavorite>> {
+        return userFavoriteDao.getFavByUsername(username).map {
+            DataMapper.mapEntitiesToDomain(it)
+        }
     }
 
-    override suspend fun addUserToFavDB(userFavoriteEntity: UserFavoriteEntity) {
-        return userFavoriteDao.addUserToFavoriteDB(userFavoriteEntity)
+    override suspend fun addUserToFavDB(userFavorite: UserFavorite) {
+        val data = DataMapper.mapDomainToEntity(userFavorite)
+        return userFavoriteDao.addUserToFavoriteDB(data)
     }
 
-    override suspend fun deleteUserFromFavDB(userFavoriteEntity: UserFavoriteEntity) {
-        return userFavoriteDao.deleteUserFromFavoriteDB(userFavoriteEntity)
+    override suspend fun deleteUserFromFavDB(userFavorite: UserFavorite) {
+        val data = DataMapper.mapDomainToEntity(userFavorite)
+        return userFavoriteDao.deleteUserFromFavoriteDB(data)
     }
 
 }

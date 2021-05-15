@@ -13,6 +13,7 @@ import com.aditPrayogo.githubusers.databinding.ActivityFavoriteUserBinding
 import com.aditPrayogo.githubusers.ui.settings.SettingsActivity
 import com.aditPrayogo.githubusers.utils.util.setGone
 import com.aditPrayogo.githubusers.utils.util.setVisible
+import com.aditprayogo.core.domain.model.UserFavorite
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.activity_favorite_user.*
 
@@ -25,7 +26,7 @@ class FavoriteUserActivity : AppCompatActivity() {
 
     private val favoriteUserViewModel: FavoriteUserViewModel by viewModels()
 
-    private val listUser = mutableListOf<UserFavoriteEntity>()
+    private val listUser = mutableListOf<UserFavorite>()
 
     private val favoriteUserAdapter: FavoriteUserAdapter by lazy {
         FavoriteUserAdapter(this)
@@ -74,7 +75,7 @@ class FavoriteUserActivity : AppCompatActivity() {
     }
 
     private fun initObserver() {
-        favoriteUserViewModel.resultUserFromDbEntity.observe(this, {
+        favoriteUserViewModel.fetchAllUserFavorite().observe(this, {
             handleUserFromDb(it)
         })
     }
@@ -84,14 +85,14 @@ class FavoriteUserActivity : AppCompatActivity() {
         favoriteUserViewModel.fetchAllUserFavorite()
     }
 
-    private fun handleUserFromDb(userEntity: List<UserFavoriteEntity>) {
+    private fun handleUserFromDb(userEntity: List<UserFavorite>) {
         handleEmptyUser(userEntity)
         listUser.clear()
         listUser.addAll(userEntity)
         favoriteUserAdapter.setItems(listUser)
     }
 
-    private fun handleEmptyUser(userEntity: List<UserFavoriteEntity>) {
+    private fun handleEmptyUser(userEntity: List<UserFavorite>) {
         if (userEntity.isEmpty()) {
             binding.rcUser.setGone()
             binding.baseEmpty.root.setVisible()

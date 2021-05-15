@@ -1,13 +1,11 @@
 package com.aditPrayogo.githubusers.ui.detail
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.viewModelScope
+import androidx.lifecycle.*
 import com.aditprayogo.core.utils.state.LoaderState
 import com.aditprayogo.core.utils.state.ResultState
 import com.aditprayogo.core.data.local.db.entity.UserFavoriteEntity
 import com.aditprayogo.core.data.local.responses.UserDetailResponse
+import com.aditprayogo.core.domain.model.UserFavorite
 import com.aditprayogo.core.domain.usecase.UserUseCaseImpl
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
@@ -43,13 +41,6 @@ class UserDetailViewModel @Inject constructor(
         get() = _resultUserDetail
 
     /**
-     * User Detail from DB
-     */
-    private val _resultUserDetailFromDb = MutableLiveData<List<UserFavoriteEntity>>()
-    val resultUserDetailFromDbEntity : LiveData<List<UserFavoriteEntity>>
-        get() = _resultUserDetailFromDb
-
-    /**
      * Insert to DB
      */
     private val _resultInsertUserToDb = MutableLiveData<Boolean>()
@@ -82,7 +73,7 @@ class UserDetailViewModel @Inject constructor(
     /**
      * Local
      */
-    fun addUserToFavDB(userFavoriteEntity: UserFavoriteEntity) {
+    fun addUserToFavDB(userFavoriteEntity: UserFavorite) {
         viewModelScope.launch {
             try {
                 userUseCaseImpl.addUserToFavDB(userFavoriteEntity)
@@ -93,7 +84,7 @@ class UserDetailViewModel @Inject constructor(
         }
     }
 
-    fun deleteUserFromDb(userFavoriteEntity: UserFavoriteEntity) {
+    fun deleteUserFromDb(userFavoriteEntity: UserFavorite) {
         viewModelScope.launch {
             try {
                 userUseCaseImpl.deleteUserFromDb(userFavoriteEntity)
@@ -104,13 +95,5 @@ class UserDetailViewModel @Inject constructor(
         }
     }
 
-    fun getFavUserByUsername(username: String) {
-        viewModelScope.launch {
-            val result = userUseCaseImpl.getFavUserByUsername(username)
-            when(result) {
-                is ResultState.Success -> _resultUserDetailFromDb.postValue(result.data)
-                is ResultState.Error -> _error.postValue(result.error)
-            }
-        }
-    }
+    fun getFavUserByUsername(username: String) = userUseCaseImpl.getFavUserByUsername(username).asLiveData()
 }

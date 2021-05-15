@@ -21,8 +21,8 @@ class MainViewModel @Inject constructor(
     /**
      * Loading state
      */
-    private val _state = MutableLiveData<com.aditprayogo.core.utils.state.LoaderState>()
-    val state : LiveData<com.aditprayogo.core.utils.state.LoaderState>
+    private val _state = MutableLiveData<LoaderState>()
+    val state : LiveData<LoaderState>
         get() = _state
 
     /**
