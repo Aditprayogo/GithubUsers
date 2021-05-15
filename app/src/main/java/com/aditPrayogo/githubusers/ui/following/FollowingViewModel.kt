@@ -9,6 +9,7 @@ import com.aditprayogo.core.utils.state.ResultState
 import com.aditprayogo.core.data.local.responses.UserFollowingResponseItem
 import com.aditprayogo.core.domain.usecase.UserUseCaseImpl
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -28,9 +29,10 @@ class FollowingViewModel @Inject constructor(
     fun getUserFollowing(username: String) {
         _state.value = LoaderState.ShowLoading
         viewModelScope.launch {
-            val result = userUseCaseImpl.getUserFollowing(username)
-            _state.value = LoaderState.HideLoading
-            if (result is ResultState.Success) _resultUserFollowing.postValue(result.data)
+            userUseCaseImpl.getUserFollowing(username).collect {
+                _state.value = LoaderState.HideLoading
+                if (it is ResultState.Success) _resultUserFollowing.postValue(it.data)
+            }
         }
     }
 

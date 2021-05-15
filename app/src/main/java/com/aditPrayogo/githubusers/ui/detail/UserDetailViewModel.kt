@@ -8,6 +8,7 @@ import com.aditprayogo.core.data.local.responses.UserDetailResponse
 import com.aditprayogo.core.domain.model.UserFavorite
 import com.aditprayogo.core.domain.usecase.UserUseCaseImpl
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -60,13 +61,15 @@ class UserDetailViewModel @Inject constructor(
     fun getUserDetailFromApi(username: String) {
         _state.value = LoaderState.ShowLoading
         viewModelScope.launch {
-            val result = userUseCaseImpl.getUserDetailFromApi(username)
-            _state.value = LoaderState.HideLoading
-            when(result) {
-                is ResultState.Success -> _resultUserDetail.postValue(result.data)
-                is ResultState.Error -> _error.postValue(result.error)
-                is ResultState.NetworkError -> _networkError.postValue(true)
+            userUseCaseImpl.getUserDetailFromApi(username).collect {
+                _state.value = LoaderState.HideLoading
+                when(it) {
+                    is ResultState.Success -> _resultUserDetail.postValue(it.data)
+                    is ResultState.Error -> _error.postValue(it.error)
+                    is ResultState.NetworkError -> _networkError.postValue(true)
+                }
             }
+
         }
     }
 

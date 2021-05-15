@@ -19,7 +19,7 @@ interface NetworkService {
     @GET("search/users?")
     suspend fun getSearchUser(
         @Query("q") q : String
-    ) : Response<SearchUserResponse>
+    ) : SearchUserResponse
 
     /**
      * Endpoints Detail User
@@ -28,7 +28,7 @@ interface NetworkService {
     @Headers("Authorization: token ${BuildConfig.GITHUB_TOKEN}")
     suspend fun getDetailUser(
         @Path("username") username: String
-    ) : Response<UserDetailResponse>
+    ) : UserDetailResponse
 
     /**
      * Endpoints Followers
@@ -36,7 +36,7 @@ interface NetworkService {
     @GET("users/{username}/followers")
     suspend fun getFollowerUser(
         @Path("username") username: String
-    ) : Response<UserFollowersResponse>
+    ) : UserFollowersResponse
 
     /**
      * Endpoints Following
@@ -44,7 +44,7 @@ interface NetworkService {
     @GET("users/{username}/following")
     suspend fun getFollowingUser(
         @Path("username") username: String
-    ) : Response<UserFollowingResponse>
+    ) : UserFollowingResponse
 
 
 }

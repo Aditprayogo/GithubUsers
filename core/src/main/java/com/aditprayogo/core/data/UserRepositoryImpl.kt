@@ -1,16 +1,16 @@
 package com.aditprayogo.core.data
 
 import com.aditprayogo.core.data.local.db.dao.UserFavoriteDao
-import com.aditprayogo.core.data.local.db.entity.UserFavoriteEntity
-import com.aditprayogo.core.data.local.responses.SearchUserResponse
-import com.aditprayogo.core.data.local.responses.UserDetailResponse
-import com.aditprayogo.core.data.local.responses.UserFollowersResponse
-import com.aditprayogo.core.data.local.responses.UserFollowingResponse
+import com.aditprayogo.core.data.local.responses.*
 import com.aditprayogo.core.data.remote.NetworkService
 import com.aditprayogo.core.domain.model.UserFavorite
 import com.aditprayogo.core.domain.repository.UserRepository
 import com.aditprayogo.core.utils.DataMapper
+import com.aditprayogo.core.utils.state.ResultState
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.flow
+import kotlinx.coroutines.flow.flowOn
 import kotlinx.coroutines.flow.map
 import retrofit2.Response
 import javax.inject.Inject
@@ -23,20 +23,49 @@ class UserRepositoryImpl @Inject constructor(
     /**
      * Remote
      */
-    override suspend fun getUserFromApi(username: String): Response<SearchUserResponse> {
-        return networkService.getSearchUser(username)
+    override suspend fun getUserFromApi(username: String): Flow<ResultState<List<UserSearchResponseItem>>> {
+        return flow {
+            try {
+                val response = networkService.getSearchUser(username)
+                val userItems = response.userItems
+                userItems?.let { emit(ResultState.Success(response.userItems)) }
+            } catch (e: Exception) {
+                emit(ResultState.Error(e.toString(), 500))
+            }
+        }.flowOn(Dispatchers.IO)
     }
 
-    override suspend fun getDetailUserFromApi(username: String): Response<UserDetailResponse> {
-        return networkService.getDetailUser(username)
+    override suspend fun getDetailUserFromApi(username: String): Flow<ResultState<UserDetailResponse>> {
+        return flow {
+            try {
+                val response = networkService.getDetailUser(username)
+                emit(ResultState.Success(response))
+            } catch (e: Exception) {
+                emit(ResultState.Error(e.toString(), 500))
+            }
+        }.flowOn(Dispatchers.IO)
     }
 
-    override suspend fun getUserFollowers(username: String): Response<UserFollowersResponse> {
-        return networkService.getFollowerUser(username)
+    override suspend fun getUserFollowers(username: String): Flow<ResultState<List<UserFollowersResponseItem>>> {
+        return flow {
+            try {
+                val response = networkService.getFollowerUser(username)
+                emit(ResultState.Success(response))
+            } catch (e: Exception) {
+                emit(ResultState.Error(e.toString(), 500))
+            }
+        }.flowOn(Dispatchers.IO)
     }
 
-    override suspend fun getUserFollowing(username: String): Response<UserFollowingResponse> {
-        return networkService.getFollowingUser(username)
+    override suspend fun getUserFollowing(username: String): Flow<ResultState<List<UserFollowingResponseItem>>> {
+        return flow {
+            try {
+                val response = networkService.getFollowingUser(username)
+                emit(ResultState.Success(response))
+            } catch (e: Exception) {
+                emit(ResultState.Error(e.toString(), 500))
+            }
+        }.flowOn(Dispatchers.IO)
     }
 
     /**
