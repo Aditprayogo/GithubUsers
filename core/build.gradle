@@ -21,7 +21,7 @@ android {
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles "consumer-rules.pro"
         buildConfigField "String", "BASE_URL", "\"https://api.github.com/\""
-        buildConfigField "String", "GITHUB_TOKEN", "\"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\""
+        buildConfigField "String", "GITHUB_TOKEN", "\"YOUR GITHUB TOKEN\""
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 
