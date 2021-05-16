@@ -54,10 +54,24 @@ Generate your token in here https://github.com/settings/tokens and replace with 
     />
 </p>
 
+## MAD SCORE :
+<p align="center">
+    <img src="assets/summary.png"
+        style="margin-right: 20px;"
+    />
+</p>
+
+<p align="center">
+    <img src="assets/kotlin.png"
+        style="margin-right: 20px;"
+    />
+</p>
+
 
 ## Built With
 - [Kotlin](https://kotlinlang.org/) - First class and official programming language for Android development.
 - [Coroutines](https://kotlinlang.org/docs/reference/coroutines-overview.html) - Is light wight threads for asynchronous programming
+- [Flow](https://developer.android.com/kotlin/flow)
 - [Android Architecture Components](https://developer.android.com/topic/libraries/architecture) - Collection of libraries that help you design robust, testable, and maintainable apps.
    - [LiveData](https://developer.android.com/topic/libraries/architecture/livedata) - Data objects that notify views when the underlying database changes.
    - [ViewModel](https://developer.android.com/topic/libraries/architecture/viewmodel) - Stores UI-related data that isn't destroyed on UI changes.
@@ -74,35 +88,6 @@ Generate your token in here https://github.com/settings/tokens and replace with 
 - [Lottie-Android](https://github.com/airbnb/lottie-android) JSON-based animation file format that enables designers to ship animations on any platform as easily as shipping static assets.
 - [Material Design](https://material.io/develop/android/docs/getting-started) Material is a design system created by Google to help teams build high-quality digital experiences for Android, iOS, Flutter, and the web.
 
-## Project Structure
-```
-    com.example.githubusers         # Root package
-
-    ├── BaseApplication.kt          # Base Application
-    ├── data                        # Contains Data for our Application
-    │   ├── local                   # Local Data source (Database)
-    │   └── remote                  # Remote Data Source (API)
-    ├── di                          # Depedency Injection
-    │   └── module                  # Provide dependencies from the dependency graph
-    ├── domain
-    │   └── UserUseCase.kt          # Application Executors
-    ├── ui                          # Contains presentation layers (Activity, Fragment and ViewModel)
-    │   ├── alarm
-    │   ├── contentprovider
-    │   ├── detail
-    │   ├── favorite
-    │   ├── follower
-    │   ├── following
-    │   ├── main
-    │   ├── pager
-    │   ├── settings
-    │   └── splash
-    └── utils                       # Utility application
-        ├── SafeApiCall.kt
-        ├── state
-        └── viewUtils
-
-```
 
 
 ## How to Support me ?
