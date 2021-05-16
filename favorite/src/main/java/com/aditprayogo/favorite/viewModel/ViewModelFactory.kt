@@ -2,7 +2,6 @@ package com.aditprayogo.favorite.viewModel
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import com.aditprayogo.core.domain.repository.UserRepository
 import com.aditprayogo.core.domain.usecase.UserUseCase
 import com.aditprayogo.favorite.ui.FavoriteUserViewModel
 import javax.inject.Inject
