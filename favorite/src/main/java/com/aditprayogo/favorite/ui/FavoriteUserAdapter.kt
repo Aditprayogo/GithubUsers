@@ -1,4 +1,4 @@
-package com.aditPrayogo.githubusers.ui.favorite
+package com.aditprayogo.favorite.ui
 
 import android.content.Context
 import android.content.Intent
@@ -6,12 +6,11 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.aditPrayogo.githubusers.R
-import com.aditprayogo.core.data.local.db.entity.UserFavoriteEntity
-import com.aditPrayogo.githubusers.databinding.ItemRowFavoriteUserBinding
 import com.aditPrayogo.githubusers.ui.detail.UserDetailActivity
 import com.aditPrayogo.githubusers.utils.util.load
 import com.aditprayogo.core.domain.model.UserFavorite
+import com.aditprayogo.favorite.R
+import com.aditprayogo.favorite.databinding.ItemRowFavoriteUserBinding
 
 class FavoriteUserAdapter(private val mContext: Context) :
     RecyclerView.Adapter<FavoriteUserAdapter.ViewHolder>() {
@@ -25,7 +24,8 @@ class FavoriteUserAdapter(private val mContext: Context) :
             with(itemView) {
                 binding.apply {
                     txtUsername.text = userEntity.username
-                    txtLocation.text = userEntity.location ?: context.getString(R.string.no_location)
+                    txtLocation.text =
+                        userEntity.location ?: context.getString(R.string.no_location)
                     txtFollower.text = userEntity.followers.toString()
                     txtFollowing.text = userEntity.following.toString()
                     txtRepository.text = userEntity.publicRepos.toString()

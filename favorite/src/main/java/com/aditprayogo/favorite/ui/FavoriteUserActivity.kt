@@ -1,4 +1,4 @@
-package com.aditPrayogo.githubusers.ui.favorite
+package com.aditprayogo.favorite.ui
 
 import android.content.Intent
 import android.os.Bundle
@@ -8,23 +8,29 @@ import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.aditPrayogo.githubusers.R
-import com.aditprayogo.core.data.local.db.entity.UserFavoriteEntity
-import com.aditPrayogo.githubusers.databinding.ActivityFavoriteUserBinding
+import com.aditPrayogo.githubusers.di.FavoriteModuleDependencies
 import com.aditPrayogo.githubusers.ui.settings.SettingsActivity
 import com.aditPrayogo.githubusers.utils.util.setGone
 import com.aditPrayogo.githubusers.utils.util.setVisible
 import com.aditprayogo.core.domain.model.UserFavorite
-import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.android.synthetic.main.activity_favorite_user.*
+import com.aditprayogo.favorite.databinding.ActivityFavoriteUserBinding
+import com.aditprayogo.favorite.di.DaggerFavoriteComponent
+import com.aditprayogo.favorite.viewModel.ViewModelFactory
+import dagger.hilt.android.EntryPointAccessors
+import javax.inject.Inject
 
-@AndroidEntryPoint
 class FavoriteUserActivity : AppCompatActivity() {
 
     private val binding: ActivityFavoriteUserBinding by lazy {
         ActivityFavoriteUserBinding.inflate(layoutInflater)
     }
 
-    private val favoriteUserViewModel: FavoriteUserViewModel by viewModels()
+    @Inject
+    lateinit var factory: ViewModelFactory
+
+    private val favoriteUserViewModel: FavoriteUserViewModel by viewModels {
+        factory
+    }
 
     private val listUser = mutableListOf<UserFavorite>()
 
@@ -33,6 +39,17 @@ class FavoriteUserActivity : AppCompatActivity() {
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        DaggerFavoriteComponent.builder()
+            .context(this)
+            .appDependencies(
+                EntryPointAccessors.fromApplication(
+                    applicationContext,
+                    FavoriteModuleDependencies::class.java
+                )
+            )
+            .build()
+            .inject(this)
+
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
         initObserver()
@@ -75,14 +92,14 @@ class FavoriteUserActivity : AppCompatActivity() {
     }
 
     private fun initObserver() {
-        favoriteUserViewModel.fetchAllUserFavorite().observe(this, {
+        favoriteUserViewModel.fetchAllUserFavorite.observe(this, {
             handleUserFromDb(it)
         })
     }
 
     override fun onRestart() {
         super.onRestart()
-        favoriteUserViewModel.fetchAllUserFavorite()
+        favoriteUserViewModel.fetchAllUserFavorite
     }
 
     private fun handleUserFromDb(userEntity: List<UserFavorite>) {
@@ -95,10 +112,10 @@ class FavoriteUserActivity : AppCompatActivity() {
     private fun handleEmptyUser(userEntity: List<UserFavorite>) {
         if (userEntity.isEmpty()) {
             binding.rcUser.setGone()
-            binding.baseEmpty.root.setVisible()
+            binding.baseEmpty.setVisible()
         } else {
             binding.rcUser.setVisible()
-            binding.baseEmpty.root.setGone()
+            binding.baseEmpty.setGone()
         }
     }
 }

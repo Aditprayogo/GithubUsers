@@ -1,7 +1,9 @@
 package com.aditprayogo.core.domain.usecase
 
-import com.aditprayogo.core.data.local.db.entity.UserFavoriteEntity
-import com.aditprayogo.core.data.local.responses.*
+import com.aditprayogo.core.data.local.responses.UserDetailResponse
+import com.aditprayogo.core.data.local.responses.UserFollowersResponseItem
+import com.aditprayogo.core.data.local.responses.UserFollowingResponseItem
+import com.aditprayogo.core.data.local.responses.UserSearchResponseItem
 import com.aditprayogo.core.domain.model.UserFavorite
 import com.aditprayogo.core.utils.state.ResultState
 import kotlinx.coroutines.flow.Flow

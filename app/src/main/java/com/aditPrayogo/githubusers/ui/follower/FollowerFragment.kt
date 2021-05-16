@@ -74,12 +74,12 @@ class FollowerFragment : Fragment() {
     private fun handleEmptyFollower(data: List<UserFollowersResponseItem>) {
         if (data.isEmpty()) {
             binding.apply {
-                baseEmptyFollower.root.setVisible()
+                baseEmptyFollower.setVisible()
                 rcView.setGone()
             }
         } else {
             binding.apply {
-                baseEmptyFollower.root.setGone()
+                baseEmptyFollower.setGone()
                 rcView.setVisible()
             }
         }

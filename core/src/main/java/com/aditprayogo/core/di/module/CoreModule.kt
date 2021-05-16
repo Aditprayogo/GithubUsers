@@ -6,6 +6,7 @@ import com.aditprayogo.core.data.local.db.AppDatabase
 import com.aditprayogo.core.data.local.db.dao.UserFavoriteDao
 import com.aditprayogo.core.data.remote.Network
 import com.aditprayogo.core.data.remote.NetworkService
+import com.aditprayogo.core.utils.const.databaseName
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -22,7 +23,6 @@ object CoreModule {
         return Network.retrofitClient().create(NetworkService::class.java)
     }
 
-    private val mDatabaseName = "user_favorite_database"
 
     @Singleton
     @Provides
@@ -30,7 +30,7 @@ object CoreModule {
         return Room.databaseBuilder(
             app,
             AppDatabase::class.java,
-            mDatabaseName
+            databaseName
         ).build()
     }
 
@@ -39,17 +39,5 @@ object CoreModule {
     fun provideUserFavoriteDao(appDatabase: AppDatabase) : UserFavoriteDao {
         return appDatabase.userFavDao()
     }
-
-//    @Provides
-//    @Singleton
-//    fun provideUserRepository(
-//        service: NetworkService,
-//        userFavoriteDao: UserFavoriteDao
-//    ) : UserRepository {
-//        return UserRepositoryImpl(
-//            service,
-//            userFavoriteDao
-//        )
-//    }
 
 }

@@ -72,12 +72,12 @@ class FollowingFragment : Fragment() {
     private fun handlingEmptyFollowing(data: List<UserFollowingResponseItem>){
         if (data.isEmpty()) {
             binding.apply {
-                baseEmptyFollowing.root.setVisible()
+                baseEmptyFollowing.setVisible()
                 rcView.setGone()
             }
         } else {
             binding.apply {
-                baseEmptyFollowing.root.setGone()
+                baseEmptyFollowing.setGone()
                 rcView.setVisible()
             }
         }

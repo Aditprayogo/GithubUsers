@@ -1,6 +1,7 @@
 package com.aditPrayogo.githubusers.ui.main
 
 import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.provider.Settings
 import android.view.Menu
@@ -12,13 +13,12 @@ import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.aditPrayogo.githubusers.R
-import com.aditprayogo.core.utils.state.LoaderState
-import com.aditprayogo.core.data.local.responses.UserSearchResponseItem
 import com.aditPrayogo.githubusers.databinding.ActivityMainBinding
-import com.aditPrayogo.githubusers.ui.favorite.FavoriteUserActivity
 import com.aditPrayogo.githubusers.ui.settings.SettingsActivity
 import com.aditPrayogo.githubusers.utils.util.setGone
 import com.aditPrayogo.githubusers.utils.util.setVisible
+import com.aditprayogo.core.data.local.responses.UserSearchResponseItem
+import com.aditprayogo.core.utils.state.LoaderState
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.activity_main.*
 
@@ -57,7 +57,12 @@ class MainActivity : AppCompatActivity() {
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
-            R.id.menu_favorite -> startActivity(Intent(this, FavoriteUserActivity::class.java))
+            R.id.menu_favorite -> startActivity(
+                Intent(
+                    this,
+                    Class.forName("com.aditprayogo.favorite.ui.FavoriteUserActivity")
+                )
+            )
             R.id.menu_settings -> startActivity(Intent(this, SettingsActivity::class.java))
             R.id.menu_language -> startActivity(Intent(Settings.ACTION_LOCALE_SETTINGS))
         }
@@ -159,6 +164,6 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun setIllustration(status: Boolean) {
-        binding.baseEmpty.root.visibility = if (status) VISIBLE else INVISIBLE
+        binding.baseEmpty.visibility = if (status) VISIBLE else INVISIBLE
     }
 }

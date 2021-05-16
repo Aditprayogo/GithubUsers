@@ -1,6 +1,7 @@
 package com.aditPrayogo.githubusers.ui.detail
 
 import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.provider.Settings
 import android.view.Menu
@@ -8,19 +9,17 @@ import android.view.MenuItem
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import com.aditPrayogo.githubusers.R
-import com.aditprayogo.core.utils.state.LoaderState
-import com.aditPrayogo.githubusers.utils.util.toast
-import com.aditprayogo.core.data.local.db.entity.UserFavoriteEntity
-import com.aditprayogo.core.data.local.responses.UserDetailResponse
 import com.aditPrayogo.githubusers.databinding.ActivityUserDetailBinding
-import com.aditPrayogo.githubusers.ui.favorite.FavoriteUserActivity
 import com.aditPrayogo.githubusers.ui.pager.ViewPagerAdapter
 import com.aditPrayogo.githubusers.ui.settings.SettingsActivity
 import com.aditPrayogo.githubusers.utils.util.load
 import com.aditPrayogo.githubusers.utils.util.setGone
 import com.aditPrayogo.githubusers.utils.util.setVisible
+import com.aditPrayogo.githubusers.utils.util.toast
+import com.aditprayogo.core.data.local.responses.UserDetailResponse
 import com.aditprayogo.core.domain.model.UserFavorite
 import com.aditprayogo.core.utils.DataMapper
+import com.aditprayogo.core.utils.state.LoaderState
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.activity_user_detail.*
 
@@ -85,7 +84,12 @@ class UserDetailActivity : AppCompatActivity() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
             R.id.menu_settings -> startActivity(Intent(this, SettingsActivity::class.java))
-            R.id.menu_favorite -> startActivity(Intent(this, FavoriteUserActivity::class.java))
+            R.id.menu_favorite -> startActivity(
+                Intent(
+                    Intent.ACTION_VIEW,
+                    Uri.parse("githubusers://favorite")
+                )
+            )
             R.id.menu_language -> startActivity(Intent(Settings.ACTION_LOCALE_SETTINGS))
         }
         return super.onOptionsItemSelected(item)
