@@ -1,20 +1,18 @@
 package com.aditPrayogo.githubusers.ui.follower
 
+import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.aditprayogo.core.utils.state.LoaderState
-import com.aditprayogo.core.utils.state.ResultState
 import com.aditprayogo.core.data.local.responses.UserFollowersResponseItem
 import com.aditprayogo.core.domain.usecase.UserUseCaseImpl
-import dagger.hilt.android.lifecycle.HiltViewModel
+import com.aditprayogo.core.utils.state.LoaderState
+import com.aditprayogo.core.utils.state.ResultState
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
-import javax.inject.Inject
 
-@HiltViewModel
-class FollowerViewModel @Inject constructor(
+class FollowerViewModel @ViewModelInject constructor(
     private val userUseCaseImpl: UserUseCaseImpl
 ) : ViewModel() {
 

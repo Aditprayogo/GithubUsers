@@ -1,21 +1,17 @@
 package com.aditPrayogo.githubusers.di
 
-import com.aditprayogo.core.domain.repository.UserRepository
 import com.aditprayogo.core.domain.usecase.UserUseCase
 import com.aditprayogo.core.domain.usecase.UserUseCaseImpl
+import dagger.Binds
 import dagger.Module
-import dagger.Provides
 import dagger.hilt.InstallIn
-import dagger.hilt.android.components.ViewModelComponent
-import dagger.hilt.android.scopes.ViewModelScoped
+import dagger.hilt.android.components.ApplicationComponent
 
-@InstallIn(ViewModelComponent::class)
 @Module
-object AppModule {
+@InstallIn(ApplicationComponent::class)
+abstract class AppModule {
 
-    @Provides
-    @ViewModelScoped
-    fun provideUserUseCase(
-        userRepository: UserRepository
-    ) : UserUseCase = UserUseCaseImpl(userRepository)
+    @Binds
+    abstract fun provideUserUseCase(userUseCaseImpl: UserUseCaseImpl) : UserUseCase
+
 }

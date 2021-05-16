@@ -19,7 +19,9 @@ buildscript {
     ext.lottieVersion = "3.4.1"
     ext.dagger_version = "2.28.3"
     ext.preference = "1.1.0"
-    ext.hilt_version = '2.35'
+
+    ext.hilt_version = '2.28-alpha'
+    ext.hilt_jetpack_version = '1.0.0-alpha02'
     repositories {
         google()
         jcenter()

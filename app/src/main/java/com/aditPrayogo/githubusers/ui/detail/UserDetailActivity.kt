@@ -86,8 +86,8 @@ class UserDetailActivity : AppCompatActivity() {
             R.id.menu_settings -> startActivity(Intent(this, SettingsActivity::class.java))
             R.id.menu_favorite -> startActivity(
                 Intent(
-                    Intent.ACTION_VIEW,
-                    Uri.parse("githubusers://favorite")
+                    this,
+                    Class.forName("com.aditprayogo.favorite.ui.FavoriteUserActivity")
                 )
             )
             R.id.menu_language -> startActivity(Intent(Settings.ACTION_LOCALE_SETTINGS))
