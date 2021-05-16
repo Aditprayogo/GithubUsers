@@ -7,8 +7,8 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.aditPrayogo.githubusers.utils.state.LoaderState
-import com.aditPrayogo.githubusers.data.local.responses.UserFollowersResponseItem
+import com.aditprayogo.core.utils.state.LoaderState
+import com.aditprayogo.core.data.local.responses.UserFollowersResponseItem
 import com.aditPrayogo.githubusers.databinding.FragmentFollowerBinding
 import com.aditPrayogo.githubusers.ui.detail.UserDetailActivity
 import com.aditPrayogo.githubusers.utils.util.setGone
@@ -74,12 +74,12 @@ class FollowerFragment : Fragment() {
     private fun handleEmptyFollower(data: List<UserFollowersResponseItem>) {
         if (data.isEmpty()) {
             binding.apply {
-                baseEmptyFollower.root.setVisible()
+                baseEmptyFollower.setVisible()
                 rcView.setGone()
             }
         } else {
             binding.apply {
-                baseEmptyFollower.root.setGone()
+                baseEmptyFollower.setGone()
                 rcView.setVisible()
             }
         }

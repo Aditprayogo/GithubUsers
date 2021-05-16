@@ -1,20 +1,19 @@
 package com.aditPrayogo.githubusers.ui.follower
 
+import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.aditPrayogo.githubusers.utils.state.LoaderState
-import com.aditPrayogo.githubusers.utils.state.ResultState
-import com.aditPrayogo.githubusers.data.local.responses.UserFollowersResponseItem
-import com.aditPrayogo.githubusers.domain.UserUseCase
-import dagger.hilt.android.lifecycle.HiltViewModel
+import com.aditprayogo.core.data.local.responses.UserFollowersResponseItem
+import com.aditprayogo.core.domain.usecase.UserUseCaseImpl
+import com.aditprayogo.core.utils.state.LoaderState
+import com.aditprayogo.core.utils.state.ResultState
+import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
-import javax.inject.Inject
 
-@HiltViewModel
-class FollowerViewModel @Inject constructor(
-    private val userUseCase: UserUseCase
+class FollowerViewModel @ViewModelInject constructor(
+    private val userUseCaseImpl: UserUseCaseImpl
 ) : ViewModel() {
 
     /**
@@ -44,12 +43,13 @@ class FollowerViewModel @Inject constructor(
     fun getUserFollowers(username: String) {
         _state.value = LoaderState.ShowLoading
         viewModelScope.launch {
-            val result = userUseCase.getUserFollowers(username)
-            _state.value = LoaderState.HideLoading
-            when(result) {
-                is ResultState.Success -> _resultUserFollower.postValue(result.data)
-                is ResultState.Error -> _error.postValue(result.error)
-                is ResultState.NetworkError -> _networkError.postValue(true)
+            userUseCaseImpl.getUserFollowers(username).collect {
+                _state.value = LoaderState.HideLoading
+                when(it) {
+                    is ResultState.Success -> _resultUserFollower.postValue(it.data)
+                    is ResultState.Error -> _error.postValue(it.error)
+                    is ResultState.NetworkError -> _networkError.postValue(true)
+                }
             }
         }
     }

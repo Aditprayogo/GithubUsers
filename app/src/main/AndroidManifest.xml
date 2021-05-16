@@ -15,7 +15,7 @@
         android:protectionLevel="normal" />
 
     <application
-        android:name="com.aditPrayogo.githubusers.BaseApplication"
+        android:name=".BaseApplication"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
@@ -23,7 +23,6 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name="com.aditPrayogo.githubusers.ui.settings.SettingsActivity" />
-        <activity android:name="com.aditPrayogo.githubusers.ui.favorite.FavoriteUserActivity" />
         <activity android:name="com.aditPrayogo.githubusers.ui.detail.UserDetailActivity" />
         <activity android:name="com.aditPrayogo.githubusers.ui.main.MainActivity" />
         <activity

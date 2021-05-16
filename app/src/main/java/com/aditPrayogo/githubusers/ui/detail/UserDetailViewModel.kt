@@ -1,21 +1,17 @@
 package com.aditPrayogo.githubusers.ui.detail
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.viewModelScope
-import com.aditPrayogo.githubusers.utils.state.LoaderState
-import com.aditPrayogo.githubusers.utils.state.ResultState
-import com.aditPrayogo.githubusers.data.local.db.entity.UserFavorite
-import com.aditPrayogo.githubusers.data.local.responses.UserDetailResponse
-import com.aditPrayogo.githubusers.domain.UserUseCase
-import dagger.hilt.android.lifecycle.HiltViewModel
+import androidx.hilt.lifecycle.ViewModelInject
+import androidx.lifecycle.*
+import com.aditprayogo.core.data.local.responses.UserDetailResponse
+import com.aditprayogo.core.domain.model.UserFavorite
+import com.aditprayogo.core.domain.usecase.UserUseCaseImpl
+import com.aditprayogo.core.utils.state.LoaderState
+import com.aditprayogo.core.utils.state.ResultState
+import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
-import javax.inject.Inject
 
-@HiltViewModel
-class UserDetailViewModel @Inject constructor(
-    private val userUseCase: UserUseCase
+class UserDetailViewModel @ViewModelInject constructor(
+    private val userUseCaseImpl: UserUseCaseImpl
 ) : ViewModel() {
 
     /**
@@ -43,13 +39,6 @@ class UserDetailViewModel @Inject constructor(
         get() = _resultUserDetail
 
     /**
-     * User Detail from DB
-     */
-    private val _resultUserDetailFromDb = MutableLiveData<List<UserFavorite>>()
-    val resultUserDetailFromDb : LiveData<List<UserFavorite>>
-        get() = _resultUserDetailFromDb
-
-    /**
      * Insert to DB
      */
     private val _resultInsertUserToDb = MutableLiveData<Boolean>()
@@ -69,23 +58,25 @@ class UserDetailViewModel @Inject constructor(
     fun getUserDetailFromApi(username: String) {
         _state.value = LoaderState.ShowLoading
         viewModelScope.launch {
-            val result = userUseCase.getUserDetailFromApi(username)
-            _state.value = LoaderState.HideLoading
-            when(result) {
-                is ResultState.Success -> _resultUserDetail.postValue(result.data)
-                is ResultState.Error -> _error.postValue(result.error)
-                is ResultState.NetworkError -> _networkError.postValue(true)
+            userUseCaseImpl.getUserDetailFromApi(username).collect {
+                _state.value = LoaderState.HideLoading
+                when(it) {
+                    is ResultState.Success -> _resultUserDetail.postValue(it.data)
+                    is ResultState.Error -> _error.postValue(it.error)
+                    is ResultState.NetworkError -> _networkError.postValue(true)
+                }
             }
+
         }
     }
 
     /**
      * Local
      */
-    fun addUserToFavDB(userFavorite: UserFavorite) {
+    fun addUserToFavDB(userFavoriteEntity: UserFavorite) {
         viewModelScope.launch {
             try {
-                userUseCase.addUserToFavDB(userFavorite)
+                userUseCaseImpl.addUserToFavDB(userFavoriteEntity)
                 _resultInsertUserToDb.postValue(true)
             }catch (e: Exception) {
                 _error.postValue(e.localizedMessage)
@@ -93,10 +84,10 @@ class UserDetailViewModel @Inject constructor(
         }
     }
 
-    fun deleteUserFromDb(userFavorite: UserFavorite) {
+    fun deleteUserFromDb(userFavoriteEntity: UserFavorite) {
         viewModelScope.launch {
             try {
-                userUseCase.deleteUserFromDb(userFavorite)
+                userUseCaseImpl.deleteUserFromDb(userFavoriteEntity)
                 _resultDeleteFromDb.postValue(true)
             }catch (e: Exception) {
                 _error.postValue(e.localizedMessage)
@@ -104,13 +95,5 @@ class UserDetailViewModel @Inject constructor(
         }
     }
 
-    fun getFavUserByUsername(username: String) {
-        viewModelScope.launch {
-            val result = userUseCase.getFavUserByUsername(username)
-            when(result) {
-                is ResultState.Success -> _resultUserDetailFromDb.postValue(result.data)
-                is ResultState.Error -> _error.postValue(result.error)
-            }
-        }
-    }
+    fun getFavUserByUsername(username: String) = userUseCaseImpl.getFavUserByUsername(username).asLiveData()
 }

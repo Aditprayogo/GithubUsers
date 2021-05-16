@@ -5,15 +5,15 @@ import android.content.ContentValues
 import android.content.UriMatcher
 import android.database.Cursor
 import android.net.Uri
-import com.aditPrayogo.githubusers.data.local.db.dao.UserFavoriteDao
+import com.aditprayogo.core.data.local.db.dao.UserFavoriteDao
 import dagger.hilt.EntryPoint
 import dagger.hilt.InstallIn
 import dagger.hilt.android.EntryPointAccessors
-import dagger.hilt.components.SingletonComponent
+import dagger.hilt.android.components.ApplicationComponent
 
 class MyContentProvider : ContentProvider() {
 
-    @InstallIn(SingletonComponent::class)
+    @InstallIn(ApplicationComponent::class)
     @EntryPoint
     interface UserFavoriteDaoContent {
         fun userFavDao(): UserFavoriteDao

@@ -8,17 +8,17 @@ import android.view.MenuItem
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import com.aditPrayogo.githubusers.R
-import com.aditPrayogo.githubusers.utils.state.LoaderState
-import com.aditPrayogo.githubusers.utils.util.toast
-import com.aditPrayogo.githubusers.data.local.db.entity.UserFavorite
-import com.aditPrayogo.githubusers.data.local.responses.UserDetailResponse
 import com.aditPrayogo.githubusers.databinding.ActivityUserDetailBinding
-import com.aditPrayogo.githubusers.ui.favorite.FavoriteUserActivity
 import com.aditPrayogo.githubusers.ui.pager.ViewPagerAdapter
 import com.aditPrayogo.githubusers.ui.settings.SettingsActivity
 import com.aditPrayogo.githubusers.utils.util.load
 import com.aditPrayogo.githubusers.utils.util.setGone
 import com.aditPrayogo.githubusers.utils.util.setVisible
+import com.aditPrayogo.githubusers.utils.util.toast
+import com.aditprayogo.core.data.local.responses.UserDetailResponse
+import com.aditprayogo.core.domain.model.UserFavorite
+import com.aditprayogo.core.utils.DataMapper
+import com.aditprayogo.core.utils.state.LoaderState
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.activity_user_detail.*
 
@@ -33,7 +33,7 @@ class UserDetailActivity : AppCompatActivity() {
 
     private var userDetail: UserDetailResponse? = null
 
-    private var userFavoriteEntity: UserFavorite? = null
+    private var userFavorite: UserFavorite? = null
 
     private var favoriteActive = false
 
@@ -82,8 +82,13 @@ class UserDetailActivity : AppCompatActivity() {
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
-            R.id.menu_settings ->  startActivity(Intent(this, SettingsActivity::class.java))
-            R.id.menu_favorite -> startActivity(Intent(this, FavoriteUserActivity::class.java))
+            R.id.menu_settings -> startActivity(Intent(this, SettingsActivity::class.java))
+            R.id.menu_favorite -> startActivity(
+                Intent(
+                    this,
+                    Class.forName("com.aditprayogo.favorite.ui.FavoriteUserActivity")
+                )
+            )
             R.id.menu_language -> startActivity(Intent(Settings.ACTION_LOCALE_SETTINGS))
         }
         return super.onOptionsItemSelected(item)
@@ -113,9 +118,11 @@ class UserDetailActivity : AppCompatActivity() {
             resultUserDetail.observe(this@UserDetailActivity, {
                 handleResultUserDetail(it)
             })
-            resultUserDetailFromDb.observe(this@UserDetailActivity, {
-                handleUserDetailFromDb(it)
-            })
+            username?.let {
+                getFavUserByUsername(it).observe(this@UserDetailActivity, {
+                    handleUserDetailFromDb(it)
+                })
+            }
             resultInsertUserDb.observe(this@UserDetailActivity, { it ->
                 if (it) {
                     username?.let {
@@ -138,25 +145,11 @@ class UserDetailActivity : AppCompatActivity() {
 
     private fun setFavoriteUser() {
         if (favoriteActive) {
-            userFavoriteEntity?.let {
+            userFavorite?.let {
                 userDetailViewModel.deleteUserFromDb(it)
             }
         } else {
-            val userFavorite = userDetail?.login?.let {
-                UserFavorite(
-                    username = it,
-                    name = userDetail?.name,
-                    avatarUrl = userDetail?.avatarUrl,
-                    followingUrl = userDetail?.followingUrl,
-                    bio = userDetail?.bio,
-                    company = userDetail?.company,
-                    publicRepos = userDetail?.publicRepos,
-                    followersUrl = userDetail?.followersUrl,
-                    followers = userDetail?.followers,
-                    following = userDetail?.following,
-                    location = userDetail?.location
-                )
-            }
+            val userFavorite = userDetail?.let { DataMapper.mapResponseToDomain(it) }
             userFavorite?.let { userDetailViewModel.addUserToFavDB(it) }
         }
     }
@@ -167,7 +160,7 @@ class UserDetailActivity : AppCompatActivity() {
             val icon = R.drawable.ic_baseline_favorite_border_24
             binding.favButton.setImageResource(icon)
         } else {
-            userFavoriteEntity = userFavorite.first()
+            this.userFavorite = userFavorite.first()
             favoriteActive = true
             val icon = R.drawable.ic_baseline_favorite_24
             binding.favButton.setImageResource(icon)
