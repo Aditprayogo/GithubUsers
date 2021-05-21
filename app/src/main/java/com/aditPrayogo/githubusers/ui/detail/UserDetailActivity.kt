@@ -149,7 +149,7 @@ class UserDetailActivity : AppCompatActivity() {
                 userDetailViewModel.deleteUserFromDb(it)
             }
         } else {
-            val userFavorite = userDetail?.let { DataMapper.mapResponseToDomain(it) }
+            val userFavorite = userDetail?.let { DataMapper.mapUserDetailResponseToDomain(it) }
             userFavorite?.let { userDetailViewModel.addUserToFavDB(it) }
         }
     }

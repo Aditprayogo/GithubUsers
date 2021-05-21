@@ -2,13 +2,26 @@ package com.aditprayogo.core.utils
 
 import com.aditprayogo.core.data.local.db.entity.UserFavoriteEntity
 import com.aditprayogo.core.data.local.responses.UserDetailResponse
+import com.aditprayogo.core.data.local.responses.UserSearchResponseItem
 import com.aditprayogo.core.domain.model.UserFavorite
+import com.aditprayogo.core.domain.model.UserSearchItem
 
 /**
  * Created by Aditiya Prayogo.
  */
 object DataMapper {
-    fun mapEntitiesToDomain(data: List<UserFavoriteEntity>): List<UserFavorite> =
+
+    fun mapUserSearchResponseToDomain(data : List<UserSearchResponseItem>) : List<UserSearchItem> =
+        data.map {
+            UserSearchItem(
+                avatarUrl = it.avatarUrl,
+                id = it.id,
+                login = it.login,
+            )
+        }
+
+
+    fun mapUserFavoriteEntitiesToDomain(data: List<UserFavoriteEntity>): List<UserFavorite> =
         data.map {
             UserFavorite(
                 username = it.username,
@@ -25,7 +38,7 @@ object DataMapper {
             )
         }
 
-    fun mapDomainToEntity(data: UserFavorite): UserFavoriteEntity =
+    fun mapUserFavoriteDomainToEntity(data: UserFavorite): UserFavoriteEntity =
         UserFavoriteEntity(
             username = data.username,
             name = data.name,
@@ -40,7 +53,7 @@ object DataMapper {
             location = data.location
         )
 
-    fun mapResponseToDomain(it : UserDetailResponse) : UserFavorite =
+    fun mapUserDetailResponseToDomain(it : UserDetailResponse) : UserFavorite =
         UserFavorite(
             username = it.login.toString(),
             name = it.name,

@@ -6,6 +6,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.aditprayogo.core.data.local.responses.UserSearchResponseItem
+import com.aditprayogo.core.domain.model.UserSearchItem
 import com.aditprayogo.core.domain.usecase.UserUseCaseImpl
 import com.aditprayogo.core.utils.state.LoaderState
 import com.aditprayogo.core.utils.state.ResultState
@@ -28,8 +29,8 @@ class MainViewModel @ViewModelInject constructor(
     val networkError : LiveData<Boolean>
         get() = _networkError
 
-    private val _resultUserApi = MutableLiveData<List<UserSearchResponseItem>>()
-    val resultUserApi: LiveData<List<UserSearchResponseItem>>
+    private val _resultUserApi = MutableLiveData<List<UserSearchItem>>()
+    val resultUserApi: LiveData<List<UserSearchItem>>
         get() = _resultUserApi
 
     fun getUserFromApi(query: String) {

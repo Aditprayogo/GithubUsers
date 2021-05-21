@@ -14,10 +14,10 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.aditPrayogo.githubusers.R
 import com.aditPrayogo.githubusers.databinding.ActivityMainBinding
 import com.aditPrayogo.githubusers.ui.settings.SettingsActivity
+import com.aditprayogo.core.domain.model.UserSearchItem
+import com.aditprayogo.core.utils.state.LoaderState
 import com.aditprayogo.core.utils.viewUtils.setGone
 import com.aditprayogo.core.utils.viewUtils.setVisible
-import com.aditprayogo.core.data.local.responses.UserSearchResponseItem
-import com.aditprayogo.core.utils.state.LoaderState
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.activity_main.*
 
@@ -26,7 +26,7 @@ class MainActivity : AppCompatActivity() {
 
     private val mainViewModel: MainViewModel by viewModels()
 
-    private val items = mutableListOf<UserSearchResponseItem>()
+    private val items = mutableListOf<UserSearchItem>()
 
     private val mainAdapter: MainAdapter by lazy {
         MainAdapter(this)
@@ -128,7 +128,7 @@ class MainActivity : AppCompatActivity() {
         mainAdapter.setActivity(this)
     }
 
-    private fun handleUserFromApi(result: List<UserSearchResponseItem>) {
+    private fun handleUserFromApi(result: List<UserSearchItem>) {
         items.clear()
         items.addAll(result)
         mainAdapter.setItems(items)

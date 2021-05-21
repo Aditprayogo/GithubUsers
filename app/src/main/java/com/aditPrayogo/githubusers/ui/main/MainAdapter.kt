@@ -7,20 +7,20 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.aditPrayogo.githubusers.R
-import com.aditprayogo.core.data.local.responses.UserSearchResponseItem
 import com.aditPrayogo.githubusers.databinding.ItemRowUserBinding
 import com.aditPrayogo.githubusers.ui.detail.UserDetailActivity
+import com.aditprayogo.core.domain.model.UserSearchItem
 import com.aditprayogo.core.utils.viewUtils.load
 
 class MainAdapter(val context: Context) : RecyclerView.Adapter<MainAdapter.ViewHolder>() {
 
-    private var items = mutableListOf<UserSearchResponseItem>()
+    private var items = mutableListOf<UserSearchItem>()
     private lateinit var mainActivity: MainActivity
 
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         private val binding: ItemRowUserBinding = ItemRowUserBinding.bind(itemView)
 
-        fun bind(data: UserSearchResponseItem) {
+        fun bind(data: UserSearchItem) {
             binding.apply {
                 ivUser.load(data.avatarUrl)
                 binding.txtUsername.text = data.login
@@ -47,7 +47,7 @@ class MainAdapter(val context: Context) : RecyclerView.Adapter<MainAdapter.ViewH
         this.mainActivity = activity
     }
 
-    fun setItems(data: MutableList<UserSearchResponseItem>) {
+    fun setItems(data: MutableList<UserSearchItem>) {
         this.items = data
         notifyDataSetChanged()
     }

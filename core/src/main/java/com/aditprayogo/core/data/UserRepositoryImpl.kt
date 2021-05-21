@@ -7,6 +7,7 @@ import com.aditprayogo.core.data.local.responses.UserFollowingResponseItem
 import com.aditprayogo.core.data.local.responses.UserSearchResponseItem
 import com.aditprayogo.core.data.remote.NetworkService
 import com.aditprayogo.core.domain.model.UserFavorite
+import com.aditprayogo.core.domain.model.UserSearchItem
 import com.aditprayogo.core.domain.repository.UserRepository
 import com.aditprayogo.core.utils.DataMapper
 import com.aditprayogo.core.utils.state.ResultState
@@ -25,12 +26,15 @@ class UserRepositoryImpl @Inject constructor(
     /**
      * Remote
      */
-    override suspend fun getUserFromApi(username: String): Flow<ResultState<List<UserSearchResponseItem>>> {
+    override suspend fun getUserFromApi(username: String): Flow<ResultState<List<UserSearchItem>>> {
         return flow {
             try {
                 val response = networkService.getSearchUser(username)
                 val userItems = response.userItems
-                userItems?.let { emit(ResultState.Success(response.userItems)) }
+                val dataMaped = response.userItems?.let { listSearchUser ->
+                    DataMapper.mapUserSearchResponseToDomain(listSearchUser)
+                }
+                emit(ResultState.Success(dataMaped))
             } catch (e: Exception) {
                 emit(ResultState.Error(e.toString(), 500))
             }
@@ -75,23 +79,23 @@ class UserRepositoryImpl @Inject constructor(
      */
     override fun fetchAllUserFavorite(): Flow<List<UserFavorite>> {
         return userFavoriteDao.fetchAllUsers().map {
-            DataMapper.mapEntitiesToDomain(it)
+            DataMapper.mapUserFavoriteEntitiesToDomain(it)
         }
     }
 
     override fun getFavoriteUserByUsername(username: String): Flow<List<UserFavorite>> {
         return userFavoriteDao.getFavByUsername(username).map {
-            DataMapper.mapEntitiesToDomain(it)
+            DataMapper.mapUserFavoriteEntitiesToDomain(it)
         }
     }
 
     override suspend fun addUserToFavDB(userFavorite: UserFavorite) {
-        val data = DataMapper.mapDomainToEntity(userFavorite)
+        val data = DataMapper.mapUserFavoriteDomainToEntity(userFavorite)
         return userFavoriteDao.addUserToFavoriteDB(data)
     }
 
     override suspend fun deleteUserFromFavDB(userFavorite: UserFavorite) {
-        val data = DataMapper.mapDomainToEntity(userFavorite)
+        val data = DataMapper.mapUserFavoriteDomainToEntity(userFavorite)
         return userFavoriteDao.deleteUserFromFavoriteDB(data)
     }
 
