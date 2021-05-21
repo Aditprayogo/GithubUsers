@@ -14,8 +14,8 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.aditPrayogo.githubusers.R
 import com.aditPrayogo.githubusers.databinding.ActivityMainBinding
 import com.aditPrayogo.githubusers.ui.settings.SettingsActivity
-import com.aditPrayogo.githubusers.utils.util.setGone
-import com.aditPrayogo.githubusers.utils.util.setVisible
+import com.aditprayogo.core.utils.viewUtils.setGone
+import com.aditprayogo.core.utils.viewUtils.setVisible
 import com.aditprayogo.core.data.local.responses.UserSearchResponseItem
 import com.aditprayogo.core.utils.state.LoaderState
 import dagger.hilt.android.AndroidEntryPoint

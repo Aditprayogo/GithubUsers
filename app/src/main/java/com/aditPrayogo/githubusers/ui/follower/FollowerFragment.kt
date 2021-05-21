@@ -11,8 +11,8 @@ import com.aditprayogo.core.utils.state.LoaderState
 import com.aditprayogo.core.data.local.responses.UserFollowersResponseItem
 import com.aditPrayogo.githubusers.databinding.FragmentFollowerBinding
 import com.aditPrayogo.githubusers.ui.detail.UserDetailActivity
-import com.aditPrayogo.githubusers.utils.util.setGone
-import com.aditPrayogo.githubusers.utils.util.setVisible
+import com.aditprayogo.core.utils.viewUtils.setGone
+import com.aditprayogo.core.utils.viewUtils.setVisible
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.InternalCoroutinesApi
 

@@ -10,8 +10,8 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.aditPrayogo.githubusers.R
 import com.aditPrayogo.githubusers.di.FavoriteModuleDependencies
 import com.aditPrayogo.githubusers.ui.settings.SettingsActivity
-import com.aditPrayogo.githubusers.utils.util.setGone
-import com.aditPrayogo.githubusers.utils.util.setVisible
+import com.aditprayogo.core.utils.viewUtils.setGone
+import com.aditprayogo.core.utils.viewUtils.setVisible
 import com.aditprayogo.core.domain.model.UserFavorite
 import com.aditprayogo.favorite.databinding.ActivityFavoriteUserBinding
 import com.aditprayogo.favorite.di.DaggerFavoriteComponent

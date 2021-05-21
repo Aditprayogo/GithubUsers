@@ -10,7 +10,7 @@ import com.aditPrayogo.githubusers.R
 import com.aditprayogo.core.data.local.responses.UserFollowersResponseItem
 import com.aditPrayogo.githubusers.databinding.ItemRowUserBinding
 import com.aditPrayogo.githubusers.ui.detail.UserDetailActivity
-import com.aditPrayogo.githubusers.utils.util.load
+import com.aditprayogo.core.utils.viewUtils.load
 
 class FollowerAdapter(private val mContext: Context) :
     RecyclerView.Adapter<FollowerAdapter.ViewHolder>() {

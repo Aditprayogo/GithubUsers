@@ -11,10 +11,10 @@ import com.aditPrayogo.githubusers.R
 import com.aditPrayogo.githubusers.databinding.ActivityUserDetailBinding
 import com.aditPrayogo.githubusers.ui.pager.ViewPagerAdapter
 import com.aditPrayogo.githubusers.ui.settings.SettingsActivity
-import com.aditPrayogo.githubusers.utils.util.load
-import com.aditPrayogo.githubusers.utils.util.setGone
-import com.aditPrayogo.githubusers.utils.util.setVisible
-import com.aditPrayogo.githubusers.utils.util.toast
+import com.aditprayogo.core.utils.viewUtils.setGone
+import com.aditprayogo.core.utils.viewUtils.setVisible
+import com.aditprayogo.core.utils.viewUtils.toast
+import com.aditprayogo.core.utils.viewUtils.load
 import com.aditprayogo.core.data.local.responses.UserDetailResponse
 import com.aditprayogo.core.domain.model.UserFavorite
 import com.aditprayogo.core.utils.DataMapper

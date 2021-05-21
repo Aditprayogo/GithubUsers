@@ -10,7 +10,7 @@ import com.aditPrayogo.githubusers.R
 import com.aditprayogo.core.data.local.responses.UserSearchResponseItem
 import com.aditPrayogo.githubusers.databinding.ItemRowUserBinding
 import com.aditPrayogo.githubusers.ui.detail.UserDetailActivity
-import com.aditPrayogo.githubusers.utils.util.load
+import com.aditprayogo.core.utils.viewUtils.load
 
 class MainAdapter(val context: Context) : RecyclerView.Adapter<MainAdapter.ViewHolder>() {
 
