@@ -1,17 +1,15 @@
 package com.aditprayogo.core.utils
 
 import com.aditprayogo.core.data.local.db.entity.UserFavoriteEntity
-import com.aditprayogo.core.data.local.responses.UserDetailResponse
-import com.aditprayogo.core.data.local.responses.UserSearchResponseItem
-import com.aditprayogo.core.domain.model.UserFavorite
-import com.aditprayogo.core.domain.model.UserSearchItem
+import com.aditprayogo.core.data.local.responses.*
+import com.aditprayogo.core.domain.model.*
 
 /**
  * Created by Aditiya Prayogo.
  */
 object DataMapper {
 
-    fun mapUserSearchResponseToDomain(data : List<UserSearchResponseItem>) : List<UserSearchItem> =
+    fun mapUserSearchResponseToDomain(data: List<UserSearchResponseItem>): List<UserSearchItem> =
         data.map {
             UserSearchItem(
                 avatarUrl = it.avatarUrl,
@@ -19,6 +17,39 @@ object DataMapper {
                 login = it.login,
             )
         }
+
+    fun mapUserFollowerResponseToDomain(data: List<UserFollowersResponseItem>): List<UserFollower> =
+        data.map {
+            UserFollower(
+                avatarUrl = it.avatarUrl,
+                id = it.id,
+                login = it.login,
+            )
+        }
+
+    fun mapUserFollowingResponseToDomain(data: List<UserFollowingResponseItem>): List<UserFollowing> =
+        data.map {
+            UserFollowing(
+                avatarUrl = it.avatarUrl,
+                id = it.id,
+                login = it.login,
+            )
+        }
+
+    fun mapUserDetailResponseToDomain(data: UserDetailResponse): UserDetail =
+        UserDetail(
+            username = data.login.toString(),
+            name = data.name,
+            avatarUrl = data.avatarUrl,
+            followersUrl = data.followersUrl,
+            bio = data.bio,
+            company = data.company,
+            publicRepos = data.publicRepos,
+            followingUrl = data.followingUrl,
+            followers = data.followers,
+            following = data.following,
+            location = data.location
+        )
 
 
     fun mapUserFavoriteEntitiesToDomain(data: List<UserFavoriteEntity>): List<UserFavorite> =
@@ -53,9 +84,9 @@ object DataMapper {
             location = data.location
         )
 
-    fun mapUserDetailResponseToDomain(it : UserDetailResponse) : UserFavorite =
+    fun mapUserDetailToUserFavorite(it: UserDetail): UserFavorite =
         UserFavorite(
-            username = it.login.toString(),
+            username = it.username,
             name = it.name,
             avatarUrl = it.avatarUrl,
             followersUrl = it.followersUrl,

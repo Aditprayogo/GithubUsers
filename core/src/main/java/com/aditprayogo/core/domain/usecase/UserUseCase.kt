@@ -1,11 +1,6 @@
 package com.aditprayogo.core.domain.usecase
 
-import com.aditprayogo.core.data.local.responses.UserDetailResponse
-import com.aditprayogo.core.data.local.responses.UserFollowersResponseItem
-import com.aditprayogo.core.data.local.responses.UserFollowingResponseItem
-import com.aditprayogo.core.data.local.responses.UserSearchResponseItem
-import com.aditprayogo.core.domain.model.UserFavorite
-import com.aditprayogo.core.domain.model.UserSearchItem
+import com.aditprayogo.core.domain.model.*
 import com.aditprayogo.core.utils.state.ResultState
 import kotlinx.coroutines.flow.Flow
 
@@ -14,9 +9,9 @@ import kotlinx.coroutines.flow.Flow
  */
 interface UserUseCase {
     suspend fun getUserFromApi(username : String) : Flow<ResultState<List<UserSearchItem>>>
-    suspend fun getUserDetailFromApi(username : String) : Flow<ResultState<UserDetailResponse>>
-    suspend fun getUserFollowers(username : String) : Flow<ResultState<List<UserFollowersResponseItem>>>
-    suspend fun getUserFollowing(username : String) :  Flow<ResultState<List<UserFollowingResponseItem>>>
+    suspend fun getUserDetailFromApi(username : String) : Flow<ResultState<UserDetail>>
+    suspend fun getUserFollowers(username : String) : Flow<ResultState<List<UserFollower>>>
+    suspend fun getUserFollowing(username : String) :  Flow<ResultState<List<UserFollowing>>>
 
     fun fetchAllUserFavorite() : Flow<List<UserFavorite>>
     suspend fun deleteUserFromDb(userFavorite: UserFavorite)

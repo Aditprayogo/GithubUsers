@@ -2,7 +2,7 @@ package com.aditPrayogo.githubusers.ui.detail
 
 import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.*
-import com.aditprayogo.core.data.local.responses.UserDetailResponse
+import com.aditprayogo.core.domain.model.UserDetail
 import com.aditprayogo.core.domain.model.UserFavorite
 import com.aditprayogo.core.domain.usecase.UserUseCaseImpl
 import com.aditprayogo.core.utils.state.LoaderState
@@ -34,8 +34,8 @@ class UserDetailViewModel @ViewModelInject constructor(
     /**
      * User detail remote
      */
-    private val _resultUserDetail = MutableLiveData<UserDetailResponse>()
-    val resultUserDetail : LiveData<UserDetailResponse>
+    private val _resultUserDetail = MutableLiveData<UserDetail>()
+    val resultUserDetail : LiveData<UserDetail>
         get() = _resultUserDetail
 
     /**

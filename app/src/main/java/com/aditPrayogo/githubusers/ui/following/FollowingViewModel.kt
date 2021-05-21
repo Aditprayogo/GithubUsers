@@ -5,7 +5,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.aditprayogo.core.data.local.responses.UserFollowingResponseItem
+import com.aditprayogo.core.domain.model.UserFollowing
 import com.aditprayogo.core.domain.usecase.UserUseCaseImpl
 import com.aditprayogo.core.utils.state.LoaderState
 import com.aditprayogo.core.utils.state.ResultState
@@ -20,8 +20,8 @@ class FollowingViewModel @ViewModelInject constructor(
     val state : LiveData<LoaderState>
         get() = _state
 
-    private val _resultUserFollowing = MutableLiveData<List<UserFollowingResponseItem>>()
-    val resultUserFollowing : LiveData<List<UserFollowingResponseItem>>
+    private val _resultUserFollowing = MutableLiveData<List<UserFollowing>>()
+    val resultUserFollowing : LiveData<List<UserFollowing>>
         get() = _resultUserFollowing
 
     fun getUserFollowing(username: String) {

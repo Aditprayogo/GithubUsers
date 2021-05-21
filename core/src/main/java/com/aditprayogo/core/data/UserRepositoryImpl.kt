@@ -1,13 +1,8 @@
 package com.aditprayogo.core.data
 
 import com.aditprayogo.core.data.local.db.dao.UserFavoriteDao
-import com.aditprayogo.core.data.local.responses.UserDetailResponse
-import com.aditprayogo.core.data.local.responses.UserFollowersResponseItem
-import com.aditprayogo.core.data.local.responses.UserFollowingResponseItem
-import com.aditprayogo.core.data.local.responses.UserSearchResponseItem
 import com.aditprayogo.core.data.remote.NetworkService
-import com.aditprayogo.core.domain.model.UserFavorite
-import com.aditprayogo.core.domain.model.UserSearchItem
+import com.aditprayogo.core.domain.model.*
 import com.aditprayogo.core.domain.repository.UserRepository
 import com.aditprayogo.core.utils.DataMapper
 import com.aditprayogo.core.utils.state.ResultState
@@ -31,7 +26,7 @@ class UserRepositoryImpl @Inject constructor(
             try {
                 val response = networkService.getSearchUser(username)
                 val userItems = response.userItems
-                val dataMaped = response.userItems?.let { listSearchUser ->
+                val dataMaped = userItems?.let { listSearchUser ->
                     DataMapper.mapUserSearchResponseToDomain(listSearchUser)
                 }
                 emit(ResultState.Success(dataMaped))
@@ -41,33 +36,36 @@ class UserRepositoryImpl @Inject constructor(
         }.flowOn(Dispatchers.IO)
     }
 
-    override suspend fun getDetailUserFromApi(username: String): Flow<ResultState<UserDetailResponse>> {
+    override suspend fun getDetailUserFromApi(username: String): Flow<ResultState<UserDetail>> {
         return flow {
             try {
                 val response = networkService.getDetailUser(username)
-                emit(ResultState.Success(response))
+                val dataMaped = DataMapper.mapUserDetailResponseToDomain(response)
+                emit(ResultState.Success(dataMaped))
             } catch (e: Exception) {
                 emit(ResultState.Error(e.toString(), 500))
             }
         }.flowOn(Dispatchers.IO)
     }
 
-    override suspend fun getUserFollowers(username: String): Flow<ResultState<List<UserFollowersResponseItem>>> {
+    override suspend fun getUserFollowers(username: String): Flow<ResultState<List<UserFollower>>> {
         return flow {
             try {
                 val response = networkService.getFollowerUser(username)
-                emit(ResultState.Success(response))
+                val mapedData = DataMapper.mapUserFollowerResponseToDomain(response)
+                emit(ResultState.Success(mapedData))
             } catch (e: Exception) {
                 emit(ResultState.Error(e.toString(), 500))
             }
         }.flowOn(Dispatchers.IO)
     }
 
-    override suspend fun getUserFollowing(username: String): Flow<ResultState<List<UserFollowingResponseItem>>> {
+    override suspend fun getUserFollowing(username: String): Flow<ResultState<List<UserFollowing>>> {
         return flow {
             try {
                 val response = networkService.getFollowingUser(username)
-                emit(ResultState.Success(response))
+                val dataMaped = DataMapper.mapUserFollowingResponseToDomain(response)
+                emit(ResultState.Success(dataMaped))
             } catch (e: Exception) {
                 emit(ResultState.Error(e.toString(), 500))
             }

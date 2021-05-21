@@ -3,5 +3,8 @@ package com.aditprayogo.core.domain.model
 /**
  * Created by Aditiya Prayogo.
  */
-class UserFollower {
-}
+data class UserFollower(
+    val avatarUrl: String?,
+    val id: Int?,
+    val login: String?,
+)

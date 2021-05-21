@@ -1,7 +1,5 @@
 package com.aditprayogo.core.domain.model
 
-import com.google.gson.annotations.SerializedName
-
 /**
  * Created by Aditiya Prayogo.
  */

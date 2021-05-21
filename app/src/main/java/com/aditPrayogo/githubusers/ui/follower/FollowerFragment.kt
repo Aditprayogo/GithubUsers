@@ -7,10 +7,10 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.aditprayogo.core.utils.state.LoaderState
-import com.aditprayogo.core.data.local.responses.UserFollowersResponseItem
 import com.aditPrayogo.githubusers.databinding.FragmentFollowerBinding
 import com.aditPrayogo.githubusers.ui.detail.UserDetailActivity
+import com.aditprayogo.core.domain.model.UserFollower
+import com.aditprayogo.core.utils.state.LoaderState
 import com.aditprayogo.core.utils.viewUtils.setGone
 import com.aditprayogo.core.utils.viewUtils.setVisible
 import dagger.hilt.android.AndroidEntryPoint
@@ -21,7 +21,7 @@ class FollowerFragment : Fragment() {
 
     private val followerViewModel: FollowerViewModel by viewModels()
 
-    private var lists = mutableListOf<UserFollowersResponseItem>()
+    private var lists = mutableListOf<UserFollower>()
 
     private val followerAdapter: FollowerAdapter by lazy {
         FollowerAdapter(requireContext())
@@ -71,7 +71,7 @@ class FollowerFragment : Fragment() {
         }
     }
 
-    private fun handleEmptyFollower(data: List<UserFollowersResponseItem>) {
+    private fun handleEmptyFollower(data: List<UserFollower>) {
         if (data.isEmpty()) {
             binding.apply {
                 baseEmptyFollower.setVisible()
@@ -99,7 +99,7 @@ class FollowerFragment : Fragment() {
         }
     }
 
-    private fun handleUserFollower(data: List<UserFollowersResponseItem>) {
+    private fun handleUserFollower(data: List<UserFollower>) {
         handleEmptyFollower(data)
         lists.clear()
         lists.addAll(data)
