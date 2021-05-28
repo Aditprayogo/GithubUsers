@@ -1,10 +1,7 @@
 package com.aditPrayogo.githubusers.ui.main
 
 import androidx.hilt.lifecycle.ViewModelInject
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.viewModelScope
+import androidx.lifecycle.*
 import com.aditprayogo.core.domain.model.UserSearchItem
 import com.aditprayogo.core.domain.usecase.UserUseCaseImpl
 import com.aditprayogo.core.utils.state.LoaderState
@@ -18,14 +15,13 @@ class MainViewModel @ViewModelInject constructor(
 
 
     private val _state = MutableLiveData<LoaderState>()
-    val state : LiveData<LoaderState>
+    val state: LiveData<LoaderState>
         get() = _state
 
-
-    private val _error  = MutableLiveData<String>()
+    private val _error = MutableLiveData<String>()
 
     private val _networkError = MutableLiveData<Boolean>()
-    val networkError : LiveData<Boolean>
+    val networkError: LiveData<Boolean>
         get() = _networkError
 
     private val _resultUserApi = MutableLiveData<List<UserSearchItem>>()
@@ -35,8 +31,8 @@ class MainViewModel @ViewModelInject constructor(
     fun getUserFromApi(query: String) {
         _state.value = LoaderState.ShowLoading
         viewModelScope.launch {
-           userUseCaseImpl.getUserFromApi(query).collect {
-                when(it) {
+            userUseCaseImpl.getUserFromApi(query).collect {
+                when (it) {
                     is ResultState.Success -> {
                         _resultUserApi.postValue(it.data)
                         _state.value = LoaderState.HideLoading

@@ -84,6 +84,7 @@ class MainActivity : AppCompatActivity() {
                             setIllustration(true)
                         }
                     }
+                    setIllustration(true)
                     return true
                 }
 

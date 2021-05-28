@@ -12,21 +12,21 @@ class UserUseCaseImpl @Inject constructor(
     /**
      * Remote
      */
-    override suspend fun getUserFromApi(username: String): Flow<ResultState<List<UserSearchItem>>> {
-        return userRepository.getUserFromApi(username)
-    }
+    override suspend fun getUserFromApi(username: String) =
+        userRepository.getUserFromApi(username)
 
-    override suspend fun getUserDetailFromApi(username: String): Flow<ResultState<UserDetail>> {
-        return userRepository.getDetailUserFromApi(username)
-    }
 
-    override suspend fun getUserFollowers(username: String): Flow<ResultState<List<UserFollower>>> {
-        return userRepository.getUserFollowers(username)
-    }
+    override suspend fun getUserDetailFromApi(username: String) =
+        userRepository.getDetailUserFromApi(username)
 
-    override suspend fun getUserFollowing(username: String): Flow<ResultState<List<UserFollowing>>> {
-        return userRepository.getUserFollowing(username)
-    }
+
+    override suspend fun getUserFollowers(username: String) =
+        userRepository.getUserFollowers(username)
+
+
+    override suspend fun getUserFollowing(username: String) =
+        userRepository.getUserFollowing(username)
+
 
     /**
      * Local
