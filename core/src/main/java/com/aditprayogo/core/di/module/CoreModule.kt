@@ -23,7 +23,6 @@ object CoreModule {
         return Network.retrofitClient().create(NetworkService::class.java)
     }
 
-
     @Singleton
     @Provides
     fun provideAppDatabase(app: Application) : AppDatabase {

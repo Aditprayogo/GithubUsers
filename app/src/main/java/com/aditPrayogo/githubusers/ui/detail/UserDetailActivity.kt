@@ -11,14 +11,14 @@ import com.aditPrayogo.githubusers.R
 import com.aditPrayogo.githubusers.databinding.ActivityUserDetailBinding
 import com.aditPrayogo.githubusers.ui.pager.ViewPagerAdapter
 import com.aditPrayogo.githubusers.ui.settings.SettingsActivity
-import com.aditPrayogo.githubusers.utils.util.load
-import com.aditPrayogo.githubusers.utils.util.setGone
-import com.aditPrayogo.githubusers.utils.util.setVisible
-import com.aditPrayogo.githubusers.utils.util.toast
-import com.aditprayogo.core.data.local.responses.UserDetailResponse
+import com.aditprayogo.core.domain.model.UserDetail
 import com.aditprayogo.core.domain.model.UserFavorite
 import com.aditprayogo.core.utils.DataMapper
 import com.aditprayogo.core.utils.state.LoaderState
+import com.aditprayogo.core.utils.viewUtils.load
+import com.aditprayogo.core.utils.viewUtils.setGone
+import com.aditprayogo.core.utils.viewUtils.setVisible
+import com.aditprayogo.core.utils.viewUtils.toast
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.activity_user_detail.*
 
@@ -31,7 +31,7 @@ class UserDetailActivity : AppCompatActivity() {
 
     private val userDetailViewModel: UserDetailViewModel by viewModels()
 
-    private var userDetail: UserDetailResponse? = null
+    private var userDetail: UserDetail? = null
 
     private var userFavorite: UserFavorite? = null
 
@@ -149,8 +149,10 @@ class UserDetailActivity : AppCompatActivity() {
                 userDetailViewModel.deleteUserFromDb(it)
             }
         } else {
-            val userFavorite = userDetail?.let { DataMapper.mapResponseToDomain(it) }
-            userFavorite?.let { userDetailViewModel.addUserToFavDB(it) }
+            val userFavorite = userDetail?.let { DataMapper.mapUserDetailToUserFavorite(it) }
+            userFavorite?.let {
+                userDetailViewModel.addUserToFavDB(it)
+            }
         }
     }
 
@@ -175,10 +177,10 @@ class UserDetailActivity : AppCompatActivity() {
         }
     }
 
-    private fun handleResultUserDetail(data: UserDetailResponse) {
+    private fun handleResultUserDetail(data: UserDetail) {
         userDetail = data
         binding.apply {
-            txtUsername.text = data.login
+            txtUsername.text = data.name
             txtBio.text = data.bio ?: getString(R.string.no_bio)
             txtFollower.text = data.followers.toString()
             txtFollowing.text = data.following.toString()

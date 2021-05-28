@@ -1,4 +1,4 @@
-package com.aditPrayogo.githubusers.utils.util
+package com.aditprayogo.core.utils.viewUtils
 
 import android.view.View
 

@@ -7,13 +7,6 @@
     <uses-permission android:name="android.permission.WAKE_LOCK" />
     <uses-permission android:name="android.permission.VIBRATE" />
 
-    <permission
-        android:name="com.aditPrayogo.githubusers.provider.READ_DATABASE"
-        android:protectionLevel="normal" />
-    <permission
-        android:name="com.aditPrayogo.githubusers.provider.WRITE_DATABASE"
-        android:protectionLevel="normal" />
-
     <application
         android:name=".BaseApplication"
         android:allowBackup="true"
@@ -41,14 +34,6 @@
             android:enabled="true"
             android:exported="true"
             tools:ignore="ExportedReceiver" />
-
-        <provider
-            android:name="com.aditPrayogo.githubusers.ui.contentprovider.MyContentProvider"
-            android:authorities="com.aditPrayogo.githubusers.provider"
-            android:enabled="true"
-            android:exported="true"
-            android:readPermission="com.aditPrayogo.githubusers.provider.READ_DATABASE"
-            android:writePermission="com.aditPrayogo.githubusers.provider.WRITE_DATABASE" />
 
     </application>
 

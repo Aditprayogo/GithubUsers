@@ -1,4 +1,4 @@
-package com.aditPrayogo.githubusers.utils.util
+package com.aditprayogo.core.utils.viewUtils
 
 import android.widget.ImageView
 import com.aditprayogo.core.R

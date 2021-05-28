@@ -7,12 +7,12 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.aditprayogo.core.utils.state.LoaderState
-import com.aditprayogo.core.data.local.responses.UserFollowingResponseItem
 import com.aditPrayogo.githubusers.databinding.FragmentFollowingBinding
 import com.aditPrayogo.githubusers.ui.detail.UserDetailActivity
-import com.aditPrayogo.githubusers.utils.util.setGone
-import com.aditPrayogo.githubusers.utils.util.setVisible
+import com.aditprayogo.core.domain.model.UserFollowing
+import com.aditprayogo.core.utils.state.LoaderState
+import com.aditprayogo.core.utils.viewUtils.setGone
+import com.aditprayogo.core.utils.viewUtils.setVisible
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -20,7 +20,7 @@ class FollowingFragment : Fragment() {
 
     private val followingViewModel : FollowingViewModel by viewModels()
 
-    private var lists = mutableListOf<UserFollowingResponseItem>()
+    private var lists = mutableListOf<UserFollowing>()
 
     private val followingAdapter: FollowingAdapter by lazy {
         FollowingAdapter(requireContext())
@@ -69,7 +69,7 @@ class FollowingFragment : Fragment() {
         }
     }
 
-    private fun handlingEmptyFollowing(data: List<UserFollowingResponseItem>){
+    private fun handlingEmptyFollowing(data: List<UserFollowing>){
         if (data.isEmpty()) {
             binding.apply {
                 baseEmptyFollowing.setVisible()
@@ -83,7 +83,7 @@ class FollowingFragment : Fragment() {
         }
     }
 
-    private fun handleResultUserFollowing(data: List<UserFollowingResponseItem>) {
+    private fun handleResultUserFollowing(data: List<UserFollowing>) {
         handlingEmptyFollowing(data)
         lists.clear()
         lists.addAll(data)

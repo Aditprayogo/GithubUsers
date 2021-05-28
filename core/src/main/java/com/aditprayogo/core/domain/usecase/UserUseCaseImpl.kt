@@ -1,10 +1,6 @@
 package com.aditprayogo.core.domain.usecase
 
-import com.aditprayogo.core.data.local.responses.UserDetailResponse
-import com.aditprayogo.core.data.local.responses.UserFollowersResponseItem
-import com.aditprayogo.core.data.local.responses.UserFollowingResponseItem
-import com.aditprayogo.core.data.local.responses.UserSearchResponseItem
-import com.aditprayogo.core.domain.model.UserFavorite
+import com.aditprayogo.core.domain.model.*
 import com.aditprayogo.core.domain.repository.UserRepository
 import com.aditprayogo.core.utils.state.ResultState
 import kotlinx.coroutines.flow.Flow
@@ -16,21 +12,21 @@ class UserUseCaseImpl @Inject constructor(
     /**
      * Remote
      */
-    override suspend fun getUserFromApi(username: String): Flow<ResultState<List<UserSearchResponseItem>>> {
-        return userRepository.getUserFromApi(username)
-    }
+    override suspend fun getUserFromApi(username: String) =
+        userRepository.getUserFromApi(username)
 
-    override suspend fun getUserDetailFromApi(username: String): Flow<ResultState<UserDetailResponse>> {
-        return userRepository.getDetailUserFromApi(username)
-    }
 
-    override suspend fun getUserFollowers(username: String): Flow<ResultState<List<UserFollowersResponseItem>>> {
-        return userRepository.getUserFollowers(username)
-    }
+    override suspend fun getUserDetailFromApi(username: String) =
+        userRepository.getDetailUserFromApi(username)
 
-    override suspend fun getUserFollowing(username: String): Flow<ResultState<List<UserFollowingResponseItem>>> {
-        return userRepository.getUserFollowing(username)
-    }
+
+    override suspend fun getUserFollowers(username: String) =
+        userRepository.getUserFollowers(username)
+
+
+    override suspend fun getUserFollowing(username: String) =
+        userRepository.getUserFollowing(username)
+
 
     /**
      * Local

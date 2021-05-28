@@ -7,20 +7,20 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.aditPrayogo.githubusers.R
-import com.aditprayogo.core.data.local.responses.UserFollowersResponseItem
 import com.aditPrayogo.githubusers.databinding.ItemRowUserBinding
 import com.aditPrayogo.githubusers.ui.detail.UserDetailActivity
-import com.aditPrayogo.githubusers.utils.util.load
+import com.aditprayogo.core.domain.model.UserFollower
+import com.aditprayogo.core.utils.viewUtils.load
 
 class FollowerAdapter(private val mContext: Context) :
     RecyclerView.Adapter<FollowerAdapter.ViewHolder>() {
 
-    private var items = mutableListOf<UserFollowersResponseItem>()
+    private var items = mutableListOf<UserFollower>()
 
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         private val binding: ItemRowUserBinding = ItemRowUserBinding.bind(itemView)
 
-        fun bind(data: UserFollowersResponseItem) {
+        fun bind(data: UserFollower) {
             binding.apply {
                 ivUser.load(data.avatarUrl)
                 txtUsername.text = data.login
@@ -45,7 +45,7 @@ class FollowerAdapter(private val mContext: Context) :
         )
     }
 
-    fun setItems(data: MutableList<UserFollowersResponseItem>) {
+    fun setItems(data: MutableList<UserFollower>) {
         this.items = data
         notifyDataSetChanged()
     }

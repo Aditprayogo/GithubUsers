@@ -69,5 +69,5 @@ dependencies {
     kapt "androidx.hilt:hilt-compiler:$hilt_jetpack_version"
     kaptAndroidTest "androidx.hilt:hilt-compiler:$hilt_jetpack_version"
 
-
+    debugImplementation 'com.squareup.leakcanary:leakcanary-android:2.4'
 }
