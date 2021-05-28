@@ -24,7 +24,6 @@ interface NetworkService {
      * Endpoints Detail User
      */
     @GET("users/{username}")
-    @Headers("Authorization: token ${BuildConfig.GITHUB_TOKEN}")
     suspend fun getDetailUser(
         @Path("username") username: String
     ) : UserDetailResponse
