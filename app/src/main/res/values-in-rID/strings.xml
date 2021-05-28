@@ -29,4 +29,5 @@
     <string name="created_by_aditiya_prayogo">Dibuat oleh : Aditiya Prayogo</string>
     <string name="favorite_user">User yang disukai</string>
     <string name="favorite">Difavorite</string>
+    <string name="title_favorite">Favorit</string>
 </resources>
