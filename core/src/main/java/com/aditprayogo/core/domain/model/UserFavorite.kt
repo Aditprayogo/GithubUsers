@@ -1,12 +1,8 @@
 package com.aditprayogo.core.domain.model
 
-import android.os.Parcelable
-import kotlinx.android.parcel.Parcelize
-
 /**
  * Created by Aditiya Prayogo.
  */
-@Parcelize
 data class UserFavorite(
     val username: String,
     val name: String?,
@@ -19,4 +15,4 @@ data class UserFavorite(
     val followers: Int?,
     val following: Int?,
     val location: String?
-) : Parcelable
+)

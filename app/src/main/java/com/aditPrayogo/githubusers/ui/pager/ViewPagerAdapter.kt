@@ -22,12 +22,11 @@ class ViewPagerAdapter(
     }
 
     override fun getItem(position: Int): Fragment {
-        var fragment : Fragment? = null
-        when(position) {
-            0 -> fragment = FollowerFragment()
-            1 -> fragment = FollowingFragment()
+        return when (position) {
+            0 -> FollowerFragment()
+            1 -> FollowingFragment()
+            else -> FollowerFragment()
         }
-        return fragment as Fragment
     }
 
     override fun getCount(): Int = 2

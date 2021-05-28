@@ -1,13 +1,10 @@
 package com.aditprayogo.core.data.local.db.entity
 
-import android.os.Parcelable
 import androidx.annotation.NonNull
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
-import kotlinx.android.parcel.Parcelize
 
-@Parcelize
 @Entity(tableName = "user_favorite_table")
 data class UserFavoriteEntity(
 	@PrimaryKey
@@ -23,4 +20,4 @@ data class UserFavoriteEntity(
 	@ColumnInfo(name = "followers") val followers: Int?,
 	@ColumnInfo(name = "following") val following: Int?,
 	@ColumnInfo(name = "location") val location: String?
-) : Parcelable
+)
