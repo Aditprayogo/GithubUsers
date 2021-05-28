@@ -18,7 +18,6 @@ dependencies {
     //retrofit
     implementation "com.squareup.retrofit2:retrofit:$retrofit_version"
     implementation "com.squareup.retrofit2:converter-gson:$retrofit_version"
-
     //logging interceptors
     implementation "com.squareup.okhttp3:logging-interceptor:$logging_interceptor_version"
 
@@ -29,9 +28,6 @@ dependencies {
     implementation "androidx.room:room-runtime:$room_version"
     implementation "androidx.room:room-ktx:$room_version"
     kapt "androidx.room:room-compiler:$room_version"
-
-    //gson
-    implementation "com.google.code.gson:gson:$gson_version"
 
     //kotlin corutines
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:$coroutine_version"
@@ -73,5 +69,8 @@ dependencies {
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:$coroutine_version"
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:$coroutine_version"
 
-    debugImplementation 'com.squareup.leakcanary:leakcanary-android:2.4'
+    debugImplementation 'com.squareup.leakcanary:leakcanary-android:2.7'
+
+    implementation "net.zetetic:android-database-sqlcipher:4.4.2"
+    implementation "androidx.sqlite:sqlite:2.0.1"
 }
