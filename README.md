@@ -83,6 +83,10 @@ Clean architecture is a software design philosophy that separates the elements o
 - [Glide](https://github.com/bumptech/glide) An image loading and caching library for Android focused on smooth scrolling
 - [Lottie-Android](https://github.com/airbnb/lottie-android) JSON-based animation file format that enables designers to ship animations on any platform as easily as shipping static assets.
 - [Material Design](https://material.io/develop/android/docs/getting-started) Material is a design system created by Google to help teams build high-quality digital experiences for Android, iOS, Flutter, and the web.
+- [Encryption with SQLCipher](https://github.com/sqlcipher/android-database-sqlcipher)
+- [Obfuscation with Proguard]
+- [Certificate Pinning with OkHttp]
+- [Continuous Integration with Circle-CI]
 
 
 
