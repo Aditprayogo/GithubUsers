@@ -5,15 +5,15 @@
 
 ## Table of Content
 - [Apps Feature](#apps-feature)
-- [Clean Architecture](#apps-feature)
-- [Clean Architecture Introduction](#what-is-clean-architecture)
+- [Clean Architecture](#clean-architecture)
 - [Layer Implementation](#layers)
 - [Demo](#demo)
-- [Mad Scored](#mad-score)
+- [Mad Scored](#mad-scoreboard)
 - [Tech stack](#built-with)
-- [Support me](#how-to-support-me-?)
+- [Support me](#How-to-support-me-?-)
+- [License](#license)
 
-## Apps Feature :
+## Apps Feature
 - Search User On Github
 - Reminder At 9:00 AM
 - Add Favorite User
@@ -22,14 +22,12 @@
 - Localization
 - Content Provider [this branch](https://github.com/Aditprayogo/GithubUsers/tree/dicoding/bfaa-final))
 
-## Clean Architecture :
+## Clean Architecture
 <p align="center">
     <img src="assets/cleean.png"
         style="margin-right: 20px;"
     />
 </p>
-
-# What is Clean Architecture ?
 
 Clean architecture is a software design philosophy that separates the elements of a design into ring levels. An important goal of clean architecture is to provide developers with a way to organize code in such a way that it encapsulates the business logic but keeps it separate from the delivery mechanism.
 
@@ -38,7 +36,7 @@ Clean architecture is a software design philosophy that separates the elements o
 - **Data** It includes the domain layer. It would implement the interface exposed by domain layer and dispenses data to app
 - **Presentation** - A layer that interacts with the UI, mainly Android Stuff like Activities, Fragments, ViewModel, etc. It would include both domain and data layers.
 
-## Demo :
+## Demo
 
 <p align="center">
     <img src="assets/mockup1.jpg"
@@ -52,7 +50,7 @@ Clean architecture is a software design philosophy that separates the elements o
     />
 </p>
 
-## MAD SCORE :
+## Mad Scoreboard
 <p align="center">
     <img src="assets/summary.png"
         style="margin-right: 20px;"
@@ -88,7 +86,7 @@ Clean architecture is a software design philosophy that separates the elements o
 
 
 
-## How to Support me ?
+## How to support me ?
 > Just Follow my Github and **star** this repo
 
 
