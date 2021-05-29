@@ -1,7 +1,17 @@
 
-# Dicoding Submission: Learn Application Android Fundamental
+# GithubUsers (Searching user on github using mobile)
  [![Platform](https://img.shields.io/badge/platform-Android-green.svg)](http://developer.android.com/index.html) [![Kotlin](https://img.shields.io/badge/kotlin-1.4.21-orange.svg)](http://kotlinlang.org) [![Gradle](https://img.shields.io/badge/gradle-4.0.0-%2366DCB8.svg)](https://developer.android.com/studio/releases/gradle-plugin)
  [![Aditprayogo](https://circleci.com/gh/Aditprayogo/GithubUsers.svg?style=shield)](https://circleci.com/gh/Aditprayogo/GithubUsers)
+
+## Table of Content
+- [Apps Feature](#apps-feature)
+- [Clean Architecture](#apps-feature)
+- [Clean Architecture Introduction](#what-is-clean-architecture)
+- [Layer Implementation](#layers)
+- [Demo](#demo)
+- [Mad Scored](#mad-score)
+- [Tech stack](#built-with)
+- [Support me](#how-to-support-me-?)
 
 ## Apps Feature :
 - Search User On Github
@@ -10,7 +20,7 @@
 - Delete Favorite User
 - User Favorite
 - Localization
-- Content Provider
+- Content Provider [this branch](https://github.com/Aditprayogo/GithubUsers/tree/dicoding/bfaa-final))
 
 ## Clean Architecture :
 <p align="center">
@@ -27,19 +37,6 @@ Clean architecture is a software design philosophy that separates the elements o
 - **Domain** - Contains the business logic of the application. It is the individual and innermost module. It’s a complete java module.
 - **Data** It includes the domain layer. It would implement the interface exposed by domain layer and dispenses data to app
 - **Presentation** - A layer that interacts with the UI, mainly Android Stuff like Activities, Fragments, ViewModel, etc. It would include both domain and data layers.
-
-
-## How to Use This App :
-Generate your token in here https://github.com/settings/tokens and replace with your token in **build.gradle**
-```kotlin
-
-    defaultConfig {
-            ---
-            ---
-            buildConfigField "String", "GITHUB_TOKEN", "\"REPLACE WITH YOUR GITHUB TOKEN\""
-
-        }
-```
 
 ## Demo :
 

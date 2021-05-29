@@ -21,6 +21,10 @@ android {
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles "consumer-rules.pro"
         buildConfigField "String", "BASE_URL", "\"https://api.github.com/\""
+        buildConfigField "String", "HOST_NAME", "\"api.github.com\""
+        buildConfigField "String", "CERTIFICATE_PIN_1", "\"sha256/azE5Ew0LGsMgkYqiDpYay0olLAS8cxxNGUZ8OJU756k=\""
+        buildConfigField "String", "CERTIFICATE_PIN_2", "\"sha256/vnCogm4QYze/Bc9r88xdA6NTQY74p4BAz2w5gxkLG2M=\""
+        buildConfigField "String", "CERTIFICATE_PIN_3", "\"sha256/WoiWRyIOVNa9ihaBciRSC7XHjliYS9VwUGOIud4PB18=\""
         buildConfigField "String", "PASSPHRASE", "\"githubUsers\""
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
