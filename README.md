@@ -1,5 +1,5 @@
 
-# GithubUsers (Searching user on github using mobile)
+# GithubUsers
  [![Platform](https://img.shields.io/badge/platform-Android-green.svg)](http://developer.android.com/index.html) [![Kotlin](https://img.shields.io/badge/kotlin-1.4.21-orange.svg)](http://kotlinlang.org) [![Gradle](https://img.shields.io/badge/gradle-4.0.0-%2366DCB8.svg)](https://developer.android.com/studio/releases/gradle-plugin)
  [![Aditprayogo](https://circleci.com/gh/Aditprayogo/GithubUsers.svg?style=shield)](https://circleci.com/gh/Aditprayogo/GithubUsers)
 
@@ -20,7 +20,7 @@
 - Delete Favorite User
 - User Favorite
 - Localization
-- Content Provider [this branch](https://github.com/Aditprayogo/GithubUsers/tree/dicoding/bfaa-final))
+- Content Provider [this branch](https://github.com/Aditprayogo/GithubUsers/tree/dicoding/bfaa-final)
 
 ## Clean Architecture
 <p align="center">
@@ -67,7 +67,8 @@ Clean architecture is a software design philosophy that separates the elements o
 ## Built With
 - [Kotlin](https://kotlinlang.org/) - First class and official programming language for Android development.
 - [Coroutines](https://kotlinlang.org/docs/reference/coroutines-overview.html) - Is light wight threads for asynchronous programming
-- [Flow](https://developer.android.com/kotlin/flow)
+- [Flow](https://developer.android.com/kotlin/flow) Handle the stream of data asynchronously that executes sequentially.
+
 - [Android Architecture Components](https://developer.android.com/topic/libraries/architecture) - Collection of libraries that help you design robust, testable, and maintainable apps.
    - [LiveData](https://developer.android.com/topic/libraries/architecture/livedata) - Data objects that notify views when the underlying database changes.
    - [ViewModel](https://developer.android.com/topic/libraries/architecture/viewmodel) - Stores UI-related data that isn't destroyed on UI changes.
@@ -84,9 +85,10 @@ Clean architecture is a software design philosophy that separates the elements o
 - [Lottie-Android](https://github.com/airbnb/lottie-android) JSON-based animation file format that enables designers to ship animations on any platform as easily as shipping static assets.
 - [Material Design](https://material.io/develop/android/docs/getting-started) Material is a design system created by Google to help teams build high-quality digital experiences for Android, iOS, Flutter, and the web.
 - [Encryption with SQLCipher](https://github.com/sqlcipher/android-database-sqlcipher)
-- [Obfuscation with Proguard]
-- [Certificate Pinning with OkHttp]
-- [Continuous Integration with Circle-CI]
+- Dynamic Feature Module
+- Obfuscation with Proguard
+- Certificate Pinning with OkHttp
+- [Continuous Integration with Circle-CI](https://circleci.com/)
 
 
 
