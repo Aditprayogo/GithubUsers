@@ -6,21 +6,21 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.aditprayogo.core.domain.model.UserFollower
-import com.aditprayogo.core.domain.usecase.UserUseCaseImpl
+import com.aditprayogo.core.domain.usecase.UserUseCase
 import com.aditprayogo.core.utils.state.LoaderState
 import com.aditprayogo.core.utils.state.ResultState
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 
 class FollowerViewModel @ViewModelInject constructor(
-    private val userUseCaseImpl: UserUseCaseImpl
+    private val userUseCase: UserUseCase
 ) : ViewModel() {
 
     /**
      * Loader state
      */
     private val _state = MutableLiveData<LoaderState>()
-    val state : LiveData<LoaderState>
+    val state: LiveData<LoaderState>
         get() = _state
 
     /**
@@ -37,15 +37,15 @@ class FollowerViewModel @ViewModelInject constructor(
      * State Followers
      */
     private val _resultUserFollower = MutableLiveData<List<UserFollower>>()
-    val resultUserFollower : LiveData<List<UserFollower>>
+    val resultUserFollower: LiveData<List<UserFollower>>
         get() = _resultUserFollower
 
     fun getUserFollowers(username: String) {
         _state.value = LoaderState.ShowLoading
         viewModelScope.launch {
-            userUseCaseImpl.getUserFollowers(username).collect {
+            userUseCase.getUserFollowers(username).collect {
                 _state.value = LoaderState.HideLoading
-                when(it) {
+                when (it) {
                     is ResultState.Success -> _resultUserFollower.postValue(it.data)
                     is ResultState.Error -> _error.postValue(it.error)
                     is ResultState.NetworkError -> _networkError.postValue(true)

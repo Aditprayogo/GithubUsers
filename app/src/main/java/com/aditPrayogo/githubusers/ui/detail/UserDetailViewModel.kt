@@ -4,14 +4,14 @@ import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.*
 import com.aditprayogo.core.domain.model.UserDetail
 import com.aditprayogo.core.domain.model.UserFavorite
-import com.aditprayogo.core.domain.usecase.UserUseCaseImpl
+import com.aditprayogo.core.domain.usecase.UserUseCase
 import com.aditprayogo.core.utils.state.LoaderState
 import com.aditprayogo.core.utils.state.ResultState
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 
 class UserDetailViewModel @ViewModelInject constructor(
-    private val userUseCaseImpl: UserUseCaseImpl
+    private val userUseCase: UserUseCase
 ) : ViewModel() {
 
     /**
@@ -58,7 +58,7 @@ class UserDetailViewModel @ViewModelInject constructor(
     fun getUserDetailFromApi(username: String) {
         _state.value = LoaderState.ShowLoading
         viewModelScope.launch {
-            userUseCaseImpl.getUserDetailFromApi(username).collect {
+            userUseCase.getUserDetailFromApi(username).collect {
                 _state.value = LoaderState.HideLoading
                 when(it) {
                     is ResultState.Success -> _resultUserDetail.postValue(it.data)
@@ -76,7 +76,7 @@ class UserDetailViewModel @ViewModelInject constructor(
     fun addUserToFavDB(userFavoriteEntity: UserFavorite) {
         viewModelScope.launch {
             try {
-                userUseCaseImpl.addUserToFavDB(userFavoriteEntity)
+                userUseCase.addUserToFavDB(userFavoriteEntity)
                 _resultInsertUserToDb.postValue(true)
             }catch (e: Exception) {
                 _error.postValue(e.localizedMessage)
@@ -87,7 +87,7 @@ class UserDetailViewModel @ViewModelInject constructor(
     fun deleteUserFromDb(userFavoriteEntity: UserFavorite) {
         viewModelScope.launch {
             try {
-                userUseCaseImpl.deleteUserFromDb(userFavoriteEntity)
+                userUseCase.deleteUserFromDb(userFavoriteEntity)
                 _resultDeleteFromDb.postValue(true)
             }catch (e: Exception) {
                 _error.postValue(e.localizedMessage)
@@ -95,5 +95,5 @@ class UserDetailViewModel @ViewModelInject constructor(
         }
     }
 
-    fun getFavUserByUsername(username: String) = userUseCaseImpl.getFavUserByUsername(username).asLiveData()
+    fun getFavUserByUsername(username: String) = userUseCase.getFavUserByUsername(username).asLiveData()
 }
