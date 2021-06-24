@@ -95,7 +95,7 @@ Clean architecture is a software design philosophy that separates the elements o
 ## How to support me ?
 > Just Follow my Github and **star** this repo
 
-![GitHub followers](https://img.shields.io/github/followers/aditPrayogo?style=social)
+<a href="https://github.com/Aditprayogo" target="blank">![GitHub followers](https://img.shields.io/github/followers/aditPrayogo?style=social)</a>
 
 
 # License
