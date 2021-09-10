@@ -1,6 +1,9 @@
 
-# Dicoding Submission: Learn Application Android Fundamental
+# GithubUsers
  [![Platform](https://img.shields.io/badge/platform-Android-green.svg)](http://developer.android.com/index.html) [![Kotlin](https://img.shields.io/badge/kotlin-1.4.21-orange.svg)](http://kotlinlang.org) [![Gradle](https://img.shields.io/badge/gradle-4.0.0-%2366DCB8.svg)](https://developer.android.com/studio/releases/gradle-plugin)
+ 
+# Note 
+<b><i>I'm currently an External Code reviewer for Dicoding Indonesia, if you are proven to be plagiarizing from this project then I will suspend your account</b></i>
 
 ## Apps Feature :
 - Search User On Github
