@@ -4,7 +4,7 @@
  [![Aditprayogo](https://circleci.com/gh/Aditprayogo/GithubUsers.svg?style=shield)](https://circleci.com/gh/Aditprayogo/GithubUsers)
  
  # Note 
-<b><i>I'm currently an External Code reviewer for Dicoding Indonesia, if you are proven to be plagiarizing from this project then I will suspend your account</b></i>
+<b><i>I'm currently an External Code reviewer for Dicoding Indonesia, if you are proven to be plagiarizing from this project then I am not responsible for anything that happens if you get plagiarized / suspended by <a href="https://www.dicoding.com/">Dicoding</a>.</b></i>
 
 ## Table of Content
 - [Apps Feature](#apps-feature)
