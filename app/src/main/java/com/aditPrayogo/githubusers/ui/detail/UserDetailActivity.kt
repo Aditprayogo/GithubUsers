@@ -20,7 +20,6 @@ import com.aditprayogo.core.utils.viewUtils.setGone
 import com.aditprayogo.core.utils.viewUtils.setVisible
 import com.aditprayogo.core.utils.viewUtils.toast
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.android.synthetic.main.activity_user_detail.*
 
 @AndroidEntryPoint
 class UserDetailActivity : AppCompatActivity() {
@@ -112,33 +111,33 @@ class UserDetailActivity : AppCompatActivity() {
 
     private fun initObserver() {
         with(userDetailViewModel) {
-            state.observe(this@UserDetailActivity, {
+            state.observe(this@UserDetailActivity) {
                 handleStateLoading(it)
-            })
-            resultUserDetail.observe(this@UserDetailActivity, {
-                handleResultUserDetail(it)
-            })
-            username?.let {
-                getFavUserByUsername(it).observe(this@UserDetailActivity, {
-                    handleUserDetailFromDb(it)
-                })
             }
-            resultInsertUserDb.observe(this@UserDetailActivity, { it ->
+            resultUserDetail.observe(this@UserDetailActivity) {
+                handleResultUserDetail(it)
+            }
+            username?.let {
+                getFavUserByUsername(it).observe(this@UserDetailActivity) {
+                    handleUserDetailFromDb(it)
+                }
+            }
+            resultInsertUserDb.observe(this@UserDetailActivity) { it ->
                 if (it) {
                     username?.let {
                         userDetailViewModel.getFavUserByUsername(it)
                     }
                     toast(getString(R.string.user_success))
                 }
-            })
-            resultDeleteFromDb.observe(this@UserDetailActivity, { it ->
+            }
+            resultDeleteFromDb.observe(this@UserDetailActivity) { it ->
                 if (it) {
                     username?.let {
                         userDetailViewModel.getFavUserByUsername(it)
                     }
                     toast(getString(R.string.user_deleted))
                 }
-            })
+            }
         }
 
     }

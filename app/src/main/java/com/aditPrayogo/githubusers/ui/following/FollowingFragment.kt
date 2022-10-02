@@ -60,12 +60,12 @@ class FollowingFragment : Fragment() {
 
     private fun initObserver() {
         with(followingViewModel) {
-            state.observe(viewLifecycleOwner, {
+            state.observe(viewLifecycleOwner) {
                 handleStateLoading(it)
-            })
-            resultUserFollowing.observe(viewLifecycleOwner, {
+            }
+            resultUserFollowing.observe(viewLifecycleOwner) {
                 handleResultUserFollowing(it)
-            })
+            }
         }
     }
 

@@ -101,21 +101,21 @@ class MainActivity : AppCompatActivity() {
 
     private fun initObserver() {
         with(mainViewModel) {
-            state.observe(this@MainActivity, {
+            state.observe(this@MainActivity) {
                 it?.let {
                     handleStateLoading(it)
                 }
-            })
-            resultUserApi.observe(this@MainActivity, {
+            }
+            resultUserApi.observe(this@MainActivity) {
                 it?.let {
                     handleUserFromApi(it)
                 }
-            })
-            networkError.observe(this@MainActivity, {
+            }
+            networkError.observe(this@MainActivity) {
                 it?.let {
                     handleStateInternet(it)
                 }
-            })
+            }
         }
     }
 
