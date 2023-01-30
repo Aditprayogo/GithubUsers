@@ -1,5 +1,6 @@
 package com.aditprayogo.favorite.ui
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.content.Intent
 import android.view.LayoutInflater
@@ -47,6 +48,7 @@ class FavoriteUserAdapter(private val mContext: Context) :
         }
     }
 
+    @SuppressLint("NotifyDataSetChanged")
     fun setItems(items: MutableList<UserFavorite>) {
         this.items = items
         notifyDataSetChanged()
