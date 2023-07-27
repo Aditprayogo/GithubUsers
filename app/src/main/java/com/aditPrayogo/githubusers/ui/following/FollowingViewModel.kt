@@ -1,6 +1,5 @@
 package com.aditPrayogo.githubusers.ui.following
 
-import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -9,10 +8,13 @@ import com.aditprayogo.core.domain.model.UserFollowing
 import com.aditprayogo.core.domain.usecase.UserUseCase
 import com.aditprayogo.core.utils.state.LoaderState
 import com.aditprayogo.core.utils.state.ResultState
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-class FollowingViewModel @ViewModelInject constructor(
+@HiltViewModel
+class FollowingViewModel @Inject constructor(
     private val userUseCase: UserUseCase
 ) : ViewModel() {
 

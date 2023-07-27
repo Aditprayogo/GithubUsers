@@ -1,16 +1,22 @@
 package com.aditPrayogo.githubusers.ui.detail
 
-import androidx.hilt.lifecycle.ViewModelInject
-import androidx.lifecycle.*
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.asLiveData
+import androidx.lifecycle.viewModelScope
 import com.aditprayogo.core.domain.model.UserDetail
 import com.aditprayogo.core.domain.model.UserFavorite
 import com.aditprayogo.core.domain.usecase.UserUseCase
 import com.aditprayogo.core.utils.state.LoaderState
 import com.aditprayogo.core.utils.state.ResultState
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-class UserDetailViewModel @ViewModelInject constructor(
+@HiltViewModel
+class UserDetailViewModel @Inject constructor(
     private val userUseCase: UserUseCase
 ) : ViewModel() {
 

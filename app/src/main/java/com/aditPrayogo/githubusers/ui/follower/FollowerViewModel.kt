@@ -9,10 +9,13 @@ import com.aditprayogo.core.domain.model.UserFollower
 import com.aditprayogo.core.domain.usecase.UserUseCase
 import com.aditprayogo.core.utils.state.LoaderState
 import com.aditprayogo.core.utils.state.ResultState
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-class FollowerViewModel @ViewModelInject constructor(
+@HiltViewModel
+class FollowerViewModel @Inject constructor(
     private val userUseCase: UserUseCase
 ) : ViewModel() {
 
