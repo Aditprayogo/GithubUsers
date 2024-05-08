@@ -9,20 +9,20 @@ plugins {
 apply from: '../shared_dependencies.gradle'
 
 android {
-    compileSdkVersion 31
+    compileSdkVersion 34
     buildToolsVersion "30.0.3"
 
     defaultConfig {
         minSdkVersion 21
-        targetSdkVersion 30
+        targetSdkVersion 34
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles "consumer-rules.pro"
         buildConfigField "String", "BASE_URL", "\"https://api.github.com/\""
         buildConfigField "String", "HOST_NAME", "\"api.github.com\""
-        buildConfigField "String", "CERTIFICATE_PIN_1", "\"sha256/uyPYgclc5Jt69vKu92vci6etcBDY8UNTyrHQZJpVoZY=\""
-        buildConfigField "String", "CERTIFICATE_PIN_2", "\"sha256/Bc9r88xdA6NTQY74p4BAz2w5gxkLG2M=\""
-        buildConfigField "String", "CERTIFICATE_PIN_3", "\"sha256/r/mIkG3eEpVdm+u/ko/cwxzOMo1bk4TyHIlByibiA5E=\""
+        buildConfigField "String", "CERTIFICATE_PIN_1", "\"sha256/lmo8/KPXoMsxI+J9hY+ibNm2r0IYChmOsF9BxD74PVc=\""
+        buildConfigField "String", "CERTIFICATE_PIN_2", "\"sha256/6YBE8kK4d5J1qu1wEjyoKqzEIvyRY5HyM/NB2wKdcZo=\""
+        buildConfigField "String", "CERTIFICATE_PIN_3", "\"sha256/ICGRfpgmOUXIWcQ/HXPLQTkFPEFPoDyjvH7ohhQpjzs=\""
         buildConfigField "String", "PASSPHRASE", "\"githubUsers\""
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
